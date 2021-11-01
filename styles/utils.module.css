@@ -1,0 +1,89 @@
+.heading2Xl {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -0.05rem;
+    margin: 1rem 0;
+}
+
+.headingXl {
+    font-size: 2rem;
+    line-height: 1.3;
+    font-weight: 800;
+    letter-spacing: -0.05rem;
+    margin: 1rem 0;
+}
+
+.headingLg {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    margin: 1rem 0;
+}
+
+.headingMd {
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+.borderCircle {
+    border-radius: 9999px;
+}
+
+.colorInherit {
+    color: inherit;
+}
+
+.padding1px {
+    padding-top: 1px;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.listItem {
+    display: flex;
+    margin: 0 0 1.25rem;
+
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+}
+
+.listThumbnail {
+    height: 101px;
+    align-self: center;
+    transform-origin: left;
+    transition: 1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.listThumbnail:hover {
+    height: 101px;
+    align-self: center;
+    transform: scale(3.5);
+    transform-origin: left;
+    transition: 1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.listData {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 1.25rem 1.25em;
+}
+
+.listDataItem {
+    margin: 0 0 1.25rem;
+    width: 20em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.pricing {
+    margin: 0 0 1.25rem;
+    font-weight: 500;
+}
+
+.lightText {
+    color: #666;
+}
