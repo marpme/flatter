@@ -2,8 +2,9 @@ import Head from 'next/head'
 import Layout from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { GetServerSideProps, GetStaticProps } from 'next'
-import { getDegewoProperties } from '../lib/immo/degewo/fetcher'
+import { getDegewoProperties } from '../lib/immo/degewo'
 import Property from '../lib/Property'
+import { getHowogeProperties } from '../lib/immo/howoge'
 
 export default function Home({ properties }: { properties: Property[] }) {
     return (
@@ -57,7 +58,10 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     res.setHeader('Cache-Control', 'public, max-age=300')
     console.log('Computing properties ...')
 
-    const properties = await getDegewoProperties()
+    const properties = [
+        ...(await getDegewoProperties()),
+        ...(await getHowogeProperties()),
+    ]
     return {
         props: {
             properties,

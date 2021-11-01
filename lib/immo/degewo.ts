@@ -1,4 +1,4 @@
-import Property from '../../Property'
+import Property from '../Property'
 
 export const getDegewoProperties = async (): Promise<Property[]> => {
     return fetch(
