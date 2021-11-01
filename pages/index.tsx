@@ -54,6 +54,7 @@ export default function Home({ properties }: { properties: Property[] }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
+    console.log('Computing properties ...')
     const properties = await getDegewoProperties()
     return {
         props: {
