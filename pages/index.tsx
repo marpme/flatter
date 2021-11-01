@@ -53,8 +53,10 @@ export default function Home({ properties }: { properties: Property[] }) {
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
+    res.setHeader('Cache-Control', 'public, max-age=300')
     console.log('Computing properties ...')
+
     const properties = await getDegewoProperties()
     return {
         props: {
