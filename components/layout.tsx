@@ -19,7 +19,7 @@ export default function Layout({
                 <link rel="icon" href="/favicon.ico" />
                 <meta
                     name="description"
-                    content="Learn how to build a personal website using Next.js"
+                    content="Search the latest and greatest property deals for Berlin"
                 />
                 <meta
                     property="og:image"
