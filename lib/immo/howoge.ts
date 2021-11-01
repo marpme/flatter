@@ -9,26 +9,20 @@ export const getHowogeProperties = async (): Promise<Property[]> => {
         }
     )
         .then((response) => response.ok && response.json())
-        .then(({ immos: properties }) => {
-            return properties
-                .map((property) => ({
-                    id: property.uid,
-                    address: property.title,
-                    price: property.rent,
-                    sqmeter: property.area,
-                    sqmeterPriceRatio: (
-                        parseFloat(property.rent) / Number(property.area)
-                    ).toFixed(2),
-                    headline: property.notice + ' - ' + property.title,
-                    thumnail: property.image,
-                    imageLinks: `https://www.howoge.de${property.image}`,
-                    propertyLink: `https://www.howoge.de${property.link}`,
-                }))
-                .sort(
-                    (propertyA, propertyB) =>
-                        propertyA.sqmeterPriceRatio -
-                        propertyB.sqmeterPriceRatio
-                )
+        .then(({ immoobjects: properties }) => {
+            return properties.map((property) => ({
+                id: property.uid,
+                address: property.title,
+                price: property.rent,
+                sqmeter: property.area,
+                sqmeterPriceRatio: (
+                    parseFloat(property.rent) / Number(property.area)
+                ).toFixed(2),
+                headline: property.notice + ' - ' + property.title,
+                thumnail: property.image,
+                imageLinks: [`https://www.howoge.de${property.image}`],
+                propertyLink: `https://www.howoge.de${property.link}`,
+            }))
         })
 }
 

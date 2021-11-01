@@ -38,8 +38,9 @@ export default function Home({ properties }: { properties: Property[] }) {
                                 </a>
 
                                 <small className={utilStyles.pricing}>
-                                    {property.sqmeterPriceRatio} €/m² |{' '}
-                                    {property.price}/mo
+                                    {property.sqmeterPriceRatio} €/m² ,{' '}
+                                    {property.price} €/mo , {property.sqmeter}{' '}
+                                    m²
                                 </small>
 
                                 <small className={utilStyles.lightText}>
@@ -61,7 +62,10 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     const properties = [
         ...(await getDegewoProperties()),
         ...(await getHowogeProperties()),
-    ]
+    ].sort(
+        (propertyA, propertyB) =>
+            propertyA.sqmeterPriceRatio - propertyB.sqmeterPriceRatio
+    )
     return {
         props: {
             properties,

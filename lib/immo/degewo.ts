@@ -6,33 +6,30 @@ export const getDegewoProperties = async (): Promise<Property[]> => {
     )
         .then((response) => response.ok && response.json())
         .then(({ immos: properties }) => {
-            return properties
-                .map((property) => ({
-                    id: property.id,
-                    address: property.address,
-                    price: property.rent_total_with_vat,
-                    sqmeter: property.living_space,
-                    sqmeterPriceRatio: (
-                        parseFloat(
-                            property.rent_total_with_vat
-                                .replace(' €', '')
-                                .replace('.', '')
-                                .replace(',', '.')
-                        ) / Number(property.living_space)
-                    ).toFixed(2),
-                    headline: property.headline,
-                    thumnail: property.thumb_path,
-                    imageLinks: property.external_data.map(
-                        ({ filename }) =>
-                            `https://immosuche.degewo.de/images/properties/full/760x570/${filename}`
-                    ),
-                    propertyLink: `https://immosuche.degewo.de${property.property_path}`,
-                }))
-                .sort(
-                    (propertyA, propertyB) =>
-                        propertyA.sqmeterPriceRatio -
-                        propertyB.sqmeterPriceRatio
-                )
+            return properties.map((property) => ({
+                id: property.id,
+                address: property.address,
+                price: property.rent_total_with_vat
+                    .replace(' €', '')
+                    .replace('.', '')
+                    .replace(',', '.'),
+                sqmeter: property.living_space,
+                sqmeterPriceRatio: (
+                    parseFloat(
+                        property.rent_total_with_vat
+                            .replace(' €', '')
+                            .replace('.', '')
+                            .replace(',', '.')
+                    ) / Number(property.living_space)
+                ).toFixed(2),
+                headline: property.headline,
+                thumnail: property.thumb_path,
+                imageLinks: property.external_data.map(
+                    ({ filename }) =>
+                        `https://immosuche.degewo.de/images/properties/full/760x570/${filename}`
+                ),
+                propertyLink: `https://immosuche.degewo.de${property.property_path}`,
+            }))
         })
 }
 
