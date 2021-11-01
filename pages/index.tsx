@@ -1,24 +1,11 @@
 import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
+import Layout from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
-import { getSortedPostsData } from '../lib/posts'
-import Link from 'next/link'
-import Date from '../components/date'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps, GetStaticProps } from 'next'
 import { getDegewoProperties } from '../lib/immo/degewo/fetcher'
 import Property from '../lib/Property'
 
-export default function Home({
-    allPostsData,
-    properties,
-}: {
-    allPostsData: {
-        date: string
-        title: string
-        id: string
-    }[]
-    properties: Property[]
-}) {
+export default function Home({ properties }: { properties: Property[] }) {
     return (
         <Layout home>
             <Head>
@@ -66,7 +53,7 @@ export default function Home({
     )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
     const properties = await getDegewoProperties()
     return {
         props: {
