@@ -1,3 +1,4 @@
+import { imageifyLink } from '../imageify'
 import Property from '../Property'
 
 export const getDegewoProperties = async (): Promise<Property[]> => {
@@ -23,10 +24,11 @@ export const getDegewoProperties = async (): Promise<Property[]> => {
                     ) / Number(property.living_space)
                 ).toFixed(2),
                 headline: property.headline,
-                thumnail: property.thumb_path,
-                imageLinks: property.external_data.map(
-                    ({ filename }) =>
+                thumnail: imageifyLink(property.thumb_path),
+                imageLinks: property.external_data.map(({ filename }) =>
+                    imageifyLink(
                         `https://immosuche.degewo.de/images/properties/full/760x570/${filename}`
+                    )
                 ),
                 propertyLink: `https://immosuche.degewo.de${property.property_path}`,
             }))
