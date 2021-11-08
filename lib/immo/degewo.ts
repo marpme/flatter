@@ -1,5 +1,6 @@
 import { imageifyLink } from '../imageify'
 import Property from '../Property'
+import { Organisation } from "./Organisation"
 
 export const getDegewoProperties = async (): Promise<Property[]> => {
     return fetch(
@@ -8,7 +9,8 @@ export const getDegewoProperties = async (): Promise<Property[]> => {
         .then((response) => response.ok && response.json())
         .then(({ immos: properties }) => {
             return properties.map((property) => ({
-                id: property.id,
+                id: `${Organisation.DEGEWO}/${property.id}`,
+                org: Organisation.DEGEWO,
                 address: property.address,
                 price: property.rent_total_with_vat
                     .replace(' €', '')
