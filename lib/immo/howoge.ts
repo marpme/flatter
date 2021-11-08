@@ -1,6 +1,6 @@
 import { imageifyLink } from '../imageify'
 import Property from '../Property'
-import {Organisation } from '../Organisation'
+import { Organisation } from '../Organisation'
 
 export const getHowogeProperties = async (): Promise<Property[]> => {
     return fetch(
