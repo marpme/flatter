@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Layout from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
 import useFetch from 'use-http'
 import { PropertyComponent } from '../components/PropertyComponent'
 import Property from '../lib/Property'
+import { Grid, Page } from '@geist-ui/core'
 
 export default function Home() {
     const [properties, setProperties] = useState([])
@@ -19,20 +19,22 @@ export default function Home() {
     }, []) // componentDidMount
 
     return (
-        <Layout home>
-            <Head>
-                <title>Property Scouting - Berlin</title>
-            </Head>
-            <section
-                className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}
-            >
-                <h2 className={utilStyles.headingLg}>Avaiable Properties</h2>
-                <ul className={utilStyles.list}>
-                    {properties.map((property) => (
-                        <PropertyComponent property={property} />
-                    ))}
-                </ul>
-            </section>
-        </Layout>
+        <Page dotBackdrop>
+            <Layout home>
+                <Head>
+                    <title>Property Scouting - Berlin</title>
+                </Head>
+                <section>
+                    <h2>Avaiable Properties</h2>
+                    <Grid.Container gap={2} justify="center" height="100px">
+                        {properties.map((property) => (
+                            <Grid xs={24} md={6} key={property.id}>
+                                <PropertyComponent property={property} />
+                            </Grid>
+                        ))}
+                    </Grid.Container>
+                </section>
+            </Layout>
+        </Page>
     )
 }
