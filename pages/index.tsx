@@ -61,7 +61,7 @@ const Dashboard = () => {
                     <title>Property Scouting - Berlin</title>
                 </Head>
                 <section>
-                    <h2>Avaiable Properties</h2>
+                    <h2>Available Properties</h2>
                     <Grid.Container gap={2} justify="center" height="100px">
                         {properties.map((property) => (
                             <Grid xs={24} md={6} key={property.id}>
