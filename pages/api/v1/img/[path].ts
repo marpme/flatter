@@ -1,6 +1,12 @@
 import { NextApiResponse } from 'next'
 import { decryptImage } from '../../../../lib/crypto'
 
+export const config = {
+    api: {
+        responseLimit: '8mb',
+    },
+}
+
 export default async (req, res: NextApiResponse) => {
     if (!req.query.path) {
         res.status(404).send(null)
