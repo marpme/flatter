@@ -1,22 +1,58 @@
-import { useEffect, useState } from 'react'
+import { Grid, Modal, Page, Spacer, Spinner, Text } from '@geist-ui/core'
+import Activity from '@geist-ui/icons/activity'
 import Head from 'next/head'
+import useSWR from 'swr'
 import Layout from '../components/layout'
-import useFetch from 'use-http'
 import { PropertyComponent } from '../components/PropertyComponent'
+import { fetcher } from '../lib/fetcher'
 import Property from '../lib/Property'
-import { Grid, Page } from '@geist-ui/core'
 
-export default function Home() {
-    const [properties, setProperties] = useState([])
-    const { get, response, loading, error } = useFetch<Property[]>()
+const Dashboard = () => {
+    const {
+        data: properties,
+        isValidating,
+        error,
+    } = useSWR<Property[]>('/api/v1/properties', fetcher)
 
-    useEffect(() => {
-        async function initializeProperties() {
-            const initialTodos = await get('/api/v1/properties')
-            if (response.ok) setProperties(initialTodos)
-        }
-        initializeProperties()
-    }, []) // componentDidMount
+    if (error) {
+        return (
+            <Page dotBackdrop>
+                <Modal visible={true} onClose={() => window.location.reload()}>
+                    <Modal.Title>
+                        <Activity />
+                        <Spacer inline /> Unable to get properties
+                    </Modal.Title>
+                    <Modal.Content>
+                        <Text em>
+                            We were unable to query data for the searched
+                            properties. This is expected, please try later
+                            again.
+                        </Text>
+                    </Modal.Content>
+                    <Modal.Action onClick={() => window.location.reload()}>
+                        Retry
+                    </Modal.Action>
+                </Modal>
+            </Page>
+        )
+    }
+
+    if (isValidating || !properties) {
+        return (
+            <Page dotBackdrop>
+                <Grid.Container
+                    gap={2}
+                    justify="center"
+                    alignItems="center"
+                    height="100vh"
+                >
+                    <Grid xs={24} justify="center">
+                        <Spinner scale={2} />
+                    </Grid>
+                </Grid.Container>
+            </Page>
+        )
+    }
 
     return (
         <Page dotBackdrop>
@@ -38,3 +74,5 @@ export default function Home() {
         </Page>
     )
 }
+
+export default Dashboard
