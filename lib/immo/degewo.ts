@@ -1,4 +1,4 @@
-import { imageifyLink } from '../imageify'
+import { imageifyLink } from '../image/imageify'
 import { Organisation } from '../Organisation'
 import Property from '../Property'
 

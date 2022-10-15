@@ -1,4 +1,4 @@
-import { Card, Divider, Grid, Image, Link, Text, Tooltip } from '@geist-ui/core'
+import { Card, Grid, Image, Link, Text, Tooltip } from '@geist-ui/core'
 import {
     Square,
     Navigation,
@@ -58,7 +58,7 @@ export const PropertyComponent: React.FC<{ property: Property }> = ({
         <Image
             src={property.imageLinks[0]}
             height="200px"
-            width="400px"
+            width="100%"
             draggable={false}
             style={{ objectFit: 'cover' }}
         />
