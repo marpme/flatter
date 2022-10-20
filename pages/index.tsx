@@ -1,20 +1,47 @@
-import { Grid, Modal, Page, Spacer, Spinner, Text } from '@geist-ui/core'
+import {
+    Button,
+    ButtonGroup,
+    Card,
+    Divider,
+    Grid,
+    Input,
+    Modal,
+    Page,
+    Slider,
+    Spacer,
+    Spinner,
+    Text,
+} from '@geist-ui/core'
+import { Award, DollarSign, Filter, Star } from '@geist-ui/icons'
 import Activity from '@geist-ui/icons/activity'
 import Head from 'next/head'
-import useSWR from 'swr'
+import { useContext } from 'react'
+import { FilterBar } from '../components/filter/FilterBar'
 import Layout from '../components/layout'
-import { PropertyComponent } from '../components/PropertyComponent'
-import { fetcher } from '../lib/fetcher'
-import Property from '../lib/Property'
+import { PropertyComponent } from '../components/property/PropertyComponent'
+import { PropertyContext } from '../components/property/PropertyContext'
 
 const Dashboard = () => {
-    const {
-        data: properties,
-        isValidating,
-        error,
-    } = useSWR<Property[]>('/api/v1/properties', fetcher)
+    const { properties, isLoading } = useContext(PropertyContext)
 
-    if (error) {
+    if (isLoading) {
+        return (
+            <Page dotBackdrop>
+                <Grid.Container
+                    gap={2}
+                    justify="center"
+                    alignItems="center"
+                    height="100vh"
+                >
+                    <Grid xs={24} justify="center">
+                        <Spinner scale={2} />
+                    </Grid>
+                </Grid.Container>
+            </Page>
+        )
+    }
+
+    if (!properties || properties.length === 0) {
         return (
             <Page dotBackdrop>
                 <Modal visible={true} onClose={() => window.location.reload()}>
@@ -37,23 +64,6 @@ const Dashboard = () => {
         )
     }
 
-    if (isValidating || !properties) {
-        return (
-            <Page dotBackdrop>
-                <Grid.Container
-                    gap={2}
-                    justify="center"
-                    alignItems="center"
-                    height="100vh"
-                >
-                    <Grid xs={24} justify="center">
-                        <Spinner scale={2} />
-                    </Grid>
-                </Grid.Container>
-            </Page>
-        )
-    }
-
     return (
         <Page dotBackdrop>
             <Layout home>
@@ -61,8 +71,10 @@ const Dashboard = () => {
                     <title>Property Scouting - Berlin</title>
                 </Head>
                 <section>
-                    <h2>Available Properties</h2>
                     <Grid.Container gap={2} justify="center" height="100px">
+                        <Grid xs={24}>
+                            <FilterBar properties={properties} />
+                        </Grid>
                         {properties.map((property) => (
                             <Grid xs={24} md={6} key={property.id}>
                                 <PropertyComponent property={property} />

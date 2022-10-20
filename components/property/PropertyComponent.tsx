@@ -7,7 +7,7 @@ import {
     AlertTriangle,
 } from '@geist-ui/icons'
 import { useMemo } from 'react'
-import Property from '../lib/Property'
+import Property from '../../lib/Property'
 
 const TextScanner: React.FC<{ text: string }> = ({ text }) => {
     const texts = useMemo(() => {
