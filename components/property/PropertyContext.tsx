@@ -4,10 +4,14 @@ import { createPropertyStore, PropertyStore } from './PropertyStore'
 export const PropertyContext = createContext<PropertyStore>({
     properties: [],
     isLoading: false,
+    errors: [],
     initializeStore() {
         throw new Error()
     },
     addProperties() {
+        throw new Error()
+    },
+    addError() {
         throw new Error()
     },
 })

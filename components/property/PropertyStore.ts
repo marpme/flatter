@@ -7,10 +7,12 @@ import {
 
 export const createPropertyStore = () => {
     const [properties, setProperties] = useState<Property[]>([])
+    const [errors, setErrors] = useState<Error[]>([])
     const [isLoading, setLoading] = useState<boolean>(false)
 
     return {
         properties,
+        errors,
         isLoading,
 
         addProperties(...properties: Property[]): void {
@@ -21,6 +23,10 @@ export const createPropertyStore = () => {
                         propertyB.sqmeterPriceRatio
                 )
             )
+        },
+
+        addError(error: Error): void {
+            setErrors((currentErrors) => [...currentErrors, error])
         },
 
         async initializeStore() {
@@ -36,9 +42,11 @@ export const createPropertyStore = () => {
             const results = propertyProviderAvailable
                 .map((provider) => loadPropertyByProvider(provider))
                 .map((dataPromise) => {
-                    dataPromise.then((properties) =>
-                        this.addProperties(...properties)
-                    )
+                    dataPromise
+                        .then((properties) => this.addProperties(...properties))
+                        .catch((error) => {
+                            this.addError(error)
+                        })
                 })
 
             Promise.allSettled(results).then(() => {

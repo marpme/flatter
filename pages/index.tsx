@@ -22,7 +22,7 @@ import { PropertyComponent } from '../components/property/PropertyComponent'
 import { PropertyContext } from '../components/property/PropertyContext'
 
 const Dashboard = () => {
-    const { properties, isLoading } = useContext(PropertyContext)
+    const { properties, errors, isLoading } = useContext(PropertyContext)
 
     if (isLoading) {
         return (
@@ -41,7 +41,7 @@ const Dashboard = () => {
         )
     }
 
-    if (!properties || properties.length === 0) {
+    if (properties.length === 0 && errors.length > 0) {
         return (
             <Page dotBackdrop>
                 <Modal visible={true} onClose={() => window.location.reload()}>

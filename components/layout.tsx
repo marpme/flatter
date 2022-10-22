@@ -1,16 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
+import { FC } from 'react'
 
 const name = 'Property Scouting'
 
-export default function Layout({
-    children,
-    home,
-}: {
-    children: React.ReactNode
-    home?: boolean
-}) {
+const Layout: FC = ({ children }) => {
     return (
         <div>
             <Head>
@@ -29,39 +22,11 @@ export default function Layout({
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
             <header>
-                {home ? (
-                    <>
-                        <h1>{name}</h1>
-                    </>
-                ) : (
-                    <>
-                        <Link href="/">
-                            <a>
-                                <Image
-                                    priority
-                                    src="/images/profile.jpg"
-                                    height={108}
-                                    width={108}
-                                    alt={name}
-                                />
-                            </a>
-                        </Link>
-                        <h2>
-                            <Link href="/">
-                                <a>{name}</a>
-                            </Link>
-                        </h2>
-                    </>
-                )}
+                <h1>{name}</h1>
             </header>
             <main>{children}</main>
-            {!home && (
-                <div>
-                    <Link href="/">
-                        <a>← Back to home</a>
-                    </Link>
-                </div>
-            )}
         </div>
     )
 }
+
+export default Layout
