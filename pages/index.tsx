@@ -66,7 +66,7 @@ const Dashboard = () => {
 
     return (
         <Page dotBackdrop>
-            <Layout home>
+            <Layout>
                 <Head>
                     <title>Property Scouting - Berlin</title>
                 </Head>
