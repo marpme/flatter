@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import { FC } from 'react'
+import { FC, ReactElement } from 'react'
 
 const name = 'Property Scouting'
 
-const Layout: FC = ({ children }) => {
+const Layout: FC<{ children: ReactElement[] }> = ({ children }) => {
     return (
         <div>
             <Head>

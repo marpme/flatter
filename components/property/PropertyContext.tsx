@@ -1,4 +1,4 @@
-import { createContext, FC, useEffect } from 'react'
+import React, { createContext, FC, ReactElement, useEffect } from 'react'
 import { createPropertyStore, PropertyStore } from './PropertyStore'
 
 export const PropertyContext = createContext<PropertyStore>({
@@ -16,7 +16,9 @@ export const PropertyContext = createContext<PropertyStore>({
     },
 })
 
-export const PropertyProvider: FC = ({ children }) => {
+export const PropertyProvider: FC<{
+    children: ReactElement | ReactElement[]
+}> = ({ children }) => {
     const store = createPropertyStore()
 
     useEffect(() => {

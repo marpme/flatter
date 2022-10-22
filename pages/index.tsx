@@ -1,18 +1,4 @@
-import {
-    Button,
-    ButtonGroup,
-    Card,
-    Divider,
-    Grid,
-    Input,
-    Modal,
-    Page,
-    Slider,
-    Spacer,
-    Spinner,
-    Text,
-} from '@geist-ui/core'
-import { Award, DollarSign, Filter, Star } from '@geist-ui/icons'
+import { Grid, Modal, Page, Spacer, Spinner, Text } from '@geist-ui/core'
 import Activity from '@geist-ui/icons/activity'
 import Head from 'next/head'
 import { useContext } from 'react'
