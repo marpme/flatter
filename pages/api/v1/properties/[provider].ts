@@ -17,7 +17,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return
     }
 
-    console.log('Computing properties ...')
     const providerLoader = providerToPropertyMap.get(supportedProvider)
 
     res.status(200)
