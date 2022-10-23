@@ -26,7 +26,7 @@ export const getDegewoProperties = async (): Promise<Property[]> => {
                     ) / Number(property.living_space)
                 ).toFixed(2),
                 headline: property.headline,
-                thumnail: imageifyLink(property.thumb_path),
+                thumbnail: imageifyLink(property.thumb_path),
                 imageLinks: property.external_data.map(({ filename }) =>
                     imageifyLink(
                         `https://immosuche.degewo.de/images/properties/full/760x570/${filename}`
@@ -46,7 +46,6 @@ const createSearchParam = (roomCount: string = '3', page: string = '1') => {
     searchParams.append('price_switch', 'false')
     searchParams.append('price_switch', 'on')
     searchParams.append('qm_radio', 'null')
-    searchParams.append('rooms_radio', roomCount)
     searchParams.append('wbs_required', 'false')
     searchParams.append('order', 'rent_total_without_vat_asc')
     searchParams.append('price_radio', 'null')

@@ -22,7 +22,7 @@ export const getHowogeProperties = async (): Promise<Property[]> => {
                     parseFloat(property.rent) / Number(property.area)
                 ).toFixed(2),
                 headline: property.notice + ' - ' + property.title,
-                thumnail: imageifyLink(property.image),
+                thumbnail: imageifyLink(property.image),
                 imageLinks: [
                     imageifyLink(`https://www.howoge.de${property.image}`),
                 ],
@@ -36,7 +36,6 @@ const createSearchParam = (roomCount: string = '3', page: string = '1') => {
 
     searchParams.append('tx_howsite_json_list[page]', page)
     searchParams.append('tx_howsite_json_list[limit]', '12')
-    searchParams.append('tx_howsite_json_list[rooms]', roomCount)
     searchParams.append('tx_howsite_json_list[wbs]', 'all-offers')
 
     return searchParams

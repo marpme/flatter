@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document from 'next/document'
 import { CssBaseline } from '@geist-ui/core'
 
 export default class MyDocument extends Document {
