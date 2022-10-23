@@ -11,6 +11,15 @@ type CronResult =
       }
     | { success: boolean }
 
+const deletePreviousEntries = async (client) => {
+    const currentProperties = await client.from('properties').select('*')
+    await Promise.all(
+        currentProperties.data.map(async (property) =>
+            client.from('properties').delete().eq('id', property.id)
+        )
+    )
+}
+
 const CronPropertiesHandler: NextApiHandler<CronResult> = async (req, res) => {
     if (req.method === 'POST') {
         try {
@@ -26,37 +35,8 @@ const CronPropertiesHandler: NextApiHandler<CronResult> = async (req, res) => {
                     getDegewoProperties(),
                     getHowogeProperties(),
                 ]).then(async (results) => {
-                    await client.from('properties').delete()
-                    await Promise.all(
-                        results.map(async (result) => {
-                            if (result.status === 'fulfilled') {
-                                return Promise.all(
-                                    result.value.map(
-                                        async ({
-                                            id,
-                                            sqmeterPriceRatio,
-                                            ...rest
-                                        }) => {
-                                            const { error, data } = await client
-                                                .from('properties')
-                                                .insert(rest)
-
-                                            log.debug(
-                                                `Added ${id} to the properties list`
-                                            )
-
-                                            return Promise.resolve({
-                                                error,
-                                                data,
-                                            })
-                                        }
-                                    )
-                                )
-                            }
-
-                            return Promise.resolve()
-                        })
-                    )
+                    await deletePreviousEntries(client)
+                    await insertNewProperties(results, client)
                 })
 
                 res.status(200).json({ success: true })
@@ -74,3 +54,34 @@ const CronPropertiesHandler: NextApiHandler<CronResult> = async (req, res) => {
 }
 
 export default CronPropertiesHandler
+async function insertNewProperties(results: [PromiseSettledResult<import("/home/marpme/work/berlin-flat-search/lib/Property").default[]>, PromiseSettledResult<import("/home/marpme/work/berlin-flat-search/lib/Property").default[]>], client) {
+    await Promise.all(
+        results.map(async (result) => {
+            if (result.status === 'fulfilled') {
+                return Promise.all(
+                    result.value.map(
+                        async ({
+                            id, sqmeterPriceRatio, ...rest
+                        }) => {
+                            const { error, data } = await client
+                                .from('properties')
+                                .insert(rest)
+
+                            log.debug(
+                                `Added ${id} to the properties list`
+                            )
+
+                            return Promise.resolve({
+                                error,
+                                data,
+                            })
+                        }
+                    )
+                )
+            }
+
+            return Promise.resolve()
+        })
+    )
+}
+
