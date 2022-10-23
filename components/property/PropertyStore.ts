@@ -1,10 +1,6 @@
 import { useState } from 'react'
 import Property from '../../lib/Property'
-import {
-    loadAvailablePropertyProvider,
-    loadProperties,
-    loadPropertyByProvider,
-} from './PropertyLoader'
+import { loadProperties } from './PropertyLoader'
 
 export const createPropertyStore = () => {
     const [properties, setProperties] = useState<Property[]>([])
