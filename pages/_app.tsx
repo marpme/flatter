@@ -1,4 +1,3 @@
-import 'inter-ui/inter.css'
 import { AppProps } from 'next/app'
 import { GeistProvider, CssBaseline } from '@geist-ui/core'
 import { PropertyProvider } from '../components/property/PropertyContext'

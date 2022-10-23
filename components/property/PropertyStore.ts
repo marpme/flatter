@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Property from '../../lib/Property'
 import {
     loadAvailablePropertyProvider,
+    loadProperties,
     loadPropertyByProvider,
 } from './PropertyLoader'
 
@@ -36,20 +37,13 @@ export const createPropertyStore = () => {
 
             setLoading(true)
 
-            const propertyProviderAvailable =
-                await loadAvailablePropertyProvider()
-
-            const results = propertyProviderAvailable
-                .map((provider) => loadPropertyByProvider(provider))
-                .map((dataPromise) => {
-                    dataPromise
-                        .then((properties) => this.addProperties(...properties))
-                        .catch((error) => {
-                            this.addError(error)
-                        })
+            const results = loadProperties()
+                .then((properties) => this.addProperties(...properties))
+                .catch((error) => {
+                    this.addError(error)
                 })
 
-            Promise.allSettled(results).then(() => {
+            results.then(() => {
                 setLoading(false)
             })
         },
