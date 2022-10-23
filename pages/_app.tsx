@@ -4,12 +4,12 @@ import { GeistProvider, CssBaseline } from '@geist-ui/core'
 import { useState } from 'react'
 import { PropertyProvider } from '../components/property/PropertyContext'
 
-export default function App({ Component, pageProps }: AppProps) {
-    const [themeType, setThemeType] = useState('light')
+export { reportWebVitals } from 'next-axiom'
 
+export default function App({ Component, pageProps }: AppProps) {
     return (
         <PropertyProvider>
-            <GeistProvider themeType={themeType}>
+            <GeistProvider themeType={'light'}>
                 <CssBaseline />
                 <Component {...pageProps} />
             </GeistProvider>
