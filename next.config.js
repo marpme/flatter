@@ -1,4 +1,4 @@
-import { withAxiom } from 'next-axiom'
+const { withAxiom } = require('next-axiom')
 
 module.exports = withAxiom({
     // empty config, nothing special yet...
