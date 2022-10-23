@@ -1,7 +1,6 @@
 import 'inter-ui/inter.css'
 import { AppProps } from 'next/app'
 import { GeistProvider, CssBaseline } from '@geist-ui/core'
-import { useState } from 'react'
 import { PropertyProvider } from '../components/property/PropertyContext'
 
 export { reportWebVitals } from 'next-axiom'

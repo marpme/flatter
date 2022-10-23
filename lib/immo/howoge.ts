@@ -12,7 +12,7 @@ export const getHowogeProperties = async (): Promise<Property[]> => {
     )
         .then((response) => response.ok && response.json())
         .then(({ immoobjects: properties }) => {
-            return properties.map((property) => ({
+            return properties.map((property: any) => ({
                 id: `${Organisation.HOWOGE}/${property.uid}`,
                 org: Organisation.HOWOGE,
                 address: property.title,

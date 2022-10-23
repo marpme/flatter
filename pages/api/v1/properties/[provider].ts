@@ -11,13 +11,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return
     }
 
-    const supportedProvider = SupportedProviders[provider]
-    if (!providerToPropertyMap.has(supportedProvider)) {
+    const supportedProvider =
+        SupportedProviders[provider as keyof typeof SupportedProviders]
+    if (!providerToPropertyMap[supportedProvider]) {
         res.status(400).json({ error: 'invalid provider' })
         return
     }
 
-    const providerLoader = providerToPropertyMap.get(supportedProvider)
+    const providerLoader = providerToPropertyMap[supportedProvider]
 
     res.status(200)
         .setHeader('Cache-Control', 'public, max-age=300')

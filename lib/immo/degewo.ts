@@ -8,7 +8,7 @@ export const getDegewoProperties = async (): Promise<Property[]> => {
     )
         .then((response) => response.ok && response.json())
         .then(({ immos: properties }) => {
-            return properties.map((property) => ({
+            return properties.map((property: any) => ({
                 id: `${Organisation.DEGEWO}/${property.id}`,
                 org: Organisation.DEGEWO,
                 address: property.address,
@@ -27,7 +27,7 @@ export const getDegewoProperties = async (): Promise<Property[]> => {
                 ).toFixed(2),
                 headline: property.headline,
                 thumbnail: imageifyLink(property.thumb_path),
-                imageLinks: property.external_data.map(({ filename }) =>
+                imageLinks: property.external_data.map(({ filename }: any) =>
                     imageifyLink(
                         `https://immosuche.degewo.de/images/properties/full/760x570/${filename}`
                     )
