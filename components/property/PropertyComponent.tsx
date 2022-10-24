@@ -72,19 +72,23 @@ export const PropertyComponent: React.FC<{ property: Property }> = ({
                     <DollarSign />
                 </Grid>
                 <Grid xs={20} justify="flex-start" alignContent="flex-start">
-                    {property.sqmeterPriceRatio} €/m²
+                    {(
+                        Math.round((property.price / property.sqmeter) * 100) /
+                        100
+                    ).toFixed(2)}{' '}
+                    €/m²
                 </Grid>
                 <Grid xs={3}>
                     <Tag />
                 </Grid>
                 <Grid xs={20} justify="flex-start" alignContent="flex-start">
-                    {property.price} €/mo
+                    {property.price.toFixed(2)} €/mo
                 </Grid>
                 <Grid xs={3}>
                     <Square />
                 </Grid>
                 <Grid xs={20} justify="flex-start" alignContent="flex-start">
-                    {property.sqmeter} m²
+                    {property.sqmeter.toFixed(2)} m²
                 </Grid>
                 <Grid xs={3}>
                     <Navigation />
