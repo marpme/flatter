@@ -91,12 +91,12 @@
   resolved "https://registry.yarnpkg.com/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-12.3.1.tgz#27d71a95247a9eaee03d47adee7e3bd594514136"
   integrity sha512-W1ijvzzg+kPEX6LAc+50EYYSEo0FVu7dmTE+t+DM4iOLqgGHoW9uYSz9wCVdkXOEEMP9xhXfGpcSxsfDucyPkA==
 
-"@supabase/auth-helpers-nextjs@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@supabase/auth-helpers-nextjs/-/auth-helpers-nextjs-0.4.1.tgz#6d93520119232563283cece5d383d13866e21c73"
-  integrity sha512-qrtMYlLoxm/Xf2U1l+OeDlckEzQHbRusIRcj5JKOj+gV/r62/VkDpB92cgjt3bbVtPDka5szXF4tBku6ZZkMeQ==
+"@supabase/auth-helpers-nextjs@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@supabase/auth-helpers-nextjs/-/auth-helpers-nextjs-0.4.2.tgz#75ec6386421db294cb9861301f9f882c9a7d61fe"
+  integrity sha512-66CVKuUem4HwD/Te0a0569+j/jE7M52c0fW5bBSsPIqD9u1m+h/cnVuQxw+Ij7gphh36tKkRfOc8Ivn42+k6bQ==
   dependencies:
-    "@supabase/auth-helpers-shared" "0.2.0"
+    "@supabase/auth-helpers-shared" "0.2.1"
 
 "@supabase/auth-helpers-react@^0.3.0":
   version "0.3.0"
@@ -109,6 +109,11 @@
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@supabase/auth-helpers-shared/-/auth-helpers-shared-0.2.0.tgz#9d740ddbb2a3bb7c4d8a4a30842646aa0afc64aa"
   integrity sha512-GaWzuP3RjLSdSlFajbgwQkZO24A14DSEIJG5sUva/sUYWkriEWROjf8Vbwg4YsSxqeU6fP3lloFeync9BwgyYA==
+
+"@supabase/auth-helpers-shared@0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@supabase/auth-helpers-shared/-/auth-helpers-shared-0.2.1.tgz#920666e5dc2d8473a7e4e3500f9f6ddb1c322465"
+  integrity sha512-L54gCCD8xCV6mHta0vE7CLxJ7pisSlsd9KIWB1ENyfZ0baeU9H39AqNVyYcAoHBPrUaZYx877J4WYYoqwuyi+w==
 
 "@supabase/functions-js@^2.0.0":
   version "2.0.0"
