@@ -11,6 +11,9 @@ export const PropertyContext = createContext<PropertyStore>({
     addProperties() {
         throw new Error()
     },
+    replaceProperties() {
+        throw new Error()
+    },
     addError() {
         throw new Error()
     },

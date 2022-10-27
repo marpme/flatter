@@ -1,12 +1,52 @@
 import { Card, Grid, Input, ButtonGroup, Button, Text } from '@geist-ui/core'
 import { Filter, Star, DollarSign, Award } from '@geist-ui/icons'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useContext, useEffect, useState } from 'react'
 import { FC } from 'react'
-import Property from '../../lib/Property'
+import { Organisation } from '../../lib/Organisation'
+import { Database } from '../../types/supabase'
+import { PropertyContext } from '../property/PropertyContext'
 
-export const FilterBar: FC<{ properties: Property[] }> = ({ properties }) => {
+export const FilterBar: FC = () => {
+    const { properties, replaceProperties } = useContext(PropertyContext)
+    const supabaseClient = useSupabaseClient<Database>()
+
+    const priceList = properties.map((prop) => prop.price)
+
+    const [minPrice, setMinPrice] = useState<string>(
+        Math.floor(Math.min(...priceList)).toString()
+    )
+    const [maxPrice, setMaxPrice] = useState<string>(
+        Math.ceil(Math.max(...priceList)).toString()
+    )
+
+    useEffect(() => {
+        console.log(supabaseClient)
+        const fetchNewProperties = async () => {
+            const { data: properties } = await supabaseClient
+                .from('properties')
+                .select('*')
+                .gt('price', minPrice)
+                .lt('price', maxPrice)
+
+            if (properties) {
+                replaceProperties(
+                    ...properties.map((prop) => ({
+                        ...prop,
+                        org: Organisation[
+                            prop.org as keyof typeof Organisation
+                        ],
+                        sqmeterPriceRatio: prop.price / prop.sqmeter,
+                        imageLinks: prop.imageLinks as string[],
+                    }))
+                )
+            }
+        }
+        fetchNewProperties()
+    }, [minPrice, maxPrice, supabaseClient])
+
     return (
         <Card
-            shadow
             paddingBottom={0}
             style={{
                 border: '1px solid #eaeaea',
@@ -41,11 +81,23 @@ export const FilterBar: FC<{ properties: Property[] }> = ({ properties }) => {
                     </Text>
                 </Grid>
                 <Grid xs={12} alignItems="center">
-                    <Input placeholder="200" labelRight="€/mo" scale={2 / 3} />
+                    <Input
+                        placeholder="200"
+                        labelRight="€/mo"
+                        scale={2 / 3}
+                        value={minPrice}
+                        onChange={(e) => setMinPrice(e.target.value)}
+                    />
                     <Text mx={0.5} style={{ color: '#666' }}>
                         -
                     </Text>
-                    <Input placeholder="1000" labelRight="€/mo" scale={2 / 3} />
+                    <Input
+                        placeholder="1000"
+                        labelRight="€/mo"
+                        scale={2 / 3}
+                        value={maxPrice}
+                        onChange={(e) => setMaxPrice(e.target.value)}
+                    />
                 </Grid>
                 <Grid xs={12}>
                     <ButtonGroup>

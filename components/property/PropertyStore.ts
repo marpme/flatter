@@ -22,6 +22,16 @@ export const createPropertyStore = () => {
             )
         },
 
+        replaceProperties(...properties: Property[]): void {
+            setProperties(
+                [...properties].sort(
+                    (propertyA, propertyB) =>
+                        propertyA.sqmeterPriceRatio -
+                        propertyB.sqmeterPriceRatio
+                )
+            )
+        },
+
         addError(error: Error): void {
             setErrors((currentErrors) => [...currentErrors, error])
         },
