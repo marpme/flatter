@@ -1,7 +1,6 @@
 import { SupabaseClient } from '@supabase/supabase-js'
 import { Database } from '../../types/supabase'
 import Property from '../Property'
-import { log } from 'next-axiom'
 
 export const deletePreviousEntries = async (
     client: SupabaseClient<Database>
@@ -27,8 +26,6 @@ export const insertNewProperties = async (
                             const { error, data } = await client
                                 .from('properties')
                                 .insert(rest)
-
-                            log.debug(`Added ${id} to the properties list`)
 
                             return Promise.resolve({
                                 error,
