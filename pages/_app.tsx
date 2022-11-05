@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
     return (
         <SessionContextProvider supabaseClient={supabaseClient}>
             <PropertyProvider>
-                <GeistProvider themeType={'light'}>
+                <GeistProvider themeType={'dark'}>
                     <CssBaseline />
                     <Component {...pageProps} />
                 </GeistProvider>

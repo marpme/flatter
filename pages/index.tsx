@@ -51,22 +51,22 @@ const Dashboard = () => {
     }
 
     return (
-        <Page dotBackdrop>
-            <Layout>
-                <section>
-                    <Grid.Container gap={2} justify="center" height="100px">
-                        <FilterBar />
-                        {/* Not yet functional */}
-                        {/* <SubFilterView /> */}
-                        {properties.map((property) => (
-                            <Grid xs={24} md={6} key={property.id}>
-                                <PropertyComponent property={property} />
-                            </Grid>
-                        ))}
-                    </Grid.Container>
-                </section>
-            </Layout>
-        </Page>
+        <Layout
+            headerChildren={
+                <FilterBar />
+                /* TODO: Not yet functional <SubFilterView /> */
+            }
+        >
+            <section>
+                <Grid.Container gap={2} justify="center" height="100px">
+                    {properties.map((property) => (
+                        <Grid xs={24} md={6} key={property.id}>
+                            <PropertyComponent property={property} />
+                        </Grid>
+                    ))}
+                </Grid.Container>
+            </section>
+        </Layout>
     )
 }
 

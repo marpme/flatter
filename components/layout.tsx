@@ -1,12 +1,17 @@
-import { Text } from '@geist-ui/core'
+import { Page, Text, useTheme } from '@geist-ui/core'
 import Head from 'next/head'
 import { FC, ReactElement } from 'react'
 
 export const SITE_NAME = 'Flatter'
 
-const Layout: FC<{ children: ReactElement }> = ({ children }) => {
+const Layout: FC<{ children: ReactElement; headerChildren: ReactElement }> = ({
+    children,
+    headerChildren,
+}) => {
+    const theme = useTheme()
+
     return (
-        <div>
+        <Page dotBackdrop>
             <Head>
                 <link rel="icon" href="/favicon.svg" />
                 <meta
@@ -25,13 +30,18 @@ const Layout: FC<{ children: ReactElement }> = ({ children }) => {
                 <meta name="twitter:card" content="summary_large_image" />
                 <title>{SITE_NAME} ~ Berlin</title>
             </Head>
-            <header>
+            <header
+                style={{
+                    marginBottom: '2em',
+                }}
+            >
                 <Text h1 style={{ letterSpacing: '.03em' }}>
                     🏘️ {SITE_NAME}
                 </Text>
+                {headerChildren}
             </header>
-            <main>{children}</main>
-        </div>
+            {children}
+        </Page>
     )
 }
 

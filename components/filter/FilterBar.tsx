@@ -47,21 +47,12 @@ export const FilterBar: FC = () => {
 
     return (
         <Grid xs={24}>
-            <Card
-                paddingBottom={0}
-                style={{
-                    border: '1px solid #eaeaea',
-                    borderRadius: '0.5em',
-                    width: '100%',
-                    background: '#fff',
-                }}
-            >
+            <Card paddingBottom={0} width={'100%'}>
                 <Grid.Container alignItems="center">
                     <Grid xs={24} alignItems="center">
                         <Filter
                             size={13}
                             style={{
-                                color: '#666',
                                 fontSize: '13px',
                                 margin: '0',
                                 padding: '0',
@@ -71,7 +62,6 @@ export const FilterBar: FC = () => {
                             b
                             marginRight={1}
                             style={{
-                                color: '#666',
                                 fontSize: '13px',
                                 lineHeight: 'initial',
                                 margin: '0 0 0 0.5em',
@@ -90,9 +80,7 @@ export const FilterBar: FC = () => {
                             value={minPrice}
                             onChange={(e) => setMinPrice(e.target.value)}
                         />
-                        <Text mx={0.5} style={{ color: '#666' }}>
-                            -
-                        </Text>
+                        <Text mx={0.5}>-</Text>
                         <Input
                             placeholder="1000"
                             labelRight="€/mo"
@@ -103,13 +91,13 @@ export const FilterBar: FC = () => {
                     </Grid>
                     <Grid xs={12}>
                         <ButtonGroup>
-                            <Button icon={<Star />} scale={2 / 3}>
+                            <Button icon={<Star />} height={'30px'}>
                                 Favorites
                             </Button>
-                            <Button icon={<DollarSign />} scale={2 / 3}>
+                            <Button icon={<DollarSign />} height={'30px'}>
                                 Recommended
                             </Button>
-                            <Button icon={<Award />} scale={2 / 3}>
+                            <Button icon={<Award />} height={'30px'}>
                                 Special (WBS)
                             </Button>
                         </ButtonGroup>
