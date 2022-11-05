@@ -1,17 +1,5 @@
-import {
-    Button,
-    ButtonGroup,
-    Grid,
-    Modal,
-    Page,
-    Select,
-    Spacer,
-    Spinner,
-    Text,
-} from '@geist-ui/core'
-import { Map } from '@geist-ui/icons'
+import { Grid, Modal, Page, Spacer, Spinner, Text } from '@geist-ui/core'
 import Activity from '@geist-ui/icons/activity'
-import AlignJustify from '@geist-ui/icons/alignJustify'
 import Head from 'next/head'
 import { useContext } from 'react'
 import { FilterBar } from '../components/filter/FilterBar'
@@ -65,60 +53,11 @@ const Dashboard = () => {
     return (
         <Page dotBackdrop>
             <Layout>
-                <Head>
-                    <title>Property Scouting - Berlin</title>
-                </Head>
                 <section>
                     <Grid.Container gap={2} justify="center" height="100px">
-                        <Grid xs={24}>
-                            <FilterBar />
-                        </Grid>
-                        <Grid xs={12}>
-                            <Button
-                                type="secondary"
-                                icon={<AlignJustify />}
-                                style={{
-                                    borderTopRightRadius: 0,
-                                    borderBottomRightRadius: 0,
-                                }}
-                            >
-                                List
-                            </Button>
-                            <Button
-                                icon={<Map />}
-                                style={{
-                                    borderTopLeftRadius: 0,
-                                    borderBottomLeftRadius: 0,
-                                }}
-                            >
-                                Map
-                            </Button>
-                        </Grid>
-                        <Grid xs={8}></Grid>
-                        <Grid xs={4}>
-                            <Grid.Container>
-                                <Grid xs={24} justify="flex-end">
-                                    <Text small em>Sort by ...</Text>
-                                </Grid>
-                                <Grid xs={24} justify="flex-end">
-                                    <Select
-                                        defaultValue={'1'}
-                                        value="1"
-                                        onChange={() => {}}
-                                    >
-                                        <Select.Option value="1">
-                                            Descending Insertion date
-                                        </Select.Option>
-                                        <Select.Option value="2">
-                                            Ascending Price per month
-                                        </Select.Option>
-                                        <Select.Option value="3">
-                                            Asceding Space in square meter
-                                        </Select.Option>
-                                    </Select>
-                                </Grid>
-                            </Grid.Container>
-                        </Grid>
+                        <FilterBar />
+                        {/* Not yet functional */}
+                        {/* <SubFilterView /> */}
                         {properties.map((property) => (
                             <Grid xs={24} md={6} key={property.id}>
                                 <PropertyComponent property={property} />
