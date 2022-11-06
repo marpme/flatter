@@ -21,7 +21,6 @@ export const FilterBar: FC = () => {
     )
 
     useEffect(() => {
-        console.log(supabaseClient)
         const fetchNewProperties = async () => {
             const { data: properties } = await supabaseClient
                 .from('properties')
