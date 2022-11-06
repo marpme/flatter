@@ -1,13 +1,17 @@
-import { Card, Grid, Image, Link, Text, Tooltip } from '@geist-ui/core'
 import {
-    Square,
-    Navigation,
-    Tag,
-    DollarSign,
-    AlertTriangle,
-} from '@geist-ui/icons'
+    Button,
+    Card,
+    Fieldset,
+    Grid,
+    Image,
+    Link,
+    Text,
+    Tooltip,
+} from '@geist-ui/core'
+import { Square, Navigation, Tag, DollarSign, Check } from '@geist-ui/icons'
 import { useMemo } from 'react'
 import Property from '../../lib/Property'
+import styles from './Property.module.css'
 
 const TextScanner: React.FC<{ text: string }> = ({ text }) => {
     const texts = useMemo(() => {
@@ -23,21 +27,20 @@ const TextScanner: React.FC<{ text: string }> = ({ text }) => {
                                 type="dark"
                                 text={
                                     <>
-                                        Please verify if you are eligble for WBS
-                                        via{' '}
+                                        Wohnberechtigungsschein is needed, for
+                                        more information
                                         <Link
                                             color
                                             icon
                                             target="_blank"
                                             href="https://service.berlin.de/dienstleistung/120671/"
                                         >
-                                            this gov page.
+                                            visit the gov page.
                                         </Link>
                                     </>
                                 }
                             >
-                                <AlertTriangle size={12} />
-                                <Text b em>
+                                <Text b className={styles.wbsInform}>
                                     WBS
                                 </Text>
                             </Tooltip>
@@ -54,7 +57,11 @@ const TextScanner: React.FC<{ text: string }> = ({ text }) => {
 export const PropertyComponent: React.FC<{ property: Property }> = ({
     property,
 }) => (
-    <Card shadow width="100%">
+    <Card
+        shadow
+        width="100%"
+        style={{ display: 'flex', flexDirection: 'column' }}
+    >
         <Image
             src={property.imageLinks[0]}
             height="200px"
@@ -66,7 +73,7 @@ export const PropertyComponent: React.FC<{ property: Property }> = ({
             <Text h5>Description: </Text>
             <TextScanner text={property.headline} />
         </Card.Content>
-        <Card.Content width={'100%'}>
+        <Card.Content width={'100%'} style={{ flex: 1 }}>
             <Grid.Container gap={1}>
                 <Grid xs={3}>
                     <DollarSign />
@@ -98,10 +105,13 @@ export const PropertyComponent: React.FC<{ property: Property }> = ({
                 </Grid>
             </Grid.Container>
         </Card.Content>
-        <Card.Footer disableAutoMargin>
-            <Link color icon target="_blank" href={property.propertyLink}>
-                Visit the property on the original source
+        <Fieldset.Footer >
+            <Link icon target="_blank" href={property.propertyLink}>
+                Visit Property
             </Link>
-        </Card.Footer>
+            <Button icon={<Check />} type="success" scale={2 / 3}>
+                Apply
+            </Button>
+        </Fieldset.Footer>
     </Card>
 )
