@@ -26,7 +26,7 @@ export const SubFilterView: FC = () => (
                 Map
             </Button>
         </Grid>
-        ,<Grid xs={8}></Grid>,
+        <Grid xs={8}></Grid>
         <Grid xs={4}>
             <Grid.Container>
                 <Grid xs={24} justify="flex-end">
