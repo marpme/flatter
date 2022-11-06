@@ -50,7 +50,12 @@ const Dashboard = () => {
     }
 
     return (
-        <Layout headerChildren={<FilterBar />}>
+        <Layout
+            header={
+                <FilterBar />
+                /* TODO: Not yet functional <SubFilterView /> */
+            }
+        >
             <section>
                 <Grid.Container gap={2} justify="center" height="100px">
                     {properties.map((property) => (
