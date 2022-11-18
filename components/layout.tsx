@@ -1,4 +1,4 @@
-import { Page, Text, useTheme } from '@geist-ui/core'
+import { Page, Text } from '@geist-ui/core'
 import Head from 'next/head'
 import { FC, ReactElement } from 'react'
 
@@ -8,8 +8,6 @@ const Layout: FC<{ children: ReactElement; headerChildren: ReactElement }> = ({
     children,
     headerChildren,
 }) => {
-    const theme = useTheme()
-
     return (
         <Page dotBackdrop>
             <Head>
@@ -35,7 +33,11 @@ const Layout: FC<{ children: ReactElement; headerChildren: ReactElement }> = ({
                     marginBottom: '2em',
                 }}
             >
-                <Text h1 style={{ letterSpacing: '.03em' }}>
+                <Text
+                    h1
+                    style={{ letterSpacing: '.03em' }}
+                    data-testid="header-name"
+                >
                     🏘️ {SITE_NAME}
                 </Text>
                 {headerChildren}
