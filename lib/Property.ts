@@ -1,4 +1,4 @@
-import { Organisation } from "./Organisation";
+import { Organisation } from './Organisation'
 
 export default interface Property {
     id: string

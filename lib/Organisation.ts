@@ -1,4 +1,4 @@
 export enum Organisation {
-    DEGEWO = "degewo",
-    HOWOGE = "howoge"
+    DEGEWO = 'degewo',
+    HOWOGE = 'howoge',
 }

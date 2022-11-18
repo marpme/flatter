@@ -105,7 +105,7 @@ export const PropertyComponent: React.FC<{ property: Property }> = ({
                 </Grid>
             </Grid.Container>
         </Card.Content>
-        <Fieldset.Footer >
+        <Fieldset.Footer>
             <Link icon target="_blank" href={property.propertyLink}>
                 Visit Property
             </Link>
