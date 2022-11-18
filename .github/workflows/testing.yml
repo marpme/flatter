@@ -3,10 +3,6 @@
 
 name: run tests
 
-on:
-  release:
-    types: [created]
-
 jobs:
   testing:
     runs-on: ubuntu-latest
