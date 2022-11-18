@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Property from '../../lib/Property'
 import { loadProperties } from './PropertyLoader'
 
-export const createPropertyStore = () => {
+export const usePropertyStore = () => {
     const [properties, setProperties] = useState<Property[]>([])
     const [errors, setErrors] = useState<Error[]>([])
     const [isLoading, setLoading] = useState<boolean>(false)
@@ -56,4 +56,4 @@ export const createPropertyStore = () => {
     }
 }
 
-export type PropertyStore = ReturnType<typeof createPropertyStore>
+export type PropertyStore = ReturnType<typeof usePropertyStore>

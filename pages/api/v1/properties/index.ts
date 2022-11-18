@@ -2,7 +2,7 @@ import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { Database } from '../../../../types/supabase'
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const propertiesHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     const supabase = await createServerSupabaseClient<Database>({ req, res })
 
     const { data: properties, error } = await supabase
@@ -17,3 +17,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     return res.status(200).json(properties)
 }
+
+export default propertiesHandler

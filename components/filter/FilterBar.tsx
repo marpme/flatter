@@ -42,7 +42,7 @@ export const FilterBar: FC = () => {
             }
         }
         fetchNewProperties()
-    }, [minPrice, maxPrice, supabaseClient])
+    }, [minPrice, maxPrice, supabaseClient, replaceProperties])
 
     return (
         <Grid xs={24}>
