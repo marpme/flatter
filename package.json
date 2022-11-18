@@ -6,6 +6,7 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
+        "lint": "next lint",
         "prettier": "prettier --check \"components/\" \"lib/\" \"pages/\" \"types/\"",
         "prettier:write": "prettier --write \"components/\" \"lib/\" \"pages/\" \"types/\""
     },
