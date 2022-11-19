@@ -24,6 +24,7 @@
         "sharp": "^0.31.1"
     },
     "devDependencies": {
+        "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^13.4.0",
         "@types/node": "^18.11.9",
         "@types/react": "^18.0.25",
