@@ -58,6 +58,7 @@ export const FilterBar: FC = () => {
                         />
                         <Text
                             b
+                            data-testid="filter-header"
                             marginRight={1}
                             style={{
                                 fontSize: '13px',
@@ -72,6 +73,7 @@ export const FilterBar: FC = () => {
                     </Grid>
                     <Grid xs={12} alignItems="center">
                         <Input
+                            data-testid="price-min"
                             placeholder="200"
                             labelRight="€/mo"
                             scale={2 / 3}
@@ -80,6 +82,7 @@ export const FilterBar: FC = () => {
                         />
                         <Text mx={0.5}>-</Text>
                         <Input
+                            data-testid="price-max"
                             placeholder="1000"
                             labelRight="€/mo"
                             scale={2 / 3}
@@ -88,7 +91,7 @@ export const FilterBar: FC = () => {
                         />
                     </Grid>
                     <Grid xs={12}>
-                        <ButtonGroup>
+                        <ButtonGroup data-testid="quick-buttons">
                             <Button icon={<Star />} height={'30px'}>
                                 Favorites
                             </Button>
