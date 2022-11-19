@@ -15,7 +15,7 @@
     "dependencies": {
         "@geist-ui/core": "^2.3.8",
         "@geist-ui/icons": "^1.0.2",
-        "@supabase/auth-helpers-nextjs": "^0.4.2",
+        "@supabase/auth-helpers-nextjs": "^0.5.2",
         "@supabase/auth-helpers-react": "^0.3.1",
         "@supabase/supabase-js": "^2.0.4",
         "next": "^13.0.2",
