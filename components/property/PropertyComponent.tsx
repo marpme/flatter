@@ -56,6 +56,7 @@ const TextScanner: React.FC<{ text: string }> = ({ text }) => {
 
 export const PropertyComponent: FC<{ property: Property }> = ({ property }) => (
     <Card
+        data-testid="property-component"
         shadow
         width="100%"
         style={{ display: 'flex', flexDirection: 'column' }}
