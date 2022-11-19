@@ -1,4 +1,4 @@
-import { describe, expect, test, beforeEach, afterEach } from 'vitest'
+import { describe, expect, it, beforeEach, afterEach } from 'vitest'
 import { render, screen, cleanup } from '@testing-library/react'
 import Layout from './layout'
 
@@ -15,15 +15,15 @@ describe('layout', () => {
         cleanup()
     })
 
-    test('should render out name inside the header', function () {
+    it('should render out name inside the header', function () {
         expect(screen.getByTestId('header-name').textContent).toBe('🏘️ Flatter')
     })
 
-    test('should render header children', function () {
+    it('should render header children', function () {
         expect(screen.getByTestId('header-children').textContent).toBe('test')
     })
 
-    test('should render header children', function () {
+    it('should render children', function () {
         expect(screen.getByTestId('content').textContent).toBe('test2')
     })
 })
