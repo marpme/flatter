@@ -1,6 +1,5 @@
 import { Grid, Modal, Page, Spacer, Spinner, Text } from '@geist-ui/core'
 import Activity from '@geist-ui/icons/activity'
-import Head from 'next/head'
 import { useContext } from 'react'
 import { FilterBar } from '../components/filter/FilterBar'
 import Layout from '../components/layout'
@@ -51,12 +50,7 @@ const Dashboard = () => {
     }
 
     return (
-        <Layout
-            headerChildren={
-                <FilterBar />
-                /* TODO: Not yet functional <SubFilterView /> */
-            }
-        >
+        <Layout headerChildren={<FilterBar />}>
             <section>
                 <Grid.Container gap={2} justify="center" height="100px">
                     {properties.map((property) => (

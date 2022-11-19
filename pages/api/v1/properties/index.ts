@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { Database } from '../../../../types/supabase'
 
 const propertiesHandler = async (req: NextApiRequest, res: NextApiResponse) => {
-    const supabase = await createServerSupabaseClient<Database>({ req, res })
+    const supabase = createServerSupabaseClient<Database>({ req, res })
 
     const { data: properties, error } = await supabase
         .from('properties')
