@@ -29,8 +29,8 @@ describe('FilterBar', () => {
                                 id: `id123`,
                                 org: Organisation.DEGEWO,
                                 address: 'some address 123',
-                                price: '123.45',
-                                sqmeter: '90',
+                                price: 123.45,
+                                sqmeter: 90,
                                 sqmeterPriceRatio:
                                     parseFloat('900') / Number('90'),
                                 headline: 'the beautiful property',
@@ -42,8 +42,8 @@ describe('FilterBar', () => {
                                 id: `id123`,
                                 org: Organisation.DEGEWO,
                                 address: 'some address 123',
-                                price: '900.00',
-                                sqmeter: '90',
+                                price: 900.0,
+                                sqmeter: 90,
                                 sqmeterPriceRatio:
                                     parseFloat('900') / Number('90'),
                                 headline: 'the beautiful property',
@@ -53,7 +53,7 @@ describe('FilterBar', () => {
                             },
                         ],
                         errors: [],
-                        isLoading: true,
+                        isLoading: false,
                         replaceProperties: () => {},
                     } as any
                 }

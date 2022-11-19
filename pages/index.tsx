@@ -18,7 +18,7 @@ const Dashboard = () => {
                     alignItems="center"
                     height="100vh"
                 >
-                    <Grid xs={24} justify="center">
+                    <Grid xs={24} data-testid="spinner" justify="center">
                         <Spinner scale={2} />
                     </Grid>
                 </Grid.Container>
@@ -35,9 +35,9 @@ const Dashboard = () => {
                         <Spacer inline /> Unable to get properties
                     </Modal.Title>
                     <Modal.Content>
-                        <Text em>
+                        <Text em data-testid="error-text">
                             We were unable to query data for the searched
-                            properties. This is expected, please try later
+                            properties. This is unexpected, please try later
                             again.
                         </Text>
                     </Modal.Content>
