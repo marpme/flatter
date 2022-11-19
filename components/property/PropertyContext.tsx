@@ -26,7 +26,8 @@ export const PropertyProvider: FC<{
 
     useEffect(() => {
         store.initializeStore()
-    }, [store])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <PropertyContext.Provider value={store}>
