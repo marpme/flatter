@@ -41,7 +41,7 @@ export const FilterBar: FC = () => {
             }
         }
         fetchNewProperties()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [minPrice, maxPrice, supabaseClient])
 
     return (
