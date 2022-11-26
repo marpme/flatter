@@ -1,0 +1,19 @@
+.absoluteTooltip {
+    position: absolute;
+    z-index: 1;
+    margin-left: calc(100% - 30px);
+    margin-top: 5px;
+}
+
+.previewImage > img {
+    object-fit: cover !important;
+}
+
+.propertyCard {
+    display: flex;
+    flex-direction: column;
+}
+
+.propertyCardContent {
+    flex: 1;
+}
