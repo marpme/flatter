@@ -12,14 +12,15 @@ type CacheData = { imageType: string; imageContent: Buffer }
 const cacheMap: Record<string, CacheData> = {}
 
 const imageHandler: NextApiHandler = async (req, res) => {
-    if (!req.query.path || typeof req.query.path !== 'string') {
+    const { path } = req.query
+    if (!path || typeof path !== 'string') {
         return res.status(404).send(null)
     }
 
     res.setHeader('Cache-Control', 's-maxage=86400')
 
     try {
-        const imageToLoad = decryptImage(req.query.path)
+        const imageToLoad = decryptImage(path)
         if (cacheMap[imageToLoad]) {
             const { imageType, imageContent } = cacheMap[imageToLoad]
             return res
