@@ -2,8 +2,33 @@ import { useState } from 'react'
 import Property from '../../lib/Property'
 import { loadProperties } from './PropertyLoader'
 
+export type PropertyWithOccurrences = Property & { occurrences: number }
+
+export const unifyProperties = (
+    properties: Property[]
+): PropertyWithOccurrences[] => {
+    const addressToProperties = properties.reduce<Record<string, Property[]>>(
+        (all, property) => ({
+            ...all,
+            [property.address]: [...(all[property.address] ?? []), property],
+        }),
+        {}
+    )
+
+    console.log(addressToProperties)
+    return Object.keys(addressToProperties)
+        .map((address) => ({
+            ...addressToProperties[address][0],
+            occurrences: addressToProperties[address].length,
+        }))
+        .sort(
+            (propertyA, propertyB) =>
+                propertyA.sqmeterPriceRatio - propertyB.sqmeterPriceRatio
+        )
+}
+
 export const usePropertyStore = () => {
-    const [properties, setProperties] = useState<Property[]>([])
+    const [properties, setProperties] = useState<PropertyWithOccurrences[]>([])
     const [errors, setErrors] = useState<Error[]>([])
     const [isLoading, setLoading] = useState<boolean>(false)
 
@@ -14,22 +39,12 @@ export const usePropertyStore = () => {
 
         addProperties(...properties: Property[]): void {
             setProperties((currentProperties) =>
-                [...currentProperties, ...properties].sort(
-                    (propertyA, propertyB) =>
-                        propertyA.sqmeterPriceRatio -
-                        propertyB.sqmeterPriceRatio
-                )
+                unifyProperties([...currentProperties, ...properties])
             )
         },
 
         replaceProperties(...properties: Property[]): void {
-            setProperties(
-                [...properties].sort(
-                    (propertyA, propertyB) =>
-                        propertyA.sqmeterPriceRatio -
-                        propertyB.sqmeterPriceRatio
-                )
-            )
+            setProperties(unifyProperties([...properties]))
         },
 
         addError(error: Error): void {

@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 describe('layout', () => {
     beforeEach(() => {
         render(
-            <Layout headerChildren={<p data-testid="header-children">test</p>}>
+            <Layout header={<p data-testid="header-children">test</p>}>
                 <div data-testid="content">test2</div>
             </Layout>
         )

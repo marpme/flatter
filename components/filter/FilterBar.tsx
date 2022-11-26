@@ -41,7 +41,8 @@ export const FilterBar: FC = () => {
             }
         }
         fetchNewProperties()
-    }, [minPrice, maxPrice, supabaseClient, replaceProperties])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [minPrice, maxPrice, supabaseClient])
 
     return (
         <Grid xs={24}>
