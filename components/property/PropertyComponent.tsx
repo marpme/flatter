@@ -1,4 +1,5 @@
 import {
+    Badge,
     Button,
     Card,
     Fieldset,
@@ -9,71 +10,55 @@ import {
     Tooltip,
 } from '@geist-ui/core'
 import { Square, Navigation, Tag, DollarSign, Check } from '@geist-ui/icons'
-import { FC, useMemo } from 'react'
-import Property from '../../lib/Property'
-import styles from './Property.module.css'
+import { FC } from 'react'
 
-const TextScanner: React.FC<{ text: string }> = ({ text }) => {
-    const texts = useMemo(() => {
-        return text
-            .split('WBS')
-            .map((text, index) => <span key={index}>{text}</span>)
-            .reduce((prev, curr) => {
-                return (
-                    <>
-                        {prev}{' '}
-                        {
-                            <Tooltip
-                                type="dark"
-                                text={
-                                    <>
-                                        Wohnberechtigungsschein is needed, for
-                                        more information
-                                        <Link
-                                            color
-                                            icon
-                                            target="_blank"
-                                            href="https://service.berlin.de/dienstleistung/120671/"
-                                        >
-                                            visit the gov page.
-                                        </Link>
-                                    </>
-                                }
-                            >
-                                <Text b className={styles.wbsInform}>
-                                    WBS
-                                </Text>
-                            </Tooltip>
-                        }{' '}
-                        {curr}
-                    </>
-                )
-            })
-    }, [text])
+import styles from './PropertyComponent.module.css'
+import { PropertyWithOccurrences } from './PropertyStore'
+import { TextHighlighter } from '../TextHighlighter'
 
-    return <Text>{texts}</Text>
-}
-
-export const PropertyComponent: FC<{ property: Property }> = ({ property }) => (
+export const PropertyComponent: FC<{
+    property: PropertyWithOccurrences
+}> = ({ property }) => (
     <Card
         data-testid="property-component"
         shadow
         width="100%"
-        style={{ display: 'flex', flexDirection: 'column' }}
+        className={styles.propertyCard}
     >
-        <Image
-            alt={'Image of the property'}
-            src={property.imageLinks[0]}
-            height="200px"
-            width="100%"
-            draggable={false}
-            style={{ objectFit: 'cover' }}
-        />
+        <Badge.Anchor placement="topRight">
+            <Image
+                alt="the property's image"
+                src={property.imageLinks[0]}
+                height="200px"
+                width="100%"
+                draggable={false}
+                className={styles.previewImage}
+            />
+            {property.occurrences > 1 ? (
+                <Tooltip
+                    text={
+                        'similar properties under the same address were hidden'
+                    }
+                    type="success"
+                    className={styles.absoluteTooltip}
+                >
+                    <Badge type="success" title="similar">
+                        {property.occurrences}
+                    </Badge>
+                </Tooltip>
+            ) : null}
+        </Badge.Anchor>
         <Card.Content>
             <Text h5>Description: </Text>
-            <TextScanner text={property.headline} />
+            <TextHighlighter
+                text={property.headline}
+                highlight={'WBS'}
+                tooltip={
+                    <>requires special legal obligation to rent this object</>
+                }
+            />
         </Card.Content>
-        <Card.Content width={'100%'} style={{ flex: 1 }}>
+        <Card.Content width={'100%'} className={styles.propertyCardContent}>
             <Grid.Container gap={1}>
                 <Grid xs={3}>
                     <DollarSign />
