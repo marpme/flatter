@@ -26,7 +26,7 @@ const CronPropertiesHandler: NextApiHandler<CronResult> = async (req, res) => {
                     res,
                 })
 
-                await Promise.allSettled([
+                await Promise.all([
                     getDegewoProperties(),
                     getHowogeProperties(),
                     getGesobauProperties(),
