@@ -11,9 +11,10 @@ import { getGesobauProperties } from '../../../lib/immo/gesobau'
 
 type CronResult =
     | {
-          message: string
+          success: true
+          length: number
       }
-    | { success: boolean }
+    | { success: false; message: string }
 
 const CronPropertiesHandler: NextApiHandler<CronResult> = async (req, res) => {
     if (req.method === 'POST') {
@@ -26,26 +27,35 @@ const CronPropertiesHandler: NextApiHandler<CronResult> = async (req, res) => {
                     res,
                 })
 
-                await Promise.all([
+                const listOfProperties = await Promise.all([
                     getDegewoProperties(),
                     getHowogeProperties(),
                     getGesobauProperties(),
-                ]).then(async (results) => {
-                    await deletePreviousEntries(client)
-                    await insertNewProperties(results, client)
-                })
+                ])
 
-                res.status(200).json({ success: true })
+                await deletePreviousEntries(client)
+                await insertNewProperties(listOfProperties, client)
+
+                res.status(200).json({
+                    success: true,
+                    length: listOfProperties.reduce(
+                        (sum, properties) => sum + properties.length,
+                        0
+                    ),
+                })
             } else {
-                res.status(401).json({ success: false })
+                res.status(401).json({
+                    success: false,
+                    message: 'access denied',
+                })
             }
         } catch (err: any) {
-            res.status(500).json({ message: err?.message })
+            res.status(500).json({ success: false, message: err?.message })
         }
     } else {
         res.setHeader('Allow', 'POST')
             .status(405)
-            .json({ message: 'Method not allowed' })
+            .json({ success: false, message: 'Method not allowed' })
     }
 }
 

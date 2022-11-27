@@ -14,29 +14,25 @@ export const deletePreviousEntries = async (
 }
 
 export const insertNewProperties = async (
-    results: Array<PromiseSettledResult<Property[]>>,
+    listOfProperties: Property[][],
     client: SupabaseClient<Database>
 ) => {
     await Promise.all(
-        results.map(async (result) => {
-            if (result.status === 'fulfilled') {
-                return Promise.all(
-                    result.value.map(
-                        async ({ id, sqmeterPriceRatio, ...rest }) => {
-                            const { error, data } = await client
-                                .from('properties')
-                                .insert(rest)
+        listOfProperties.map(async (properties) =>
+            Promise.all(
+                properties.map(async ({ id, sqmeterPriceRatio, ...rest }) => {
+                    const { error, data } = await client
+                        .from('properties')
+                        .insert(rest)
 
-                            return Promise.resolve({
-                                error,
-                                data,
-                            })
-                        }
-                    )
-                )
-            }
-
-            return Promise.resolve()
-        })
+                    return Promise.resolve({
+                        error,
+                        data,
+                    })
+                })
+            )
+        )
     )
+
+    return listOfProperties
 }
