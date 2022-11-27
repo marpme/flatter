@@ -26,6 +26,7 @@
     "devDependencies": {
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^13.4.0",
+        "@types/jsdom": "^20.0.1",
         "@types/node": "^18.11.9",
         "@types/react": "^18.0.25",
         "@types/sharp": "^0.31.0",
@@ -39,7 +40,7 @@
         "eslint-plugin-jsx-a11y": "6.6.1",
         "eslint-plugin-react": "7.31.10",
         "eslint-plugin-react-hooks": "4.6.0",
-        "jsdom": "^19.0.0",
+        "jsdom": "^20.0.3",
         "prettier": "^2.7.1",
         "typescript": "^4.8.4",
         "vitest": "0.8.4"

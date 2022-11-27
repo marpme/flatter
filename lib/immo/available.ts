@@ -1,12 +1,10 @@
 import { getDegewoProperties } from './degewo'
 import { getHowogeProperties } from './howoge'
+import { getGesobauProperties } from './gesobau'
+import { Organisation } from '../Organisation'
 
-export enum SupportedProviders {
-    DEGEWO = 'degewo',
-    HOWOGE = 'howoge',
-}
-
-export const providerToPropertyMap = {
-    [SupportedProviders.DEGEWO]: getDegewoProperties,
-    [SupportedProviders.HOWOGE]: getHowogeProperties,
-}
+export const providerToPropertyMap = new Map([
+    [Organisation.DEGEWO, getDegewoProperties],
+    [Organisation.HOWOGE, getHowogeProperties],
+    [Organisation.GESOBAU, getGesobauProperties],
+])
