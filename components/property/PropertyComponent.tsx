@@ -5,7 +5,7 @@ import {
     Fieldset,
     Grid,
     Image,
-    Link,
+    Spacer,
     Text,
     Tooltip,
 } from '@geist-ui/core'
@@ -91,10 +91,19 @@ export const PropertyComponent: FC<{
             </Grid.Container>
         </Card.Content>
         <Fieldset.Footer>
-            <Link icon target="_blank" href={property.propertyLink}>
-                Visit Property
-            </Link>
-            <Button icon={<Check />} type="success" scale={2 / 3}>
+            <Spacer />
+            <Button
+                icon={<Check />}
+                type="success"
+                scale={2 / 3}
+                onClick={() => {
+                    window.open(
+                        property.propertyLink,
+                        '_blank',
+                        'noreferrer=true'
+                    )
+                }}
+            >
                 Apply
             </Button>
         </Fieldset.Footer>

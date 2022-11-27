@@ -15,7 +15,6 @@ export const unifyProperties = (
         {}
     )
 
-    console.log(addressToProperties)
     return Object.keys(addressToProperties)
         .map((address) => ({
             ...addressToProperties[address][0],
