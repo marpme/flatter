@@ -7,6 +7,7 @@ import {
     deletePreviousEntries,
     insertNewProperties,
 } from '../../../lib/immo/cron'
+import { getGesobauProperties } from '../../../lib/immo/gesobau'
 
 type CronResult =
     | {
@@ -28,6 +29,7 @@ const CronPropertiesHandler: NextApiHandler<CronResult> = async (req, res) => {
                 await Promise.allSettled([
                     getDegewoProperties(),
                     getHowogeProperties(),
+                    getGesobauProperties(),
                 ]).then(async (results) => {
                     await deletePreviousEntries(client)
                     await insertNewProperties(results, client)
