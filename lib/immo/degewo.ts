@@ -1,5 +1,4 @@
 import { DegewoSearchResult } from '../../types/DegewoSearchResponse'
-import { imageifyLink } from '../image/imageify'
 import { Organisation } from '../Organisation'
 import Property from '../Property'
 
@@ -40,11 +39,10 @@ export const getDegewoProperties = async (): Promise<Property[]> => {
                     .replace(',', '.')
             ) / Number(property.living_space),
         headline: property.headline,
-        thumbnail: imageifyLink(property.thumb_path),
-        imageLinks: property.external_data.map(({ filename }: any) =>
-            imageifyLink(
+        thumbnail: property.thumb_path,
+        imageLinks: property.external_data.map(
+            ({ filename }: any) =>
                 `https://immosuche.degewo.de/images/properties/full/760x570/${filename}`
-            )
         ),
         propertyLink: `https://immosuche.degewo.de${property.property_path}`,
     }))

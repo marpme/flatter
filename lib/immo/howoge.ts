@@ -1,4 +1,3 @@
-import { imageifyLink } from '../image/imageify'
 import Property from '../Property'
 import { Organisation } from '../Organisation'
 
@@ -22,10 +21,8 @@ export const getHowogeProperties = async (): Promise<Property[]> => {
                     parseFloat(property.rent) / Number(property.area)
                 ).toFixed(2),
                 headline: property.notice + ' - ' + property.title,
-                thumbnail: imageifyLink(property.image),
-                imageLinks: [
-                    imageifyLink(`https://www.howoge.de${property.image}`),
-                ],
+                thumbnail: property.image,
+                imageLinks: [`https://www.howoge.de${property.image}`],
                 propertyLink: `https://www.howoge.de${property.link}`,
             }))
         })

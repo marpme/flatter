@@ -8,6 +8,7 @@ import {
     insertNewProperties,
 } from '../../../lib/immo/cron'
 import { getGesobauProperties } from '../../../lib/immo/gesobau'
+import { withAxiom } from 'next-axiom'
 
 type CronResult =
     | {
@@ -59,4 +60,4 @@ const CronPropertiesHandler: NextApiHandler<CronResult> = async (req, res) => {
     }
 }
 
-export default CronPropertiesHandler
+export default withAxiom(CronPropertiesHandler)

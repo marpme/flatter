@@ -1,4 +1,3 @@
-import { imageifyLink } from '../image/imageify'
 import { Organisation } from '../Organisation'
 import Property from '../Property'
 import { JSDOM } from 'jsdom'
@@ -40,8 +39,8 @@ export const getGesobauProperties = async (): Promise<Property[]> => {
             sqmeter: sqmeter,
             sqmeterPriceRatio: price / sqmeter,
             headline: safeTextQuery(propertyNode, '.list_item-title > a'),
-            thumbnail: imageifyLink(thumbnailImage),
-            imageLinks: [],
+            thumbnail: thumbnailImage,
+            imageLinks: [thumbnailImage],
             propertyLink: `https://www.gesobau.de${
                 safeNodeQuery<HTMLAnchorElement>(propertyNode, 'a').href
             }`,

@@ -6,6 +6,8 @@ import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '../types/supabase'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
 
+export { reportWebVitals } from 'next-axiom'
+
 export default function App({ Component, pageProps }: AppProps) {
     const [supabaseClient] = useState(() =>
         createBrowserSupabaseClient<Database>()
