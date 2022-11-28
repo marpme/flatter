@@ -42,6 +42,7 @@ const CronPropertiesHandler: NextApiHandler<CronResult> = async (req, res) => {
                         (sum, properties) => sum + properties.length,
                         0
                     ),
+                    listOfProperties
                 })
             } else {
                 res.status(401).json({
