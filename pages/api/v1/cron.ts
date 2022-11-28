@@ -8,11 +8,13 @@ import {
     insertNewProperties,
 } from '../../../lib/immo/cron'
 import { getGesobauProperties } from '../../../lib/immo/gesobau'
+import Property from '../../../lib/Property'
 
 type CronResult =
     | {
           success: true
           length: number
+          listOfProperties: Property[][]
       }
     | { success: false; message: string }
 
@@ -42,7 +44,7 @@ const CronPropertiesHandler: NextApiHandler<CronResult> = async (req, res) => {
                         (sum, properties) => sum + properties.length,
                         0
                     ),
-                    listOfProperties
+                    listOfProperties,
                 })
             } else {
                 res.status(401).json({
