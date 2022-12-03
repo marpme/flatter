@@ -1,14 +1,10 @@
 import { Card, Grid, Input, ButtonGroup, Button, Text } from '@geist-ui/core'
 import { Filter, Star, DollarSign, Award } from '@geist-ui/icons'
-import { useSupabaseClient } from '@supabase/auth-helpers-react'
-import { useContext, useEffect, useState, FC } from 'react'
-import { Organisation } from '../../lib/Organisation'
-import { Database } from '../../types/supabase'
+import { useContext, useState, FC } from 'react'
 import { PropertyContext } from '../property/PropertyContext'
 
 export const FilterBar: FC = () => {
-    const { properties, replaceProperties } = useContext(PropertyContext)
-    const supabaseClient = useSupabaseClient<Database>()
+    const { properties } = useContext(PropertyContext)
 
     const priceList = properties.map((prop) => prop.price)
 
@@ -18,31 +14,6 @@ export const FilterBar: FC = () => {
     const [maxPrice, setMaxPrice] = useState<string>(
         Math.ceil(Math.max(...priceList)).toString()
     )
-
-    useEffect(() => {
-        const fetchNewProperties = async () => {
-            const { data: properties } = await supabaseClient
-                .from('properties')
-                .select('*')
-                .gt('price', minPrice)
-                .lt('price', maxPrice)
-
-            if (properties) {
-                replaceProperties(
-                    ...properties.map((prop) => ({
-                        ...prop,
-                        org: Organisation[
-                            prop.org as keyof typeof Organisation
-                        ],
-                        sqmeterPriceRatio: prop.price / prop.sqmeter,
-                        imageLinks: prop.imageLinks as string[],
-                    }))
-                )
-            }
-        }
-        fetchNewProperties()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [minPrice, maxPrice, supabaseClient])
 
     return (
         <Grid xs={24}>
