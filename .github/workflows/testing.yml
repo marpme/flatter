@@ -20,10 +20,10 @@ jobs:
               with:
                   node-version: 16
                   cache: 'npm'
-            - run: yarn
-            - run: yarn prettier
-            - run: yarn lint
-            - run: yarn coverage
+            - run: npm
+            - run: npm run prettier
+            - run: npm run lint
+            - run: npm run coverage
             - name: SonarCloud Scan
               uses: SonarSource/sonarcloud-github-action@master
               env:
