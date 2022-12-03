@@ -7,7 +7,7 @@ module.exports = {
           {
             key: "Content-Security-Policy",
             value:
-              "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://immosuche.degewo.de https://www.howoge.de; font-src 'self'; connect-src 'self' https://ndblxkptxmmzkeyhrleu.supabase.co; media-src 'none'; object-src 'none'; prefetch-src 'self'; frame-ancestors 'none'",
+              "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://immosuche.degewo.de https://www.howoge.de; font-src 'self'; connect-src 'self' https://ndblxkptxmmzkeyhrleu.supabase.co https://vitals.vercel-insights.com/v1/vitals; media-src 'none'; object-src 'none'; prefetch-src 'self'; frame-ancestors 'none'",
           },
           {
             key: "X-Content-Type-Options",
