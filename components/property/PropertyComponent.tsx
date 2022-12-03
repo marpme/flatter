@@ -33,6 +33,8 @@ export const PropertyComponent: FC<{
                 width="100%"
                 draggable={false}
                 className={styles.previewImage}
+                placeholder="blur"
+                loading="lazy"
             />
             {property.occurrences > 1 ? (
                 <Tooltip
