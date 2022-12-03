@@ -4,7 +4,7 @@ import {
     Card,
     Fieldset,
     Grid,
-    Image,
+    Image, Link,
     Spacer,
     Text,
     Tooltip,
@@ -88,7 +88,9 @@ export const PropertyComponent: FC<{
                     <Navigation />
                 </Grid>
                 <Grid xs={20} justify="flex-start" alignContent="flex-start">
-                    {property.address}
+                    <Link color rel="noreferrer" target="_blank" href={`https://www.google.com/maps?q=${encodeURIComponent(property.address)}`}>
+                        {property.address}
+                    </Link>
                 </Grid>
             </Grid.Container>
         </Card.Content>
