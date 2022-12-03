@@ -1,3 +1,18 @@
+const isProduction = process.env.NODE_ENV === "production"
+
+const contentSecurityPolicy = `
+  default-src 'self'; 
+  script-src 'self' ${isProduction ? '' : "'unsafe-eval'"}; 
+  style-src 'self' 'unsafe-inline'; 
+  img-src 'self' https://immosuche.degewo.de https://www.howoge.de;
+  font-src 'self'; 
+  connect-src 'self' https://ndblxkptxmmzkeyhrleu.supabase.co https://vitals.vercel-insights.com/v1/vitals; 
+  media-src 'none';
+  object-src 'none';
+  prefetch-src 'self';
+  frame-ancestors 'none'
+`
+
 module.exports = {
   async headers() {
     return [
@@ -6,8 +21,7 @@ module.exports = {
         headers: [
           {
             key: "Content-Security-Policy",
-            value:
-              "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://immosuche.degewo.de https://www.howoge.de; font-src 'self'; connect-src 'self' https://ndblxkptxmmzkeyhrleu.supabase.co https://vitals.vercel-insights.com/v1/vitals; media-src 'none'; object-src 'none'; prefetch-src 'self'; frame-ancestors 'none'",
+            value: contentSecurityPolicy.replace(/\s{2,}/g, ' ').trim(),
           },
           {
             key: "X-Content-Type-Options",
