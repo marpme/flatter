@@ -1,8 +1,8 @@
-import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest'
+import { describe, expect, it, afterEach, vi } from 'vitest'
 import { render, screen, cleanup } from '@testing-library/react'
-import { PropertyContext } from '../components/property/PropertyContext'
-import Dashboard from '../pages/index'
-import { Organisation } from '../lib/Organisation'
+import { PropertyContext } from '../../components/property/PropertyContext'
+import Dashboard from '../../pages/index'
+import { Organisation } from '../../lib/Organisation'
 
 vi.mock('@supabase/auth-helpers-react', () => ({
     useSupabaseClient: () => ({
@@ -17,6 +17,7 @@ vi.mock('@supabase/auth-helpers-react', () => ({
         }),
     }),
 }))
+
 const propertiesMock = [
     {
         id: `id123`,
