@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Property from '../../lib/Property'
+import Property from '../../types/Property'
 import { loadProperties } from './PropertyLoader'
 
 export type PropertyWithOccurrences = Property & { occurrences: number }

@@ -1,5 +1,5 @@
 import { NextApiHandler } from 'next'
-import { Organisation } from '../../../../lib/Organisation'
+import { Organisation } from '../../../../types/Organisation'
 
 const AvailableProviderHandler: NextApiHandler<string[]> = async (req, res) => {
     return res

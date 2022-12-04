@@ -1,4 +1,4 @@
-import Property from '../../lib/Property'
+import Property from '../../types/Property'
 
 export const loadAvailablePropertyProvider = async (): Promise<string[]> => {
     return (
