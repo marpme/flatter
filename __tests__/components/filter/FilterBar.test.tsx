@@ -2,7 +2,7 @@ import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest'
 import { render, screen, cleanup } from '@testing-library/react'
 import { FilterBar } from '../../../components/filter/FilterBar'
 import { PropertyContext } from '../../../components/property/PropertyContext'
-import { Organisation } from '../../../lib/Organisation'
+import { Organisation } from '../../../types/Organisation'
 
 vi.mock('@supabase/auth-helpers-react', () => ({
     useSupabaseClient: () => ({

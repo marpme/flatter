@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { providerToPropertyMap } from '../../../../lib/immo/available'
-import { Organisation } from '../../../../lib/Organisation'
+import { Organisation } from '../../../../types/Organisation'
 
 const providerHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     let { provider } = req.query as { provider: Organisation }

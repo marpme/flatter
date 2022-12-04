@@ -1,6 +1,6 @@
 import { SupabaseClient } from '@supabase/supabase-js'
 import { Database } from '../../types/supabase'
-import Property from '../Property'
+import Property from '../../types/Property'
 
 export const deletePreviousEntries = async (
     client: SupabaseClient<Database>

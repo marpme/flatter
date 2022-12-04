@@ -1,5 +1,5 @@
-import { Organisation } from '../Organisation'
-import Property from '../Property'
+import { Organisation } from '../../types/Organisation'
+import Property from '../../types/Property'
 import { JSDOM } from 'jsdom'
 
 export const getGesobauProperties = async (): Promise<Property[]> => {

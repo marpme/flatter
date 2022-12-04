@@ -1,6 +1,6 @@
 import { DegewoSearchResult } from '../../types/DegewoSearchResponse'
-import { Organisation } from '../Organisation'
-import Property from '../Property'
+import { Organisation } from '../../types/Organisation'
+import Property from '../../types/Property'
 
 const PAGE_INDEX_REGEX = /\/de\/search\.json\?page=(\d+)/
 

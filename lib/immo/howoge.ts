@@ -1,5 +1,5 @@
-import Property from '../Property'
-import { Organisation } from '../Organisation'
+import Property from '../../types/Property'
+import { Organisation } from '../../types/Organisation'
 
 export const getHowogeProperties = async (): Promise<Property[]> => {
     return fetch(
