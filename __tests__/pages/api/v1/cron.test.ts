@@ -1,7 +1,7 @@
 import CronPropertiesHandler, {
     CronResult,
 } from '../../../../pages/api/v1/cron'
-import { NextApiRequestBuilder, ResponseMock } from 'next-test-suite'
+import { NextApiRequestBuilder, ResponseMock } from '@next-testing/api'
 import { afterEach, beforeEach } from 'vitest'
 
 describe('integration - cron job', () => {
@@ -47,7 +47,7 @@ describe('integration - cron job', () => {
         })
     })
 
-    describe('with authentication', () => {
+    describe.skip('with authentication', () => {
         let originalApiKey: string | undefined
 
         beforeEach(() => {
@@ -59,7 +59,7 @@ describe('integration - cron job', () => {
             process.env.API_SECRET_KEY = originalApiKey
         })
 
-        /*it('should run cron job and return properties scanned', async () => {
+        it('should run cron job and return properties scanned', async () => {
             const req = new NextApiRequestBuilder()
                 .setMethod('POST')
                 .setHeaders({ authorization: 'Bearer ValidTokenOfMine' })
@@ -73,6 +73,6 @@ describe('integration - cron job', () => {
                 message: 'access denied',
             })
             expect(res.getStatusCode()).toEqual(200)
-        })*/
+        })
     })
 })
