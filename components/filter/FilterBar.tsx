@@ -43,7 +43,7 @@ export const FilterBar: FC = () => {
                             {properties.length})
                         </Text>
                     </Grid>
-                    <Grid xs={12} alignItems="center">
+                    <Grid xs={24} md={12} alignItems="center">
                         <Input
                             data-testid="price-min"
                             placeholder="200"
@@ -62,11 +62,8 @@ export const FilterBar: FC = () => {
                             onChange={(e) => setMaxPrice(e.target.value)}
                         />
                     </Grid>
-                    <Grid xs={12}>
+                    <Grid xs={24} md={12} alignItems="center">
                         <ButtonGroup data-testid="quick-buttons">
-                            <Button icon={<Star />} height={'30px'}>
-                                Favorites
-                            </Button>
                             <Button icon={<DollarSign />} height={'30px'}>
                                 Recommended
                             </Button>
