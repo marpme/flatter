@@ -56,7 +56,7 @@ const Dashboard = () => {
                 /* TODO: Not yet functional <SubFilterView /> */
             }
         >
-            <Grid.Container gap={2} justify="center" height="100px">
+            <Grid.Container gap={2} justify="center">
                 {properties.map((property) => (
                     <Grid xs={24} sm={12} md={6} key={property.id}>
                         <PropertyComponent property={property} />
