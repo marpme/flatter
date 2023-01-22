@@ -6,6 +6,7 @@ import { SITE_NAME } from './Head'
 import { formatDistance } from 'date-fns'
 import { useLocale } from '../hooks/useLocale'
 import { IconText } from '../IconText'
+import { useTranslation, i18n } from 'next-i18next'
 
 const calculateLastUpdatedDate = () => {
     const currentDate = new Date()
@@ -23,6 +24,7 @@ const calculateLastUpdatedDate = () => {
 
 export const Header: FC<{ subHeader: ReactElement }> = ({ subHeader }) => {
     const { dateLocale } = useLocale()
+    const { t } = useTranslation('common')
     const theme = useTheme()
     const [updatedDate, setUpdatedDate] = useState(calculateLastUpdatedDate())
 
@@ -33,6 +35,15 @@ export const Header: FC<{ subHeader: ReactElement }> = ({ subHeader }) => {
 
         return () => clearInterval(interval)
     }, [])
+
+    const indexedAgo = useMemo(
+        () =>
+            formatDistance(updatedDate, new Date(), {
+                addSuffix: true,
+                locale: dateLocale,
+            }),
+        [updatedDate, dateLocale]
+    )
 
     return (
         <Grid.Container
@@ -54,10 +65,8 @@ export const Header: FC<{ subHeader: ReactElement }> = ({ subHeader }) => {
                     IconElement={Clock}
                     style={{ color: theme.palette.accents_4 }}
                 >
-                    Indexed{' '}
-                    {formatDistance(updatedDate, new Date(), {
-                        addSuffix: true,
-                        locale: dateLocale,
+                    {t('indexed', {
+                        ago: indexedAgo,
                     })}
                 </IconText>
             </Grid>

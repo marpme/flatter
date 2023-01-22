@@ -1,0 +1,9 @@
+{
+    "wbsDisclaimer": "unterliegt speziellen Anforderungen dieses Objekt mieten zu können",
+    "description": "Beschreibung:",
+    "apply": "Bewerben",
+    "recommended": "Vorgeschlagen",
+    "special": "Mit Vorbedingung (WBS)",
+    "indexed": "{{ago}} indiziert",
+    "filter": "Filter ({{amount}} von {{maxAmount}})"
+}

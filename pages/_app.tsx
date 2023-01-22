@@ -7,8 +7,9 @@ import { Analytics } from '@vercel/analytics/react'
 
 import { PropertyProvider } from '../components/property/PropertyContext'
 import { Database } from '../types/supabase'
+import { appWithTranslation } from 'next-i18next'
 
-export default function App({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
     const [supabaseClient] = useState(() =>
         createBrowserSupabaseClient<Database>()
     )
@@ -25,3 +26,5 @@ export default function App({ Component, pageProps }: AppProps) {
         </SessionContextProvider>
     )
 }
+
+export default appWithTranslation(App)

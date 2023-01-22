@@ -2,8 +2,10 @@ import { Card, Grid, Input, ButtonGroup, Button, Text } from '@geist-ui/core'
 import { Filter, Star, DollarSign, Award } from '@geist-ui/icons'
 import { useContext, useState, FC } from 'react'
 import { PropertyContext } from '../property/PropertyContext'
+import { useTranslation } from 'next-i18next'
 
 export const FilterBar: FC = () => {
+    const { t } = useTranslation('common')
     const { properties } = useContext(PropertyContext)
 
     const priceList = properties.map((prop) => prop.price)
@@ -39,8 +41,10 @@ export const FilterBar: FC = () => {
                                 padding: '0',
                             }}
                         >
-                            Filters ({properties.length} out of{' '}
-                            {properties.length})
+                            {t('filter', {
+                                amount: properties.length,
+                                maxAmount: properties.length,
+                            })}
                         </Text>
                     </Grid>
                     <Grid xs={24} md={12} alignItems="center">
@@ -65,10 +69,10 @@ export const FilterBar: FC = () => {
                     <Grid xs={24} md={12} alignItems="center">
                         <ButtonGroup data-testid="quick-buttons">
                             <Button icon={<DollarSign />} height={'30px'}>
-                                Recommended
+                                {t('recommended')}
                             </Button>
                             <Button icon={<Award />} height={'30px'}>
-                                Special (WBS)
+                                {t('special')}
                             </Button>
                         </ButtonGroup>
                     </Grid>

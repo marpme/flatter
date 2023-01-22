@@ -1,8 +1,14 @@
-const isProduction = process.env.NODE_ENV === "production"
+const { i18n } = require('./next-i18next.config')
+
+const isProduction = process.env.NODE_ENV === 'production'
 
 const contentSecurityPolicy = `
   default-src 'self'; 
-  script-src 'self' ${isProduction ? '' : "'unsafe-eval'"}; 
+  script-src 'self' ${
+      isProduction
+          ? ''
+          : "'unsafe-eval' https://cdn.vercel-insights.com/v1/script.debug.js"
+  }; 
   style-src 'self' 'unsafe-inline'; 
   img-src 'self' https://immosuche.degewo.de https://www.howoge.de;
   font-src 'self'; 
@@ -17,42 +23,45 @@ const contentSecurityPolicy = `
  * @type {import('next').NextConfig}
  **/
 module.exports = {
-  swcMinify: true,
-  async headers() {
-    return [
-      {
-        source: "/:path*",
-        headers: [
-          {
-            key: "Content-Security-Policy",
-            value: contentSecurityPolicy.replace(/\s{2,}/g, ' ').trim(),
-          },
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-          {
-            key: "X-Frame-Options",
-            value: "DENY",
-          },
-          {
-            key: "X-XSS-Protection",
-            value: "1; mode=block",
-          },
-          {
-            key: "X-DNS-Prefetch-Control",
-            value: "on",
-          },
-          {
-            key: "Strict-Transport-Security",
-            value: "max-age=63072000; includeSubDomains; preload",
-          },
-          {
-            key: "Referrer-Policy",
-            value: "no-referrer",
-          },
-        ],
-      },
-    ];
-  },
-};
+    swcMinify: true,
+    i18n,
+    async headers() {
+        return [
+            {
+                source: '/:path*',
+                headers: [
+                    {
+                        key: 'Content-Security-Policy',
+                        value: contentSecurityPolicy
+                            .replace(/\s{2,}/g, ' ')
+                            .trim(),
+                    },
+                    {
+                        key: 'X-Content-Type-Options',
+                        value: 'nosniff',
+                    },
+                    {
+                        key: 'X-Frame-Options',
+                        value: 'DENY',
+                    },
+                    {
+                        key: 'X-XSS-Protection',
+                        value: '1; mode=block',
+                    },
+                    {
+                        key: 'X-DNS-Prefetch-Control',
+                        value: 'on',
+                    },
+                    {
+                        key: 'Strict-Transport-Security',
+                        value: 'max-age=63072000; includeSubDomains; preload',
+                    },
+                    {
+                        key: 'Referrer-Policy',
+                        value: 'no-referrer',
+                    },
+                ],
+            },
+        ]
+    },
+}

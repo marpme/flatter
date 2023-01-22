@@ -1,0 +1,9 @@
+{
+    "wbsDisclaimer": "requires special legal obligation to rent this object",
+    "description": "Description:",
+    "apply": "Apply",
+    "recommended": "Vorgeschlagen",
+    "special": "Mit Vorbedingung (WBS)",
+    "indexed": "indexed {{ago}}",
+    "filter": "Filters ({{amount}} of {{maxAmount}})"
+}

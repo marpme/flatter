@@ -1,10 +1,20 @@
 import { Grid, Modal, Page, Spacer, Spinner, Text } from '@geist-ui/core'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Activity from '@geist-ui/icons/activity'
 import { useContext } from 'react'
 import { FilterBar } from '../components/filter/FilterBar'
 import Layout from '../components/layout'
 import { PropertyComponent } from '../components/property/PropertyComponent'
 import { PropertyContext } from '../components/property/PropertyContext'
+import { GetStaticProps } from 'next'
+
+type Props = {}
+
+export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
+    props: {
+        ...(await serverSideTranslations(locale ?? 'en', ['common', 'footer'])),
+    },
+})
 
 const Dashboard = () => {
     const { properties, errors, isLoading } = useContext(PropertyContext)
