@@ -2,28 +2,40 @@ import { SupabaseClient } from '@supabase/supabase-js'
 import { Database } from '../../types/supabase'
 import Property from '../../types/Property'
 
-export const deletePreviousEntries = async (
+export const deleteRemovedEntries = async (
+    listOfProperties: Property[][],
     client: SupabaseClient<Database>
 ) => {
     const currentProperties = await client.from('properties').select('*')
-    await Promise.all(
-        currentProperties?.data?.map(async (property) =>
+    const availableIds = listOfProperties.reduce<string[]>(
+        (all, properties) => {
+            return [...all, ...properties.map(({ id }) => id)]
+        },
+        []
+    )
+
+    const toBeDeleteProperties = currentProperties?.data?.filter(
+        ({ id }) => !availableIds.includes(id)
+    )
+
+    return await Promise.all(
+        toBeDeleteProperties?.map(async (property) =>
             client.from('properties').delete().eq('id', property.id)
         ) || []
     )
 }
 
-export const insertNewProperties = async (
+export const upsertNewProperties = async (
     listOfProperties: Property[][],
     client: SupabaseClient<Database>
 ) => {
     await Promise.all(
         listOfProperties.map(async (properties) =>
             Promise.all(
-                properties.map(async ({ id, sqmeterPriceRatio, ...rest }) => {
+                properties.map(async ({ sqmeterPriceRatio, ...rest }) => {
                     const { error, data } = await client
                         .from('properties')
-                        .insert(rest)
+                        .upsert(rest)
 
                     return Promise.resolve({
                         error,

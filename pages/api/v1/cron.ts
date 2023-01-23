@@ -4,8 +4,8 @@ import { getDegewoProperties } from '../../../lib/immo/degewo'
 import { getHowogeProperties } from '../../../lib/immo/howoge'
 import { Database } from '../../../types/supabase'
 import {
-    deletePreviousEntries,
-    insertNewProperties,
+    deleteRemovedEntries,
+    upsertNewProperties,
 } from '../../../lib/immo/cron'
 import { getGesobauProperties } from '../../../lib/immo/gesobau'
 import Property from '../../../types/Property'
@@ -14,7 +14,7 @@ type CronResult =
     | {
           success: true
           length: number
-          listOfProperties: Property[][]
+          removedLength: number
       }
     | { success: false; message: string }
 
@@ -35,8 +35,11 @@ const CronPropertiesHandler: NextApiHandler<CronResult> = async (req, res) => {
                     getGesobauProperties(),
                 ])
 
-                await deletePreviousEntries(client)
-                await insertNewProperties(listOfProperties, client)
+                await upsertNewProperties(listOfProperties, client)
+                const removedProperties = await deleteRemovedEntries(
+                    listOfProperties,
+                    client
+                )
 
                 res.status(200).json({
                     success: true,
@@ -44,7 +47,7 @@ const CronPropertiesHandler: NextApiHandler<CronResult> = async (req, res) => {
                         (sum, properties) => sum + properties.length,
                         0
                     ),
-                    listOfProperties,
+                    removedLength: removedProperties.length,
                 })
             } else {
                 res.status(401).json({

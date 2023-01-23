@@ -10,7 +10,7 @@ const contentSecurityPolicy = `
           : "'unsafe-eval' https://cdn.vercel-insights.com/v1/script.debug.js"
   }; 
   style-src 'self' 'unsafe-inline'; 
-  img-src 'self' https://immosuche.degewo.de https://www.howoge.de;
+  img-src 'self' https://immosuche.degewo.de https://www.howoge.de https://www.gesobau.de;
   font-src 'self'; 
   connect-src 'self' https://ndblxkptxmmzkeyhrleu.supabase.co https://vitals.vercel-insights.com/v1/vitals; 
   media-src 'none';

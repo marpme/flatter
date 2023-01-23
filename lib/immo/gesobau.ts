@@ -8,7 +8,6 @@ export const getGesobauProperties = async (): Promise<Property[]> => {
     )
 
     const htmlText = await gesobauResponse.text()
-    console.log('Response', htmlText)
     const dom = new JSDOM(htmlText)
 
     return Array.from(
