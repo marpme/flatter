@@ -10,18 +10,36 @@ import {
     Text,
     Tooltip,
 } from '@geist-ui/core'
-import { Square, Navigation, Tag, DollarSign, Check } from '@geist-ui/icons'
+import {
+    Square,
+    Navigation,
+    Tag,
+    DollarSign,
+    Check,
+    Clock,
+} from '@geist-ui/icons'
 import { useTranslation } from 'next-i18next'
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 
 import styles from './PropertyComponent.module.css'
 import { PropertyWithOccurrences } from './PropertyStore'
 import { TextHighlighter } from '../TextHighlighter'
+import { useLocale } from '../hooks/useLocale'
+import { formatDistance } from 'date-fns'
 
 export const PropertyComponent: FC<{
     property: PropertyWithOccurrences
 }> = ({ property }) => {
+    const { dateLocale } = useLocale()
     const { t } = useTranslation('common')
+    const indexedAgo = useMemo(
+        () =>
+            formatDistance(new Date(property.created_at), new Date(), {
+                addSuffix: true,
+                locale: dateLocale,
+            }),
+        [property, dateLocale]
+    )
 
     return (
         <Card
@@ -115,9 +133,24 @@ export const PropertyComponent: FC<{
                             href={`https://www.google.com/maps?q=${encodeURIComponent(
                                 property.address
                             )}`}
+                            style={{
+                                whiteSpace: 'nowrap',
+                                textOverflow: 'ellipsis',
+                                overflow: 'hidden',
+                            }}
                         >
                             {property.address}
                         </Link>
+                    </Grid>
+                    <Grid xs={3}>
+                        <Clock />
+                    </Grid>
+                    <Grid
+                        xs={20}
+                        justify="flex-start"
+                        alignContent="flex-start"
+                    >
+                        {t('insertedAt', { indexedAgo })}
                     </Grid>
                 </Grid.Container>
             </Card.Content>

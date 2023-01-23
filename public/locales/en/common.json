@@ -5,5 +5,6 @@
     "recommended": "Vorgeschlagen",
     "special": "Mit Vorbedingung (WBS)",
     "indexed": "indexed {{ago}}",
-    "filter": "Filters ({{amount}} of {{maxAmount}})"
+    "filter": "Filters ({{amount}} of {{maxAmount}})",
+    "insertedAt": "Added {{indexedAgo}}"
 }
