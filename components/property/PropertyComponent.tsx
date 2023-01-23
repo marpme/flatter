@@ -34,7 +34,7 @@ export const PropertyComponent: FC<{
     const { t } = useTranslation('common')
     const indexedAgo = useMemo(
         () =>
-            formatDistance(new Date(property.created_at), new Date(), {
+            formatDistance(new Date(property.created_at!), new Date(), {
                 addSuffix: true,
                 locale: dateLocale,
             }),
