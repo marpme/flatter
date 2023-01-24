@@ -6,5 +6,8 @@
     "special": "Mit Vorbedingung (WBS)",
     "indexed": "indexed {{ago}}",
     "filter": "Filters ({{amount}} of {{maxAmount}})",
-    "insertedAt": "Added {{indexedAgo}}"
+    "insertedAt": "Added {{indexedAgo}}",
+    "room_one": "room",
+    "room_other": "rooms",
+    "with": "with"
 }

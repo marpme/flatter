@@ -9,6 +9,7 @@ import {
     Spacer,
     Text,
     Tooltip,
+    Tag as TagComponent,
 } from '@geist-ui/core'
 import {
     Square,
@@ -17,6 +18,7 @@ import {
     DollarSign,
     Check,
     Clock,
+    AlertTriangle,
 } from '@geist-ui/icons'
 import { useTranslation } from 'next-i18next'
 import { FC, useMemo } from 'react'
@@ -26,6 +28,7 @@ import { PropertyWithOccurrences } from './PropertyStore'
 import { TextHighlighter } from '../TextHighlighter'
 import { useLocale } from '../hooks/useLocale'
 import { formatDistance } from 'date-fns'
+import CardContent from '@geist-ui/core/esm/card/card-content'
 
 export const PropertyComponent: FC<{
     property: PropertyWithOccurrences
@@ -75,6 +78,22 @@ export const PropertyComponent: FC<{
             </Badge.Anchor>
             <Card.Content>
                 <Text h5>{t('description')} </Text>
+                {property.wbs ? (
+                    <Badge type={property.wbs ? 'warning' : 'success'}>
+                        <div
+                            style={{
+                                display: 'flex',
+                                gap: '5px',
+                                justifyContent: 'center',
+                                alignContent: 'center',
+                                margin: '0 2px',
+                            }}
+                        >
+                            <AlertTriangle size="14" /> WBS required
+                        </div>
+                    </Badge>
+                ) : null}
+                <Spacer />
                 <TextHighlighter
                     text={property.headline}
                     highlight={'WBS'}
@@ -116,6 +135,8 @@ export const PropertyComponent: FC<{
                         justify="flex-start"
                         alignContent="flex-start"
                     >
+                        {property.roomCount}{' '}
+                        {t('room', { count: property.roomCount })} {t('with')}{' '}
                         {property.sqmeter.toFixed(2)} m²
                     </Grid>
                     <Grid xs={3}>

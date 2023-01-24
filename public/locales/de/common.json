@@ -6,5 +6,7 @@
     "special": "Mit Vorbedingung (WBS)",
     "indexed": "{{ago}} indiziert",
     "filter": "Filter ({{amount}} von {{maxAmount}})",
-    "insertedAt": "Hinzugefügt {{indexedAgo}}"
+    "insertedAt": "Hinzugefügt {{indexedAgo}}",
+    "room": "Zimmer",
+    "with": "mit"
 }
