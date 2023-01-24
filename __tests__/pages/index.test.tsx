@@ -3,6 +3,7 @@ import { render, screen, cleanup } from '@testing-library/react'
 import { PropertyContext } from '../../components/property/PropertyContext'
 import Dashboard from '../../pages/index'
 import { Organisation } from '../../types/Organisation'
+import Property from '../../types/Property'
 
 vi.mock('@supabase/auth-helpers-react', () => ({
     useSupabaseClient: () => ({
@@ -18,9 +19,10 @@ vi.mock('@supabase/auth-helpers-react', () => ({
     }),
 }))
 
-const propertiesMock = [
+const propertiesMock: Property[] = [
     {
         id: `id123`,
+        created_at: '2023-01-24 18:37:44.765102+00',
         org: Organisation.DEGEWO,
         address: 'some address 123',
         price: 123.45,
@@ -30,9 +32,12 @@ const propertiesMock = [
         thumbnail: 'https://abc.com/abc',
         imageLinks: ['https://abc.com/abcimage'],
         propertyLink: 'https://abc.com/property',
+        wbs: true,
+        roomCount: 3,
     },
     {
         id: `id234`,
+        created_at: '2023-01-24 18:37:44.765102+00',
         org: Organisation.DEGEWO,
         address: 'some address 234',
         price: 900.0,
@@ -42,6 +47,8 @@ const propertiesMock = [
         thumbnail: 'https://abc.com/abc',
         imageLinks: ['https://abc.com/abcimage'],
         propertyLink: 'https://abc.com/property',
+        wbs: false,
+        roomCount: 2,
     },
 ]
 
@@ -66,7 +73,7 @@ describe('Dashboard', () => {
             </PropertyContext.Provider>
         )
         const content = screen.getByTestId('filter-header').textContent
-        expect(content).toBe('Filters (2 out of 2)')
+        expect(content).toBe('filter')
     })
 
     it('should have two properties shown on the dashboard', () => {

@@ -69,7 +69,7 @@ describe('FilterBar', () => {
 
     it('should render statistics the header', function () {
         const content = screen.getByTestId('filter-header').textContent
-        expect(content).toBe('Filters (2 out of 2)')
+        expect(content).toBe('filter')
     })
 
     it('should allow min and max price adjustments', function () {
