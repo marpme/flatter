@@ -45,5 +45,10 @@ export const getDegewoProperties = async (): Promise<Property[]> => {
                 `https://immosuche.degewo.de/images/properties/full/760x570/${filename}`
         ),
         propertyLink: `https://immosuche.degewo.de${property.property_path}`,
+        wbs: property.wbs_required,
+        roomCount: parseInt(
+            property.number_of_rooms.replace(' Zimmer', ''),
+            10
+        ),
     }))
 }

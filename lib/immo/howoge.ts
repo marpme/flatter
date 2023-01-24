@@ -24,6 +24,8 @@ export const getHowogeProperties = async (): Promise<Property[]> => {
                 thumbnail: property.image,
                 imageLinks: [`https://www.howoge.de${property.image}`],
                 propertyLink: `https://www.howoge.de${property.link}`,
+                wbs: property.wbs === 'ja',
+                roomCount: property.rooms,
             }))
         })
 }

@@ -6,6 +6,8 @@ export default interface Property {
     org: Organisation
     address: string
     price: number
+    wbs?: boolean
+    roomCount: number
     sqmeter: number
     sqmeterPriceRatio: number
     headline: string
