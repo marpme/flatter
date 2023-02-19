@@ -44,8 +44,9 @@ export const getGesobauProperties = async (): Promise<Property[]> => {
             propertyLink: `https://www.gesobau.de${
                 safeNodeQuery<HTMLAnchorElement>(propertyNode, 'a').href
             }`,
-            // FIXME: get actual numbers here ...
+            // FIXME: get actual data here ...
             roomCount: 0,
+            wbs: false,
         }
     })
 }

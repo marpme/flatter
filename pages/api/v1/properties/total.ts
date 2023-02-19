@@ -5,18 +5,17 @@ import { Database } from '../../../../types/supabase'
 const propertiesHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     const supabase = createServerSupabaseClient<Database>({ req, res })
 
-    const { data: properties, error } = await supabase
+    const { count, error } = await supabase
         .from('properties')
-        .select('*')
-        .eq('deleted', 'false')
+        .select('*', { count: 'exact', head: true })
 
-    if (error || !properties) {
+    if (error) {
         return res.status(500).json({ message: 'error loading properties' })
     }
 
     res.setHeader('Cache-Control', 'public, max-age=300')
 
-    return res.status(200).json(properties)
+    return res.status(200).json(count)
 }
 
 export default propertiesHandler

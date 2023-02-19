@@ -20,7 +20,10 @@ export const deleteRemovedEntries = async (
 
     return await Promise.all(
         toBeDeleteProperties?.map(async (property) =>
-            client.from('properties').delete().eq('id', property.id)
+            client
+                .from('properties')
+                .update({ deleted: true })
+                .eq('id', property.id)
         ) || []
     )
 }
@@ -35,7 +38,7 @@ export const upsertNewProperties = async (
                 properties.map(async ({ sqmeterPriceRatio, ...rest }) => {
                     const { error, data } = await client
                         .from('properties')
-                        .upsert(rest)
+                        .upsert({ ...rest, deleted: false })
 
                     return Promise.resolve({
                         error,

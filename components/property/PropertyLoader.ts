@@ -9,3 +9,13 @@ export const loadProperties = async (): Promise<Property[]> => {
         })
     ).json()
 }
+
+export const loadPropertyCount = async (): Promise<number> => {
+    return (
+        await fetch(`/api/v1/properties/total`, {
+            headers: {
+                Accept: 'application/json',
+            },
+        })
+    ).json()
+}

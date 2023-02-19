@@ -1,12 +1,13 @@
 import { Grid, Modal, Page, Spacer, Spinner, Text } from '@geist-ui/core'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Activity from '@geist-ui/icons/activity'
-import { useContext } from 'react'
 import { FilterBar } from '../components/filter/FilterBar'
 import Layout from '../components/layout'
 import { PropertyComponent } from '../components/property/PropertyComponent'
-import { PropertyContext } from '../components/property/PropertyContext'
 import { GetStaticProps } from 'next'
+import { useQuery } from 'react-query'
+import { loadProperties } from '../components/property/PropertyLoader'
+import properties from './api/v1/properties'
 
 type Props = {}
 
@@ -17,7 +18,11 @@ export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
 })
 
 const Dashboard = () => {
-    const { properties, errors, isLoading } = useContext(PropertyContext)
+    const {
+        error,
+        data: properties,
+        isLoading,
+    } = useQuery('properties', loadProperties)
 
     if (isLoading) {
         return (
@@ -36,7 +41,7 @@ const Dashboard = () => {
         )
     }
 
-    if (properties.length === 0 && errors.length > 0) {
+    if (!properties || error) {
         return (
             <Page dotBackdrop>
                 <Modal visible={true} onClose={() => window.location.reload()}>
@@ -69,7 +74,7 @@ const Dashboard = () => {
             <Grid.Container gap={2} justify="center">
                 {properties.map((property) => (
                     <Grid xs={24} sm={12} md={6} key={property.id}>
-                        <PropertyComponent property={property} />
+                        <PropertyComponent property={property as any} />
                     </Grid>
                 ))}
             </Grid.Container>

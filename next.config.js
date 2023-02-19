@@ -1,4 +1,5 @@
 const { i18n } = require('./next-i18next.config')
+const { version } = require('./package.json')
 
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -25,6 +26,9 @@ const contentSecurityPolicy = `
 module.exports = {
     swcMinify: true,
     i18n,
+    publicRuntimeConfig: {
+        version,
+    },
     async headers() {
         return [
             {

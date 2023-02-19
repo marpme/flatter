@@ -24,14 +24,13 @@ import { useTranslation } from 'next-i18next'
 import { FC, useMemo } from 'react'
 
 import styles from './PropertyComponent.module.css'
-import { PropertyWithOccurrences } from './PropertyStore'
 import { TextHighlighter } from '../TextHighlighter'
 import { useLocale } from '../hooks/useLocale'
 import { formatDistance } from 'date-fns'
-import CardContent from '@geist-ui/core/esm/card/card-content'
+import Property from '../../types/Property'
 
 export const PropertyComponent: FC<{
-    property: PropertyWithOccurrences
+    property: Property
 }> = ({ property }) => {
     const { dateLocale } = useLocale()
     const { t } = useTranslation('common')
@@ -62,19 +61,6 @@ export const PropertyComponent: FC<{
                     placeholder="blur"
                     loading="lazy"
                 />
-                {property.occurrences > 1 ? (
-                    <Tooltip
-                        text={
-                            'similar properties under the same address were hidden'
-                        }
-                        type="success"
-                        className={styles.absoluteTooltip}
-                    >
-                        <Badge type="success" title="similar">
-                            {property.occurrences}
-                        </Badge>
-                    </Tooltip>
-                ) : null}
             </Badge.Anchor>
             <Card.Content>
                 <Text h5>{t('description')} </Text>

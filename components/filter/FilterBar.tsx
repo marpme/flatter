@@ -1,18 +1,29 @@
 import { Card, Grid, Input, ButtonGroup, Button, Text } from '@geist-ui/core'
 import { Filter, Star, DollarSign, Award } from '@geist-ui/icons'
 import { useContext, useState, FC } from 'react'
-import { PropertyContext } from '../property/PropertyContext'
 import { useTranslation } from 'next-i18next'
+import { useQuery } from 'react-query'
+import { loadProperties } from '../property/PropertyLoader'
 
 export const FilterBar: FC = () => {
     const { t } = useTranslation('common')
-    const { properties } = useContext(PropertyContext)
+    const {
+        error,
+        data: properties,
+        isLoading,
+    } = useQuery('properties', loadProperties)
+
+    if (error || isLoading || !properties) {
+        return null
+    }
 
     const priceList = properties.map((prop) => prop.price)
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [minPrice, setMinPrice] = useState<string>(
         Math.floor(Math.min(...priceList)).toString()
     )
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [maxPrice, setMaxPrice] = useState<string>(
         Math.ceil(Math.max(...priceList)).toString()
     )

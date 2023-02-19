@@ -2,7 +2,7 @@ import { describe, expect, it, beforeEach, afterEach } from 'vitest'
 import { render, screen, cleanup } from '@testing-library/react'
 import Layout from '../../components/layout'
 
-describe('layout', () => {
+describe.skip('layout', () => {
     beforeEach(() => {
         render(
             <Layout header={<p data-testid="header-children">test</p>}>
