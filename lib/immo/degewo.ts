@@ -11,7 +11,7 @@ export const getDegewoProperties = async (): Promise<Property[]> => {
     const numberOfSites =
         parseInt(pagination.last_page.match(PAGE_INDEX_REGEX)![1], 10) || 0
 
-    for (let i = 2; i <= Math.min(numberOfSites, 10); i++) {
+    for (let i = 2; i <= Math.min(numberOfSites, 50); i++) {
         console.log('updating pages:', i, 'of', Math.min(numberOfSites, 10))
         let pageResponse = await fetch(
             `https://immosuche.degewo.de/de/search.json?page=${i}`
