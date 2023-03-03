@@ -13,6 +13,7 @@ const fetchHowogePropertyPage = async (
         {
             body: createSearchParam(String(page)).toString(),
             method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         }
     )
 
@@ -45,6 +46,7 @@ export const getHowogeProperties = async (): Promise<Property[]> => {
         {
             body: createSearchParam().toString(),
             method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         }
     )
 
@@ -61,7 +63,6 @@ export const getHowogeProperties = async (): Promise<Property[]> => {
     for (let pageIndex = 1; pageIndex <= Math.min(pageCount, 50); pageIndex++) {
         console.log('updating pages:', pageIndex, 'of', Math.min(pageCount, 10))
         let additionalProperties = await fetchHowogePropertyPage(pageIndex)
-
         immos.push(...additionalProperties)
     }
 
@@ -78,6 +79,10 @@ const createSearchParam = (page: string = '1') => {
 
     searchParams.append('tx_howsite_json_list[page]', page)
     searchParams.append('tx_howsite_json_list[limit]', String(immoPerPage))
+    searchParams.append('tx_howsite_json_list[lang]', '')
+    searchParams.append('tx_howsite_json_list[rent]', '')
+    searchParams.append('tx_howsite_json_list[area]', '')
+    searchParams.append('tx_howsite_json_list[rooms]', 'egal')
     searchParams.append('tx_howsite_json_list[wbs]', 'all-offers')
 
     return searchParams
