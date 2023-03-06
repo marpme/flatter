@@ -7,11 +7,8 @@ import { PropertyComponent } from '../components/property/PropertyComponent'
 import { GetStaticProps } from 'next'
 import { useQuery } from 'react-query'
 import { loadProperties } from '../components/property/PropertyLoader'
-import properties from './api/v1/properties'
 
-type Props = {}
-
-export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
+export const getStaticProps: GetStaticProps<{}> = async ({ locale }) => ({
     props: {
         ...(await serverSideTranslations(locale ?? 'en', ['common', 'footer'])),
     },

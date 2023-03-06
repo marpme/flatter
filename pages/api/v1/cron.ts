@@ -8,7 +8,6 @@ import {
     upsertNewProperties,
 } from '../../../lib/immo/cron'
 import { getGesobauProperties } from '../../../lib/immo/gesobau'
-import Property from '../../../types/Property'
 
 type CronResult =
     | {
