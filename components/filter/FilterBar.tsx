@@ -1,6 +1,14 @@
-import { Card, Grid, Input, ButtonGroup, Button, Text } from '@geist-ui/core'
-import { Filter, Star, DollarSign, Award } from '@geist-ui/icons'
-import { useContext, useState, FC } from 'react'
+import {
+    Card,
+    Grid,
+    Input,
+    ButtonGroup,
+    Button,
+    Text,
+    Select,
+} from '@geist-ui/core'
+import { Filter, DollarSign, Award } from '@geist-ui/icons'
+import { useState, FC } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useQuery } from 'react-query'
 import { loadProperties } from '../property/PropertyLoader'
@@ -58,7 +66,7 @@ export const FilterBar: FC = () => {
                             })}
                         </Text>
                     </Grid>
-                    <Grid xs={24} md={12} alignItems="center">
+                    <Grid xs={8} alignItems="center">
                         <Input
                             data-testid="price-min"
                             placeholder="200"
@@ -77,7 +85,7 @@ export const FilterBar: FC = () => {
                             onChange={(e) => setMaxPrice(e.target.value)}
                         />
                     </Grid>
-                    <Grid xs={24} md={12} alignItems="center">
+                    <Grid xs={8} alignItems="center">
                         <ButtonGroup data-testid="quick-buttons">
                             <Button icon={<DollarSign />} height={'30px'}>
                                 {t('recommended')}
@@ -86,6 +94,23 @@ export const FilterBar: FC = () => {
                                 {t('special')}
                             </Button>
                         </ButtonGroup>
+                    </Grid>
+                    <Grid xs={8} justify="flex-end">
+                        <Select
+                            defaultValue={'1'}
+                            value="1"
+                            onChange={() => {}}
+                        >
+                            <Select.Option value="1">
+                                Descending Insertion date
+                            </Select.Option>
+                            <Select.Option value="2">
+                                Ascending Price per month
+                            </Select.Option>
+                            <Select.Option value="3">
+                                Asceding Space in square meter
+                            </Select.Option>
+                        </Select>
                     </Grid>
                 </Grid.Container>
             </Card>

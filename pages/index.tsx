@@ -64,8 +64,9 @@ const Dashboard = () => {
     return (
         <Layout
             header={
-                <FilterBar />
-                /* TODO: Not yet functional <SubFilterView /> */
+                <Grid.Container>
+                    <FilterBar />
+                </Grid.Container>
             }
         >
             <Grid.Container gap={2} justify="center">
