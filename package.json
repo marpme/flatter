@@ -50,7 +50,7 @@
         "prettier": "^2.8.7",
         "supabase": "^1.45.2",
         "typescript": "^5.0.2",
-        "vitest": "0.29.7"
+        "vitest": "0.29.8"
     },
     "prettier": {
         "trailingComma": "es5",
