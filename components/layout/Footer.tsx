@@ -2,12 +2,12 @@ import { Link } from '@geist-ui/core'
 import { Github, Twitter } from '@geist-ui/icons'
 import { useTranslation } from 'next-i18next'
 import { FC } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { loadPropertyCount } from '../property/PropertyLoader'
 
 export const Footer: FC = () => {
     const { t } = useTranslation('footer')
-    const { data: count } = useQuery('propertyCount', loadPropertyCount)
+    const { data: count } = useQuery(['propertyCount'], loadPropertyCount)
     return (
         <div
             style={{
