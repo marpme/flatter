@@ -10,7 +10,7 @@ import {
 import { Filter, DollarSign, Award } from '@geist-ui/icons'
 import { useState, FC } from 'react'
 import { useTranslation } from 'next-i18next'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { loadProperties } from '../property/PropertyLoader'
 
 export const FilterBar: FC = () => {
@@ -19,7 +19,7 @@ export const FilterBar: FC = () => {
         error,
         data: properties,
         isLoading,
-    } = useQuery('properties', loadProperties)
+    } = useQuery(['properties'], loadProperties)
 
     if (error || isLoading || !properties) {
         return null

@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { loadProperties } from '../components/property/PropertyLoader'
 import { Grid } from '@geist-ui/core'
 import Layout from '../components/layout'
@@ -33,7 +33,7 @@ export const ComposedPropertyView = () => {
         error,
         data: properties,
         isLoading,
-    } = useQuery('properties', loadProperties)
+    } = useQuery(['properties'], loadProperties)
 
     if (isLoading) {
         return <LoadingView />
