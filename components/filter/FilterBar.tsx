@@ -2,39 +2,25 @@ import {
     Card,
     Grid,
     Input,
-    ButtonGroup,
-    Button,
     Text,
     Select,
+    Checkbox,
+    Description,
 } from '@geist-ui/core'
-import { Filter, DollarSign, Award } from '@geist-ui/icons'
-import { useState, FC } from 'react'
+import { Filter } from '@geist-ui/icons'
+import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
-import { useQuery } from '@tanstack/react-query'
-import { loadProperties } from '../property/PropertyLoader'
+import {
+    useFilterMutations,
+    useFilterOptions,
+} from '../property/usePropertyFilterStore'
+import { PropertySortOption, propertySortValues } from '../../types/Property'
 
 export const FilterBar: FC = () => {
     const { t } = useTranslation('common')
-    const {
-        error,
-        data: properties,
-        isLoading,
-    } = useQuery(['properties'], loadProperties)
-
-    if (error || isLoading || !properties) {
-        return null
-    }
-
-    const priceList = properties.map((prop) => prop.price)
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [minPrice, setMinPrice] = useState<string>(
-        Math.floor(Math.min(...priceList)).toString()
-    )
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [maxPrice, setMaxPrice] = useState<string>(
-        Math.ceil(Math.max(...priceList)).toString()
-    )
+    const { filter, sort } = useFilterOptions()
+    const { setMinPrice, setMaxPrice, setSorting, setWBSFilter } =
+        useFilterMutations()
 
     return (
         <Grid xs={24}>
@@ -61,8 +47,8 @@ export const FilterBar: FC = () => {
                             }}
                         >
                             {t('filter', {
-                                amount: properties.length,
-                                maxAmount: properties.length,
+                                amount: '?',
+                                maxAmount: '?',
                             })}
                         </Text>
                     </Grid>
@@ -72,8 +58,12 @@ export const FilterBar: FC = () => {
                             placeholder="200"
                             labelRight="€/mo"
                             scale={2 / 3}
-                            value={minPrice}
-                            onChange={(e) => setMinPrice(e.target.value)}
+                            value={String(filter.price.min)}
+                            onChange={(e) => {
+                                if (!isNaN(parseInt(e.target.value, 10))) {
+                                    setMinPrice(parseInt(e.target.value, 10))
+                                }
+                            }}
                         />
                         <Text mx={0.5}>-</Text>
                         <Input
@@ -81,35 +71,47 @@ export const FilterBar: FC = () => {
                             placeholder="1000"
                             labelRight="€/mo"
                             scale={2 / 3}
-                            value={maxPrice}
-                            onChange={(e) => setMaxPrice(e.target.value)}
+                            value={String(filter.price.max)}
+                            onChange={(e) => {
+                                if (!isNaN(parseInt(e.target.value, 10))) {
+                                    setMaxPrice(parseInt(e.target.value, 10))
+                                }
+                            }}
                         />
                     </Grid>
                     <Grid xs={8} alignItems="center">
-                        <ButtonGroup data-testid="quick-buttons">
-                            <Button icon={<DollarSign />} height={'30px'}>
-                                {t('recommended')}
-                            </Button>
-                            <Button icon={<Award />} height={'30px'}>
-                                {t('special')}
-                            </Button>
-                        </ButtonGroup>
+                        <Description
+                            title={'One-Click Filters'}
+                            content={
+                                <Grid.Container>
+                                    <Checkbox
+                                        checked={filter.wbs}
+                                        onClick={() => {
+                                            setWBSFilter(!filter.wbs)
+                                        }}
+                                    >
+                                        {t('Allow WBS')}
+                                    </Checkbox>
+                                </Grid.Container>
+                            }
+                        />
                     </Grid>
                     <Grid xs={8} justify="flex-end">
                         <Select
-                            defaultValue={'1'}
-                            value="1"
-                            onChange={() => {}}
+                            defaultValue={sort}
+                            value={sort}
+                            onChange={(selected) => {
+                                setSorting(selected as PropertySortOption)
+                            }}
                         >
-                            <Select.Option value="1">
-                                Descending Insertion date
-                            </Select.Option>
-                            <Select.Option value="2">
-                                Ascending Price per month
-                            </Select.Option>
-                            <Select.Option value="3">
-                                Asceding Space in square meter
-                            </Select.Option>
+                            {propertySortValues.map((sortValue) => (
+                                <Select.Option
+                                    value={sortValue}
+                                    key={sortValue}
+                                >
+                                    {t(`sort.${sortValue}`)}
+                                </Select.Option>
+                            ))}
                         </Select>
                     </Grid>
                 </Grid.Container>

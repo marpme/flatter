@@ -9,5 +9,10 @@
     "insertedAt": "Added {{indexedAgo}}",
     "room_one": "room",
     "room_other": "rooms",
-    "with": "with"
+    "with": "with",
+    "sort": {
+        "inserted": "Insertion Date",
+        "price": "Price per month",
+        "sqmeter": "Space in ㎡"
+    }
 }
