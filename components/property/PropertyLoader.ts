@@ -8,9 +8,12 @@ export const loadProperties =
     async (): Promise<Property[]> => {
         return (
             await fetch(`/api/v1/properties`, {
+                method: 'POST',
                 headers: {
                     Accept: 'application/json',
+                    ['Content-Type']: 'application/json',
                 },
+                body: JSON.stringify({ sort, filter }),
             })
         ).json()
     }

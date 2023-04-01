@@ -5,7 +5,6 @@ export default interface Property {
     created_at?: string
     org: Organisation
     address: string
-    sqmeterPriceRatio: number
     headline: string
 
     // filterable fields

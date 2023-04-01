@@ -35,7 +35,7 @@ export const upsertNewProperties = async (
     await Promise.all(
         listOfProperties.map(async (properties) =>
             Promise.all(
-                properties.map(async ({ sqmeterPriceRatio, ...rest }) => {
+                properties.map(async ({ ...rest }) => {
                     const { error, data } = await client
                         .from('properties')
                         .upsert({ ...rest, deleted: false })

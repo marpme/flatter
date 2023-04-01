@@ -31,13 +31,6 @@ export const getDegewoProperties = async (): Promise<Property[]> => {
             .replace('.', '')
             .replace(',', '.'),
         sqmeter: property.living_space,
-        sqmeterPriceRatio:
-            parseFloat(
-                property.rent_total_with_vat
-                    .replace(' €', '')
-                    .replace('.', '')
-                    .replace(',', '.')
-            ) / Number(property.living_space),
         headline: property.headline,
         thumbnail: property.thumb_path,
         imageLinks: property.external_data.map(

@@ -1,7 +1,6 @@
-import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest'
-import { render, screen, cleanup } from '@testing-library/react'
+import { describe, expect, it, afterEach, vi } from 'vitest'
+import { screen, cleanup } from '@testing-library/react'
 import { FilterBar } from '../../../components/filter/FilterBar'
-import { Organisation } from '../../../types/Organisation'
 
 vi.mock('@supabase/auth-helpers-react', () => ({
     useSupabaseClient: () => ({
@@ -30,8 +29,6 @@ describe.skip('FilterBar', () => {
                                 address: 'some address 123',
                                 price: 123.45,
                                 sqmeter: 90,
-                                sqmeterPriceRatio:
-                                    parseFloat('900') / Number('90'),
                                 headline: 'the beautiful property',
                                 thumbnail: 'https://abc.com/abc',
                                 imageLinks: ['https://abc.com/abcimage'],
@@ -43,8 +40,6 @@ describe.skip('FilterBar', () => {
                                 address: 'some address 123',
                                 price: 900.0,
                                 sqmeter: 90,
-                                sqmeterPriceRatio:
-                                    parseFloat('900') / Number('90'),
                                 headline: 'the beautiful property',
                                 thumbnail: 'https://abc.com/abc',
                                 imageLinks: ['https://abc.com/abcimage'],

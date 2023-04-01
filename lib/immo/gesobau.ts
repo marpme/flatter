@@ -37,7 +37,6 @@ export const getGesobauProperties = async (): Promise<Property[]> => {
             address: safeTextQuery(propertyNode, '.list_item-location'),
             price: price,
             sqmeter: sqmeter,
-            sqmeterPriceRatio: price / sqmeter,
             headline: safeTextQuery(propertyNode, '.list_item-title > a'),
             thumbnail: thumbnailImage,
             imageLinks: [thumbnailImage],

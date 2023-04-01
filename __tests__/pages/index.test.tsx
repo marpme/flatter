@@ -1,6 +1,5 @@
-import { describe, expect, it, afterEach, vi } from 'vitest'
-import { render, screen, cleanup } from '@testing-library/react'
-import Dashboard from '../../pages/index'
+import { describe, afterEach, vi } from 'vitest'
+import { cleanup } from '@testing-library/react'
 import { Organisation } from '../../types/Organisation'
 import Property from '../../types/Property'
 
@@ -26,7 +25,6 @@ const propertiesMock: Property[] = [
         address: 'some address 123',
         price: 123.45,
         sqmeter: 90,
-        sqmeterPriceRatio: parseFloat('900') / Number('90'),
         headline: 'the beautiful property',
         thumbnail: 'https://abc.com/abc',
         imageLinks: ['https://abc.com/abcimage'],
@@ -41,7 +39,6 @@ const propertiesMock: Property[] = [
         address: 'some address 234',
         price: 900.0,
         sqmeter: 90,
-        sqmeterPriceRatio: parseFloat('900') / Number('90'),
         headline: 'the beautiful property',
         thumbnail: 'https://abc.com/abc',
         imageLinks: ['https://abc.com/abcimage'],
