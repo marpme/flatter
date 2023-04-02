@@ -6,7 +6,7 @@ import Property from '../types/Property'
 import { useProperties } from '../components/property/useProperties'
 import { useFilterOptions } from '../components/property/usePropertyFilterStore'
 import PropertySkeleton from '../components/property/PropertySkeleton'
-import { ReactElement } from 'react'
+import { FC, ReactElement } from 'react'
 
 export const PropertyList = ({
     properties,
@@ -16,7 +16,9 @@ export const PropertyList = ({
     isLoading: boolean
 }): ReactElement[] => {
     if (!properties || isLoading) {
-        return Array<JSX.Element>(25).fill(<PropertySkeleton />)
+        return Array<JSX.Element>(25).map((_, index) => (
+            <PropertySkeleton key={`property-skeleton-${index}`} />
+        ))
     }
 
     return properties.map((property) => (
@@ -26,7 +28,7 @@ export const PropertyList = ({
     ))
 }
 
-export const ComposedPropertyView = () => {
+export const ComposedPropertyView: FC = () => {
     const { filter, sort } = useFilterOptions()
     const { data: properties, isLoading } = useProperties(sort, filter)
 

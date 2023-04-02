@@ -1,7 +1,9 @@
 import { useMediaQuery } from '@geist-ui/core'
 
 export const useSectionWidthMediaQuery = (): string | undefined => {
-    const isXS = useMediaQuery('xs')
+    const isSMOrSmaller = useMediaQuery('sm', {
+        match: 'down',
+    })
 
-    return isXS ? '100vw' : undefined
+    return isSMOrSmaller ? '100vw' : undefined
 }

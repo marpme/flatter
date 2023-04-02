@@ -29,7 +29,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     return (
         <QueryClientProvider client={queryClient}>
             <ReactQueryDevtools initialIsOpen={false} />
-            <GeistProvider themeType={'light'}>
+            <GeistProvider themeType={'dark'}>
                 <CssBaseline />
                 <Component {...pageProps} />
                 <Analytics />

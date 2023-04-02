@@ -14,5 +14,11 @@
         "inserted": "Insertion Date",
         "price": "Price per month",
         "sqmeter": "Space in ㎡"
+    },
+    "filterBar": {
+        "wbs": "Show WBS",
+        "oneClickFilter": "One-Click-Filter:",
+        "priceFilter": "Price range:",
+        "sortOption": "Sort by:"
     }
 }

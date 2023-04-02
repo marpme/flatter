@@ -1,6 +1,6 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { GetStaticProps } from 'next'
-import { ComposedPropertyView } from '../views/PropertyList'
+import dynamic from 'next/dynamic'
 
 export const getStaticProps: GetStaticProps<{}> = async ({ locale }) => ({
     props: {
@@ -8,6 +8,16 @@ export const getStaticProps: GetStaticProps<{}> = async ({ locale }) => ({
     },
 })
 
-const PropertyIndexPage = () => <ComposedPropertyView />
+const DynamicComposedPropertyView = dynamic(
+    async () => {
+        const { ComposedPropertyView } = await import('../views/PropertyList')
+        return ComposedPropertyView
+    },
+    {
+        ssr: false,
+    }
+)
+
+const PropertyIndexPage = () => <DynamicComposedPropertyView />
 
 export default PropertyIndexPage

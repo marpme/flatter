@@ -1,4 +1,4 @@
-import { Grid, Spacer, Text, useTheme } from '@geist-ui/core'
+import { Grid, Text, useTheme } from '@geist-ui/core'
 import { Clock } from '@geist-ui/icons'
 import { FC, ReactElement, useEffect, useMemo, useState } from 'react'
 import { SITE_NAME } from './Head'
@@ -6,11 +6,11 @@ import { SITE_NAME } from './Head'
 import { formatDistance } from 'date-fns'
 import { useLocale } from '../hooks/useLocale'
 import { IconText } from '../IconText'
-import { useTranslation, i18n } from 'next-i18next'
+import { useTranslation } from 'next-i18next'
 
 const calculateLastUpdatedDate = () => {
     const currentDate = new Date()
-    const lastUpdatedDate = new Date(
+    return new Date(
         currentDate.getFullYear(),
         currentDate.getMonth(),
         currentDate.getDate(),
@@ -19,7 +19,6 @@ const calculateLastUpdatedDate = () => {
         0,
         0
     )
-    return lastUpdatedDate
 }
 
 export const Header: FC<{ subHeader: ReactElement }> = ({ subHeader }) => {
@@ -60,7 +59,7 @@ export const Header: FC<{ subHeader: ReactElement }> = ({ subHeader }) => {
                     🏘️ {SITE_NAME}
                 </Text>
             </Grid>
-            <Grid xs style={{ flexDirection: 'row-reverse' }}>
+            <Grid xs={0} md={8} justify={'flex-end'}>
                 <IconText
                     IconElement={Clock}
                     style={{ color: theme.palette.accents_4 }}

@@ -1,4 +1,4 @@
-import { Link } from '@geist-ui/core'
+import { Grid, Link } from '@geist-ui/core'
 import { Github, Twitter } from '@geist-ui/icons'
 import { useTranslation } from 'next-i18next'
 import { FC } from 'react'
@@ -9,35 +9,45 @@ export const Footer: FC = () => {
     const { t } = useTranslation('footer')
     const { data: count } = useQuery(['propertyCount'], loadPropertyCount)
     return (
-        <div
-            style={{
-                display: 'flex',
-                gap: '35px',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '50px',
-                marginTop: '50px',
-            }}
+        <Grid.Container
+            marginTop={4}
+            marginBottom={4}
+            gap={1}
+            justify={'center'}
+            alignItems={'center'}
         >
-            {t('indexed', {
-                amount: typeof count === 'number' ? count : 'loading',
-            })}{' '}
-            <span>&mdash;</span>
-            {t('love')} <span>&mdash;</span>
-            <Link
-                href="https://github.com/marpme/flatter"
-                style={{ alignItems: 'center', gap: '5px' }}
-                color
-            >
-                <Github size={16} /> Github
-            </Link>
-            <Link
-                href="https://twitter.com/marpme_"
-                style={{ alignItems: 'center', gap: '5px' }}
-                color
-            >
-                <Twitter size={16} /> Twitter
-            </Link>
-        </div>
+            <Grid xs={24} md={3} justify={'center'} alignItems={'center'}>
+                {t('indexed', {
+                    amount: typeof count === 'number' ? count : 'loading',
+                })}{' '}
+            </Grid>
+            <Grid xs={0} md={1}>
+                <span>&mdash;</span>
+            </Grid>
+            <Grid xs={24} md={3} justify={'center'} alignItems={'center'}>
+                {t('love')}{' '}
+            </Grid>
+            <Grid xs={0} md={1}>
+                <span>&mdash;</span>
+            </Grid>
+            <Grid xs={12} md={2} justify={'center'} alignItems={'center'}>
+                <Link
+                    href="https://github.com/marpme/flatter"
+                    style={{ alignItems: 'center', gap: '5px' }}
+                    color
+                >
+                    <Github size={16} /> Github
+                </Link>
+            </Grid>
+            <Grid xs={12} md={2} justify={'center'} alignItems={'center'}>
+                <Link
+                    href="https://twitter.com/marpme_"
+                    style={{ alignItems: 'center', gap: '5px' }}
+                    color
+                >
+                    <Twitter size={16} /> Twitter
+                </Link>
+            </Grid>
+        </Grid.Container>
     )
 }

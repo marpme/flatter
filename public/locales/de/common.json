@@ -13,5 +13,11 @@
         "inserted": "Erstellungsdatum",
         "price": "Preis pro Monat",
         "sqmeter": "Größe in ㎡"
+    },
+    "filterBar": {
+        "wbs": "WBS anzeigen",
+        "oneClickFilter": "Schnelle Filter:",
+        "priceFilter": "Preisrahmen:",
+        "sortOption": "Sortieren nach:"
     }
 }
