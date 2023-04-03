@@ -26,15 +26,19 @@
         "i18next": "^22.4.13",
         "next": "^13.2.4",
         "next-i18next": "^13.2.2",
+        "ramda": "^0.28.0",
         "react": "^18.2.0",
+        "react-content-loader": "^6.2.1",
         "react-dom": "^18.2.0",
-        "react-i18next": "^12.1.4"
+        "react-i18next": "^12.1.4",
+        "zustand": "^4.3.7"
     },
     "devDependencies": {
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^14.0.0",
         "@types/jsdom": "^21.1.1",
         "@types/node": "^18.15.11",
+        "@types/ramda": "^0.28.23",
         "@types/react": "^18.0.31",
         "@typescript-eslint/parser": "5.57.0",
         "@vitejs/plugin-react": "3.1.0",

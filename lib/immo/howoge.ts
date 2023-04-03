@@ -30,7 +30,6 @@ const fetchHowogePropertyPage = async (
         address: property.title,
         price: property.rent,
         sqmeter: property.area,
-        sqmeterPriceRatio: parseFloat(property.rent) / Number(property.area),
         headline: property.notice + ' - ' + property.title,
         thumbnail: property.image,
         imageLinks: [`https://www.howoge.de${property.image}`],

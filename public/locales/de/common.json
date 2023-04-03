@@ -8,5 +8,16 @@
     "filter": "Filter ({{amount}} von {{maxAmount}})",
     "insertedAt": "Hinzugefügt {{indexedAgo}}",
     "room": "Zimmer",
-    "with": "mit"
+    "with": "mit",
+    "sort": {
+        "inserted": "Erstellungsdatum",
+        "price": "Preis pro Monat",
+        "sqmeter": "Größe in ㎡"
+    },
+    "filterBar": {
+        "wbs": "WBS anzeigen",
+        "oneClickFilter": "Schnelle Filter:",
+        "priceFilter": "Preisrahmen:",
+        "sortOption": "Sortieren nach:"
+    }
 }
