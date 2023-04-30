@@ -13,10 +13,9 @@ const contentSecurityPolicy = `
   style-src 'self' 'unsafe-inline'; 
   img-src 'self' https://immosuche.degewo.de https://www.howoge.de https://www.gesobau.de;
   font-src 'self'; 
-  connect-src 'self' https://ndblxkptxmmzkeyhrleu.supabase.co https://vitals.vercel-insights.com/v1/vitals; 
+  connect-src 'self' https://vwyenwcswzuupzimdxud.supabase.co https://vitals.vercel-insights.com/v1/vitals; 
   media-src 'none';
   object-src 'none';
-  prefetch-src 'self';
   frame-ancestors 'none'
 `
 
