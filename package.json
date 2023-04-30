@@ -8,6 +8,7 @@
         "start": "next start",
         "lint": "next lint",
         "test": "vitest",
+        "analyze": "ANALYZE=true next build",
         "coverage": "vitest run --coverage",
         "prettier": "prettier --check \"components/\" \"lib/\" \"pages/\" \"types/\"",
         "prettier:write": "prettier --write \"components/\" \"lib/\" \"pages/\" \"types/\"",
@@ -16,6 +17,7 @@
     "dependencies": {
         "@geist-ui/core": "^2.3.8",
         "@geist-ui/icons": "^1.0.2",
+        "@next/bundle-analyzer": "^13.3.2",
         "@supabase/auth-helpers-nextjs": "^0.6.1",
         "@supabase/auth-helpers-react": "^0.3.1",
         "@supabase/supabase-js": "^2.15.0",

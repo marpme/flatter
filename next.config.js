@@ -22,7 +22,7 @@ const contentSecurityPolicy = `
 /**
  * @type {import('next').NextConfig}
  **/
-module.exports = {
+const config = {
     swcMinify: true,
     i18n,
     publicRuntimeConfig: {
@@ -68,3 +68,9 @@ module.exports = {
         ]
     },
 }
+
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYZE === 'true',
+})
+
+module.exports = withBundleAnalyzer(config)
