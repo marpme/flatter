@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { PropertyFilterOption, PropertySortOption } from '../../types/Property'
 import { devtools, persist, createJSONStorage } from 'zustand/middleware'
 import { shallow } from 'zustand/shallow'
-import * as R from 'ramda'
+import { over, lensPath } from 'ramda'
 
 export type PropertyFiltersState = {
     filter: PropertyFilterOption
@@ -43,22 +43,16 @@ const usePropertyFilterStore = create<
                 ...initialFilterState,
                 setMaxPrice: (price: number) =>
                     set(
-                        R.over(
-                            R.lensPath(['filter', 'price', 'max']),
-                            () => price
-                        )
+                        over(lensPath(['filter', 'price', 'max']), () => price)
                     ),
                 setMinPrice: (price: number) =>
                     set(
-                        R.over(
-                            R.lensPath(['filter', 'price', 'min']),
-                            () => price
-                        )
+                        over(lensPath(['filter', 'price', 'min']), () => price)
                     ),
                 setSorting: (sort: PropertySortOption) =>
-                    set(R.over(R.lensPath(['sort']), () => sort)),
+                    set(over(lensPath(['sort']), () => sort)),
                 setWBSFilter: (wbs: boolean) =>
-                    set(R.over(R.lensPath(['filter', 'wbs']), () => wbs)),
+                    set(over(lensPath(['filter', 'wbs']), () => wbs)),
             }),
             {
                 name: 'property-filter-store-f597ba8',

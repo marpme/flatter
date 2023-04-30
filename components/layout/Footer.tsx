@@ -1,5 +1,6 @@
 import { Grid, Link } from '@geist-ui/core'
-import { Github, Twitter } from '@geist-ui/icons'
+import Twitter from '@geist-ui/icons/twitter'
+import Github from '@geist-ui/icons/github'
 import { useTranslation } from 'next-i18next'
 import { FC } from 'react'
 import { useQuery } from '@tanstack/react-query'

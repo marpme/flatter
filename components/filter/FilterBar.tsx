@@ -10,7 +10,7 @@ import {
     Fieldset,
     useTheme,
 } from '@geist-ui/core'
-import { Filter } from '@geist-ui/icons'
+import Filter from '@geist-ui/icons/filter'
 import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
 import {

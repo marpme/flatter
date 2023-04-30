@@ -8,18 +8,14 @@ import {
     Link,
     Spacer,
     Text,
-    Tooltip,
-    Tag as TagComponent,
 } from '@geist-ui/core'
-import {
-    Square,
-    Navigation,
-    Tag,
-    DollarSign,
-    Check,
-    Clock,
-    AlertTriangle,
-} from '@geist-ui/icons'
+import Tag from '@geist-ui/icons/tag'
+import Square from '@geist-ui/icons/square'
+import AlertTriangle from '@geist-ui/icons/alertTriangle'
+import DollarSign from '@geist-ui/icons/dollarSign'
+import Navigation from '@geist-ui/icons/navigation'
+import Clock from '@geist-ui/icons/clock'
+import Check from '@geist-ui/icons/check'
 import { useTranslation } from 'next-i18next'
 import { FC, useMemo } from 'react'
 

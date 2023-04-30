@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import * as dateLocales from 'date-fns/locale'
+import { de, enUS } from 'date-fns/locale'
 import { i18n } from 'next-i18next'
 
 export const useLocale = () => {
@@ -10,7 +10,7 @@ export const useLocale = () => {
     }, [])
 
     const dateLocale = useMemo(() => {
-        const pickedDateLocaleEntry = Object.entries(dateLocales).find(
+        const pickedDateLocaleEntry = Object.entries([de, enUS]).find(
             ([key]) => {
                 const locationToScout = new RegExp(key)
                 return locationToScout.test(locale)
@@ -21,7 +21,7 @@ export const useLocale = () => {
             return pickedDateLocaleEntry[1]
         }
 
-        return dateLocales.enUS
+        return enUS
     }, [locale])
 
     return { locale, dateLocale }

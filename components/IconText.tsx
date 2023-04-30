@@ -1,5 +1,5 @@
 import type { Icon } from '@geist-ui/icons'
-import React, { FC, ReactElement, ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react'
 
 export const IconText: FC<{
     IconElement: Icon

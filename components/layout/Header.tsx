@@ -1,5 +1,5 @@
 import { Grid, Text, useTheme } from '@geist-ui/core'
-import { Clock } from '@geist-ui/icons'
+import Clock from '@geist-ui/icons/clock'
 import { FC, ReactElement, useEffect, useMemo, useState } from 'react'
 import { SITE_NAME } from './Head'
 
