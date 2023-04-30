@@ -1,7 +1,6 @@
 import { AppProps } from 'next/app'
 import { GeistProvider, CssBaseline } from '@geist-ui/core'
 import { useState } from 'react'
-import { Analytics } from '@vercel/analytics/react'
 
 import { appWithTranslation } from 'next-i18next'
 
@@ -32,7 +31,6 @@ const App = ({ Component, pageProps }: AppProps) => {
             <GeistProvider themeType={'light'}>
                 <CssBaseline />
                 <Component {...pageProps} />
-                <Analytics />
             </GeistProvider>
         </QueryClientProvider>
     )
