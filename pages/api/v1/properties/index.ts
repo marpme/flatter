@@ -46,12 +46,13 @@ const propertiesHandler = async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(500).json({ message: 'error loading properties' })
     }
 
-    res.setHeader('Cache-Control', 'public, max-age=300')
-
     const sortFunction = sortFunctions[sort]
     const sortedProperties = (properties as Property[]).sort(sortFunction)
 
-    return res.status(200).json(sortedProperties)
+    return res
+        .status(200)
+        .setHeader('Cache-Control', 'public, max-age=300')
+        .json(sortedProperties)
 }
 
 export default propertiesHandler
