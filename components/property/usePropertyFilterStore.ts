@@ -29,7 +29,7 @@ const initialFilterState: PropertyFiltersState = {
         sqmeter: {
             min: 10,
         },*/
-        wbs: false,
+        wbs: true,
     },
     sort: 'inserted',
 }
