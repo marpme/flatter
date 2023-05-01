@@ -24,8 +24,30 @@ const sortFunctions: {
     sqmeter: (propertyA, propertyB) => propertyB.sqmeter - propertyA.sqmeter,
 }
 
+const parseQuery = (req: NextApiRequest): PropertiesHandler => {
+    const { priceMax, priceMin, wbs, sort } = req.query
+
+    return {
+        sort: sort as PropertySortOption,
+        filter: {
+            price: {
+                min: parseInt(String(priceMin), 10),
+                max: parseInt(String(priceMax), 10),
+            },
+            wbs: Boolean(wbs),
+        },
+    }
+}
+
 const propertiesHandler = async (req: NextApiRequest, res: NextApiResponse) => {
-    const { filter, sort } = req.body as PropertiesHandler
+    if (req.method !== 'GET') {
+        return res
+            .status(400)
+            .setHeader('Cache-Control', 'public, max-age=300')
+            .json({})
+    }
+
+    const { filter, sort } = parseQuery(req)
     const supabase = createServerSupabaseClient<Database>({ req, res })
 
     const propertyLoader = supabase
