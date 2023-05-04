@@ -54,7 +54,7 @@
         "eslint-plugin-react-hooks": "4.6.0",
         "jsdom": "^21.1.1",
         "prettier": "^2.8.8",
-        "supabase": "^1.52.3",
+        "supabase": "^1.54.3",
         "typescript": "^5.0.4",
         "vitest": "0.30.1"
     },
