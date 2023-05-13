@@ -8,6 +8,7 @@ import {
     upsertNewProperties,
 } from '../../../lib/immo/cron'
 import { getGesobauProperties } from '../../../lib/immo/gesobau'
+import { setUpdateTimestamp } from '../../../lib/RedisClient'
 
 type CronResult =
     | {
@@ -39,6 +40,8 @@ const CronPropertiesHandler: NextApiHandler<CronResult> = async (req, res) => {
                     listOfProperties,
                     client
                 )
+
+                await setUpdateTimestamp()
 
                 res.status(200).json({
                     success: true,

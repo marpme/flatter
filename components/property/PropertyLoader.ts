@@ -24,7 +24,10 @@ export const loadProperties =
         ).json()
     }
 
-export const loadPropertyCount = async (): Promise<number> => {
+export const loadPropertyCount = async (): Promise<{
+    count: number
+    updateTimestamp: number
+}> => {
     return (
         await fetch(`/api/v1/properties/count`, {
             method: 'GET',

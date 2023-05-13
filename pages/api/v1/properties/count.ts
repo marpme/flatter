@@ -1,6 +1,7 @@
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { Database } from '../../../../types/supabase'
+import { getUpdateTimestamp } from '../../../../lib/RedisClient'
 
 const propertiesHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     const supabase = createServerSupabaseClient<Database>({ req, res })
@@ -15,7 +16,10 @@ const propertiesHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.setHeader('Cache-Control', 'public, max-age=300')
 
-    return res.status(200).json(count)
+    return res.status(200).json({
+        count,
+        updateTimestamp: await getUpdateTimestamp(),
+    })
 }
 
 export default propertiesHandler

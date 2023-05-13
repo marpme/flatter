@@ -7,6 +7,8 @@ import { formatDistance } from 'date-fns'
 import { useLocale } from '../hooks/useLocale'
 import { IconText } from '../IconText'
 import { useTranslation } from 'next-i18next'
+import { useQuery } from '@tanstack/react-query'
+import { loadPropertyCount } from '../property/PropertyLoader'
 
 const calculateLastUpdatedDate = () => {
     const currentDate = new Date()
@@ -22,27 +24,22 @@ const calculateLastUpdatedDate = () => {
 }
 
 export const Header: FC<{ subHeader: ReactElement }> = ({ subHeader }) => {
-    const { dateLocale } = useLocale()
     const { t } = useTranslation('common')
     const theme = useTheme()
-    const [updatedDate, setUpdatedDate] = useState(calculateLastUpdatedDate())
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setUpdatedDate(calculateLastUpdatedDate())
-        }, 60 * 1000)
+    const { dateLocale } = useLocale()
+    const { data } = useQuery(['propertyCount'], loadPropertyCount)
 
-        return () => clearInterval(interval)
-    }, [])
+    const indexedAgo = useMemo(() => {
+        if (!data?.updateTimestamp) {
+            return 'loading'
+        }
 
-    const indexedAgo = useMemo(
-        () =>
-            formatDistance(updatedDate, new Date(), {
-                addSuffix: true,
-                locale: dateLocale,
-            }),
-        [updatedDate, dateLocale]
-    )
+        return formatDistance(new Date(data?.updateTimestamp), new Date(), {
+            addSuffix: true,
+            locale: dateLocale,
+        })
+    }, [data?.updateTimestamp, dateLocale])
 
     return (
         <Grid.Container

@@ -8,7 +8,7 @@ import { loadPropertyCount } from '../property/PropertyLoader'
 
 export const Footer: FC = () => {
     const { t } = useTranslation('footer')
-    const { data: count } = useQuery(['propertyCount'], loadPropertyCount)
+    const { data } = useQuery(['propertyCount'], loadPropertyCount)
     return (
         <Grid.Container
             marginTop={4}
@@ -19,7 +19,10 @@ export const Footer: FC = () => {
         >
             <Grid xs={24} md={3} justify={'center'} alignItems={'center'}>
                 {t('indexed', {
-                    amount: typeof count === 'number' ? count : 'loading',
+                    amount:
+                        typeof data?.count === 'number'
+                            ? data.count
+                            : 'loading',
                 })}{' '}
             </Grid>
             <Grid xs={0} md={1}>
