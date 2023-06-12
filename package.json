@@ -48,7 +48,7 @@
         "@vitest/coverage-c8": "^0.32.0",
         "c8": "^7.14.0",
         "eslint": "^8.42.0",
-        "eslint-config-next": "^13.4.4",
+        "eslint-config-next": "^13.4.5",
         "eslint-import-resolver-typescript": "3.5.5",
         "eslint-plugin-import": "2.27.5",
         "eslint-plugin-jsx-a11y": "6.7.1",
