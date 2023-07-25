@@ -1,8 +1,8 @@
 import { Organisation } from '../../types/Organisation'
-import Property from '../../types/Property'
+import { CreationProperty } from '../../types/Property'
 import { JSDOM } from 'jsdom'
 
-export const getGesobauProperties = async (): Promise<Property[]> => {
+export const getGesobauProperties = async (): Promise<CreationProperty[]> => {
     const gesobauResponse = await fetch(
         `https://www.gesobau.de/mieten/wohnungssuche.html?${getFlatQueryParams}`
     )
@@ -14,7 +14,7 @@ export const getGesobauProperties = async (): Promise<Property[]> => {
         dom.window.document.querySelectorAll(
             '.tx-kesearch-pi1 .tab-pane.active .list_item'
         )
-    ).map((propertyNode) => {
+    ).map<CreationProperty>((propertyNode) => {
         const price = safeNumberQuery(
             propertyNode,
             '.list_item-details > :nth-child(1)'
@@ -33,14 +33,14 @@ export const getGesobauProperties = async (): Promise<Property[]> => {
 
         return {
             id: `${Organisation.GESOBAU}/${propertyNode.id}`,
-            org: Organisation.GESOBAU,
+            organisation: Organisation.GESOBAU,
             address: safeTextQuery(propertyNode, '.list_item-location'),
             price: price,
             sqmeter: sqmeter,
             headline: safeTextQuery(propertyNode, '.list_item-title > a'),
             thumbnail: thumbnailImage,
             imageLinks: [thumbnailImage],
-            propertyLink: `https://www.gesobau.de${
+            link: `https://www.gesobau.de${
                 safeNodeQuery<HTMLAnchorElement>(propertyNode, 'a').href
             }`,
             // FIXME: get actual data here ...

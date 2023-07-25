@@ -1,12 +1,10 @@
-import { SupabaseClient } from '@supabase/supabase-js'
-import { Database } from '../../types/supabase'
-import Property from '../../types/Property'
+import { CreationProperty } from '../../types/Property'
+import { prisma } from '../PrimsaClient'
 
 export const deleteRemovedEntries = async (
-    listOfProperties: Property[][],
-    client: SupabaseClient<Database>
+    listOfProperties: CreationProperty[][]
 ) => {
-    const currentProperties = await client.from('properties').select('*')
+    const currentProperties = await prisma.property.findMany()
     const availableIds = listOfProperties.reduce<string[]>(
         (all, properties) => {
             return [...all, ...properties.map(({ id }) => id)]
@@ -14,36 +12,50 @@ export const deleteRemovedEntries = async (
         []
     )
 
-    const toBeDeleteProperties = currentProperties?.data?.filter(
+    const toBeDeleteProperties = currentProperties?.filter(
         ({ id }) => !availableIds.includes(id)
     )
 
     return await Promise.all(
         toBeDeleteProperties?.map(async (property) =>
-            client
-                .from('properties')
-                .update({ deleted: true })
-                .eq('id', property.id)
+            prisma.property.update({
+                where: { id: property.id },
+                data: { deleted: true },
+            })
         ) || []
     )
 }
 
 export const upsertNewProperties = async (
-    listOfProperties: Property[][],
-    client: SupabaseClient<Database>
+    listOfProperties: CreationProperty[][]
 ) => {
     await Promise.all(
         listOfProperties.map(async (properties) =>
             Promise.all(
-                properties.map(async ({ ...rest }) => {
-                    const { error, data } = await client
-                        .from('properties')
-                        .upsert({ ...rest, deleted: false })
+                properties.map(async (property) => {
+                    try {
+                        const dbProperty = await prisma.property.upsert({
+                            where: {
+                                id: property.id,
+                            },
+                            update: {
+                                deleted: false,
+                            },
+                            create: {
+                                ...property,
+                            },
+                        })
 
-                    return Promise.resolve({
-                        error,
-                        data,
-                    })
+                        return Promise.resolve({
+                            error: null,
+                            property: dbProperty,
+                        })
+                    } catch (error) {
+                        return Promise.resolve({
+                            error,
+                            property,
+                        })
+                    }
                 })
             )
         )

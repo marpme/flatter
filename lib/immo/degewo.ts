@@ -1,10 +1,10 @@
 import { DegewoSearchResult } from '../../types/DegewoSearchResponse'
 import { Organisation } from '../../types/Organisation'
-import Property from '../../types/Property'
+import { CreationProperty } from '../../types/Property'
 
 const PAGE_INDEX_REGEX = /\/de\/search\.json\?page=(\d+)/
 
-export const getDegewoProperties = async (): Promise<Property[]> => {
+export const getDegewoProperties = async (): Promise<CreationProperty[]> => {
     const response = await fetch(`https://immosuche.degewo.de/de/search.json`)
     const { immos, pagination } = (await response.json()) as DegewoSearchResult
 
@@ -22,14 +22,16 @@ export const getDegewoProperties = async (): Promise<Property[]> => {
         immos.push(...additionalImmos)
     }
 
-    return immos.map((property: any) => ({
+    return immos.map<CreationProperty>((property) => ({
         id: `${Organisation.DEGEWO}/${property.id}`,
-        org: Organisation.DEGEWO,
+        organisation: Organisation.DEGEWO,
         address: property.address,
-        price: property.rent_total_with_vat
-            .replace(' €', '')
-            .replace('.', '')
-            .replace(',', '.'),
+        price: parseFloat(
+            property.rent_total_with_vat
+                .replace(' €', '')
+                .replace('.', '')
+                .replace(',', '.')
+        ),
         sqmeter: property.living_space,
         headline: property.headline,
         thumbnail: property.thumb_path,
@@ -37,11 +39,12 @@ export const getDegewoProperties = async (): Promise<Property[]> => {
             ({ filename }: any) =>
                 `https://immosuche.degewo.de/images/properties/full/760x570/${filename}`
         ),
-        propertyLink: `https://immosuche.degewo.de${property.property_path}`,
+        link: `https://immosuche.degewo.de${property.property_path}`,
         wbs: property.wbs_required,
         roomCount: parseInt(
             property.number_of_rooms.replace(' Zimmer', ''),
             10
         ),
+        deleted: false,
     }))
 }

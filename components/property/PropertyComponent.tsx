@@ -32,7 +32,7 @@ export const PropertyComponent: FC<{
     const { t } = useTranslation('common')
     const indexedAgo = useMemo(
         () =>
-            formatDistance(new Date(property.created_at!), new Date(), {
+            formatDistance(new Date(property.createdAt!), new Date(), {
                 addSuffix: true,
                 locale: dateLocale,
             }),
@@ -164,11 +164,7 @@ export const PropertyComponent: FC<{
                     type="success"
                     scale={2 / 3}
                     onClick={() => {
-                        window.open(
-                            property.propertyLink,
-                            '_blank',
-                            'noreferrer=true'
-                        )
+                        window.open(property.link, '_blank', 'noreferrer=true')
                     }}
                 >
                     {t('apply')}

@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Property {
+  id String @id
+
+  deleted Boolean @default(false)
+
+  organisation Organisation
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  thumbnail  String
+  imageLinks String[]
+
+  address   String
+  headline  String
+  price     Float
+  link      String
+  roomCount Int
+  sqmeter   Float
+  wbs       Boolean
+}
+
+enum Organisation {
+  DEGEWO
+  HOWOGE
+  GESOBAU
+}

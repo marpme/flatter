@@ -1,4 +1,4 @@
-import Property from '../../types/Property'
+import { CreationProperty } from '../../types/Property'
 import { Organisation } from '../../types/Organisation'
 import {
     HowogeCountResponse,
@@ -7,7 +7,7 @@ import {
 
 const fetchHowogePropertyPage = async (
     page: number
-): Promise<Array<Property>> => {
+): Promise<Array<CreationProperty>> => {
     const propertiesResponse = await fetch(
         'https://www.howoge.de/?type=999&tx_howsite_json_list[action]=immoList',
         {
@@ -24,22 +24,22 @@ const fetchHowogePropertyPage = async (
     const { immoobjects: properties }: HowogeSearchResponse =
         await propertiesResponse.json()
 
-    return properties.map((property: any) => ({
+    return properties.map<CreationProperty>((property: any) => ({
         id: `${Organisation.HOWOGE}/${property.uid}`,
-        org: Organisation.HOWOGE,
+        organisation: Organisation.HOWOGE,
         address: property.title,
         price: property.rent,
         sqmeter: property.area,
         headline: property.notice + ' - ' + property.title,
         thumbnail: property.image,
         imageLinks: [`https://www.howoge.de${property.image}`],
-        propertyLink: `https://www.howoge.de${property.link}`,
+        link: `https://www.howoge.de${property.link}`,
         wbs: property.wbs === 'ja',
         roomCount: property.rooms,
     }))
 }
 
-export const getHowogeProperties = async (): Promise<Property[]> => {
+export const getHowogeProperties = async (): Promise<CreationProperty[]> => {
     const countResponse = await fetch(
         'https://www.howoge.de/?type=999&tx_howsite_json_list[action]=immoListCount',
         {
@@ -58,7 +58,7 @@ export const getHowogeProperties = async (): Promise<Property[]> => {
 
     const pageCount = calculatePageCount(immoObjectCount)
 
-    const immos: Array<Property> = []
+    const immos: Array<CreationProperty> = []
     for (let pageIndex = 1; pageIndex <= Math.min(pageCount, 50); pageIndex++) {
         console.log('updating pages:', pageIndex, 'of', Math.min(pageCount, 10))
         let additionalProperties = await fetchHowogePropertyPage(pageIndex)

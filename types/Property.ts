@@ -1,22 +1,12 @@
-import { Organisation } from './Organisation'
+import type { Property as DBProperty } from '@prisma/client'
 
-export default interface Property {
-    id: string
-    created_at?: string
-    org: Organisation
-    address: string
-    headline: string
+type Property = DBProperty
+export default Property
 
-    // filterable fields
-    price: number
-    wbs: boolean
-    roomCount: number
-    sqmeter: number
-
-    thumbnail: string
-    imageLinks: string[]
-    propertyLink: string
-}
+export type CreationProperty = Omit<
+    Property,
+    'deleted' | 'createdAt' | 'updatedAt'
+>
 
 export type PropertyFilterOption = {
     price: {

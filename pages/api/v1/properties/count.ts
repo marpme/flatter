@@ -1,18 +1,9 @@
-import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { Database } from '../../../../types/supabase'
 import { getUpdateTimestamp } from '../../../../lib/RedisClient'
+import { prisma } from '../../../../lib/PrimsaClient'
 
 const propertiesHandler = async (req: NextApiRequest, res: NextApiResponse) => {
-    const supabase = createServerSupabaseClient<Database>({ req, res })
-
-    const { count, error } = await supabase
-        .from('properties')
-        .select('*', { count: 'exact', head: true })
-
-    if (error) {
-        return res.status(500).json({ message: 'error loading properties' })
-    }
+    const count = await prisma.property.count()
 
     res.setHeader('Cache-Control', 'public, max-age=300')
 

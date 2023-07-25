@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "license": "MIT",
     "scripts": {
+        "postinstall": "prisma generate",
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
@@ -11,16 +12,13 @@
         "analyze": "ANALYZE=true next build",
         "coverage": "vitest run --coverage",
         "prettier": "prettier --check \"components/\" \"lib/\" \"pages/\" \"types/\"",
-        "prettier:write": "prettier --write \"components/\" \"lib/\" \"pages/\" \"types/\"",
-        "types:gen": "supabase gen types typescript --project-id \"ndblxkptxmmzkeyhrleu\" --schema public > types/supabase.d.ts"
+        "prettier:write": "prettier --write \"components/\" \"lib/\" \"pages/\" \"types/\""
     },
     "dependencies": {
         "@geist-ui/core": "^2.3.8",
         "@geist-ui/icons": "^1.0.2",
         "@next/bundle-analyzer": "^13.4.12",
-        "@supabase/auth-helpers-nextjs": "^0.7.3",
-        "@supabase/auth-helpers-react": "^0.4.1",
-        "@supabase/supabase-js": "^2.29.0",
+        "@prisma/client": "^5.0.0",
         "@tanstack/react-query": "^4.28.0",
         "@tanstack/react-query-devtools": "^4.32.0",
         "@upstash/redis": "^1.22.0",
@@ -56,7 +54,7 @@
         "eslint-plugin-react": "7.33.0",
         "eslint-plugin-react-hooks": "4.6.0",
         "prettier": "^2.8.8",
-        "supabase": "^1.82.1",
+        "prisma": "^5.0.0",
         "typescript": "^5.1.6",
         "vitest": "0.33.0"
     },

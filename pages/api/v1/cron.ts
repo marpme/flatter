@@ -1,8 +1,7 @@
-import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { NextApiHandler } from 'next'
 import { getDegewoProperties } from '../../../lib/immo/degewo'
 import { getHowogeProperties } from '../../../lib/immo/howoge'
-import { Database } from '../../../types/supabase'
+
 import {
     deleteRemovedEntries,
     upsertNewProperties,
@@ -24,21 +23,15 @@ const CronPropertiesHandler: NextApiHandler<CronResult> = async (req, res) => {
             const { authorization } = req.headers
 
             if (authorization === `Bearer ${process.env.API_SECRET_KEY}`) {
-                const client = createServerSupabaseClient<Database>({
-                    req,
-                    res,
-                })
-
                 const listOfProperties = await Promise.all([
                     getDegewoProperties(),
-                    getHowogeProperties(),
+                    // getHowogeProperties(),
                     getGesobauProperties(),
                 ])
 
-                await upsertNewProperties(listOfProperties, client)
+                await upsertNewProperties(listOfProperties)
                 const removedProperties = await deleteRemovedEntries(
-                    listOfProperties,
-                    client
+                    listOfProperties
                 )
 
                 await setUpdateTimestamp()
