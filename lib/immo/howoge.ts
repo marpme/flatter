@@ -41,7 +41,7 @@ const fetchHowogePropertyPage = async (
 
 export const getHowogeProperties = async (): Promise<CreationProperty[]> => {
   const countResponse = await fetch(
-    'https://www.howoge.de/?type=999&tx_howsite_json_list[action]=immoListCount',
+    'https://www.howoge.de/?type=999&tx_howsite_json_list[action]=immoList',
     {
       body: createSearchParam().toString(),
       method: 'POST',

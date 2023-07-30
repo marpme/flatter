@@ -25,7 +25,7 @@ const CronPropertiesHandler: NextApiHandler<CronResult> = async (req, res) => {
       if (authorization === `Bearer ${process.env.API_SECRET_KEY}`) {
         const listOfProperties = await Promise.all([
           getDegewoProperties(),
-          // getHowogeProperties(),
+          getHowogeProperties(),
           getGesobauProperties(),
         ])
 
