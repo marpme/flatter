@@ -37,3 +37,16 @@ export const loadPropertyCount = async (): Promise<{
         })
     ).json()
 }
+
+export const loadAvailablePropertyCount = async (): Promise<{
+    availableCount: number
+}> => {
+    return (
+        await fetch(`/api/v1/properties/availableCount`, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+            },
+        })
+    ).json()
+}

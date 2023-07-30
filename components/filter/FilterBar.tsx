@@ -18,6 +18,8 @@ import {
     useFilterOptions,
 } from '../property/usePropertyFilterStore'
 import { PropertySortOption, propertySortValues } from '../../types/Property'
+import { useProperties } from '../property/useProperties'
+import { useAvailablePropertyCount } from '../property/usePropertiesAvailable'
 
 export const FilterBar: FC = () => {
     const { t } = useTranslation('common')
@@ -29,6 +31,9 @@ export const FilterBar: FC = () => {
     const { filter, sort } = useFilterOptions()
     const { setMinPrice, setMaxPrice, setSorting, setWBSFilter } =
         useFilterMutations()
+
+    const { data: propertiesMeta } = useAvailablePropertyCount()
+    const { data: properties } = useProperties(sort, filter)
 
     if (isSMOrSmaller) {
         return (
@@ -179,8 +184,9 @@ export const FilterBar: FC = () => {
                             }}
                         >
                             {t('filter', {
-                                amount: '?',
-                                maxAmount: '?',
+                                amount: properties?.length ?? '...',
+                                maxAmount:
+                                    propertiesMeta?.availableCount ?? '...',
                             })}
                         </Text>
                     </Grid>
