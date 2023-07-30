@@ -3,21 +3,21 @@ import { screen, cleanup } from '@testing-library/react'
 import { FilterBar } from '../../../components/filter/FilterBar'
 
 vi.mock('@supabase/auth-helpers-react', () => ({
-    useSupabaseClient: () => ({
-        from: () => ({
-            select: () => ({
-                gt: () => ({
-                    lt: () => ({
-                        data: [],
-                    }),
-                }),
-            }),
+  useSupabaseClient: () => ({
+    from: () => ({
+      select: () => ({
+        gt: () => ({
+          lt: () => ({
+            data: [],
+          }),
         }),
+      }),
     }),
+  }),
 }))
 
 describe.skip('FilterBar', () => {
-    /*beforeEach(() => {
+  /*beforeEach(() => {
         render(
             <PropertyContext.Provider
                 value={
@@ -57,25 +57,25 @@ describe.skip('FilterBar', () => {
         )
     })*/
 
-    afterEach(() => {
-        cleanup()
-    })
+  afterEach(() => {
+    cleanup()
+  })
 
-    it('should render statistics the header', function () {
-        const content = screen.getByTestId('filter-header').textContent
-        expect(content).toBe('filter')
-    })
+  it('should render statistics the header', function () {
+    const content = screen.getByTestId('filter-header').textContent
+    expect(content).toBe('filter')
+  })
 
-    it('should allow min and max price adjustments', function () {
-        const minValue = screen.getByTestId<HTMLInputElement>('price-min').value
-        const maxValue = screen.getByTestId<HTMLInputElement>('price-max').value
+  it('should allow min and max price adjustments', function () {
+    const minValue = screen.getByTestId<HTMLInputElement>('price-min').value
+    const maxValue = screen.getByTestId<HTMLInputElement>('price-max').value
 
-        expect(minValue).toBe('123')
-        expect(maxValue).toBe('900')
-    })
+    expect(minValue).toBe('123')
+    expect(maxValue).toBe('900')
+  })
 
-    it('should have a quick-switch buttons', () => {
-        const buttonGroup = screen.getByTestId('quick-buttons')
-        expect(buttonGroup).toBeInTheDocument()
-    })
+  it('should have a quick-switch buttons', () => {
+    const buttonGroup = screen.getByTestId('quick-buttons')
+    expect(buttonGroup).toBeInTheDocument()
+  })
 })

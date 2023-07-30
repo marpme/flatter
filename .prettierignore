@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.idea/
+coverage/
+.vscode/
+
+.env
+package-lock.json

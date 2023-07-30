@@ -1,23 +1,23 @@
 {
-    "wbsDisclaimer": "unterliegt speziellen Anforderungen dieses Objekt mieten zu können",
-    "description": "Beschreibung:",
-    "apply": "Bewerben",
-    "recommended": "Vorgeschlagen",
-    "special": "Mit Vorbedingung (WBS)",
-    "indexed": "{{ago}} indiziert",
-    "filter": "Filter ({{amount}} von {{maxAmount}})",
-    "insertedAt": "Hinzugefügt {{indexedAgo}}",
-    "room": "Zimmer",
-    "with": "mit",
-    "sort": {
-        "inserted": "Erstellungsdatum",
-        "price": "Preis pro Monat",
-        "sqmeter": "Größe in ㎡"
-    },
-    "filterBar": {
-        "wbs": "WBS anzeigen",
-        "oneClickFilter": "Schnelle Filter:",
-        "priceFilter": "Preisrahmen:",
-        "sortOption": "Sortieren nach:"
-    }
+  "wbsDisclaimer": "unterliegt speziellen Anforderungen dieses Objekt mieten zu können",
+  "description": "Beschreibung:",
+  "apply": "Bewerben",
+  "recommended": "Vorgeschlagen",
+  "special": "Mit Vorbedingung (WBS)",
+  "indexed": "{{ago}} indiziert",
+  "filter": "Filter ({{amount}} von {{maxAmount}})",
+  "insertedAt": "Hinzugefügt {{indexedAgo}}",
+  "room": "Zimmer",
+  "with": "mit",
+  "sort": {
+    "inserted": "Erstellungsdatum",
+    "price": "Preis pro Monat",
+    "sqmeter": "Größe in ㎡"
+  },
+  "filterBar": {
+    "wbs": "WBS anzeigen",
+    "oneClickFilter": "Schnelle Filter:",
+    "priceFilter": "Preisrahmen:",
+    "sortOption": "Sortieren nach:"
+  }
 }

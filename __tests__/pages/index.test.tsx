@@ -4,56 +4,56 @@ import { Organisation } from '../../types/Organisation'
 import Property from '../../types/Property'
 
 vi.mock('@supabase/auth-helpers-react', () => ({
-    useSupabaseClient: () => ({
-        from: () => ({
-            select: () => ({
-                gt: () => ({
-                    lt: () => ({
-                        data: [],
-                    }),
-                }),
-            }),
+  useSupabaseClient: () => ({
+    from: () => ({
+      select: () => ({
+        gt: () => ({
+          lt: () => ({
+            data: [],
+          }),
         }),
+      }),
     }),
+  }),
 }))
 
 const propertiesMock: Property[] = [
-    {
-        id: `id123`,
-        created_at: '2023-01-24 18:37:44.765102+00',
-        org: Organisation.DEGEWO,
-        address: 'some address 123',
-        price: 123.45,
-        sqmeter: 90,
-        headline: 'the beautiful property',
-        thumbnail: 'https://abc.com/abc',
-        imageLinks: ['https://abc.com/abcimage'],
-        propertyLink: 'https://abc.com/property',
-        wbs: true,
-        roomCount: 3,
-    },
-    {
-        id: `id234`,
-        created_at: '2023-01-24 18:37:44.765102+00',
-        org: Organisation.DEGEWO,
-        address: 'some address 234',
-        price: 900.0,
-        sqmeter: 90,
-        headline: 'the beautiful property',
-        thumbnail: 'https://abc.com/abc',
-        imageLinks: ['https://abc.com/abcimage'],
-        propertyLink: 'https://abc.com/property',
-        wbs: false,
-        roomCount: 2,
-    },
+  {
+    id: `id123`,
+    created_at: '2023-01-24 18:37:44.765102+00',
+    org: Organisation.DEGEWO,
+    address: 'some address 123',
+    price: 123.45,
+    sqmeter: 90,
+    headline: 'the beautiful property',
+    thumbnail: 'https://abc.com/abc',
+    imageLinks: ['https://abc.com/abcimage'],
+    propertyLink: 'https://abc.com/property',
+    wbs: true,
+    roomCount: 3,
+  },
+  {
+    id: `id234`,
+    created_at: '2023-01-24 18:37:44.765102+00',
+    org: Organisation.DEGEWO,
+    address: 'some address 234',
+    price: 900.0,
+    sqmeter: 90,
+    headline: 'the beautiful property',
+    thumbnail: 'https://abc.com/abc',
+    imageLinks: ['https://abc.com/abcimage'],
+    propertyLink: 'https://abc.com/property',
+    wbs: false,
+    roomCount: 2,
+  },
 ]
 
 describe.skip('Dashboard', () => {
-    afterEach(() => {
-        cleanup()
-    })
+  afterEach(() => {
+    cleanup()
+  })
 
-    /*it('should render statistics the header', function () {
+  /*it('should render statistics the header', function () {
         render(
             <PropertyContext.Provider
                 value={

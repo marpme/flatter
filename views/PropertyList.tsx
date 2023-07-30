@@ -9,43 +9,43 @@ import PropertySkeleton from '../components/property/PropertySkeleton'
 import { FC, ReactElement } from 'react'
 
 export const PropertyList = ({
-    properties,
-    isLoading,
+  properties,
+  isLoading,
 }: {
-    properties?: Property[]
-    isLoading: boolean
+  properties?: Property[]
+  isLoading: boolean
 }): ReactElement[] => {
-    if (!properties || isLoading) {
-        return Array<JSX.Element>(25).map((_, index) => (
-            <PropertySkeleton key={`property-skeleton-${index}`} />
-        ))
-    }
-
-    return properties.map((property) => (
-        <Grid xs={24} sm={12} md={6} key={property.id}>
-            <PropertyComponent property={property} />
-        </Grid>
+  if (!properties || isLoading) {
+    return Array<JSX.Element>(25).map((_, index) => (
+      <PropertySkeleton key={`property-skeleton-${index}`} />
     ))
+  }
+
+  return properties.map((property) => (
+    <Grid xs={24} sm={12} md={6} key={property.id}>
+      <PropertyComponent property={property} />
+    </Grid>
+  ))
 }
 
 export const ComposedPropertyView: FC = () => {
-    const { filter, sort } = useFilterOptions()
-    const { data: properties, isLoading } = useProperties(sort, filter)
+  const { filter, sort } = useFilterOptions()
+  const { data: properties, isLoading } = useProperties(sort, filter)
 
-    return (
-        <Layout
-            header={
-                <Grid.Container>
-                    <FilterBar />
-                </Grid.Container>
-            }
-        >
-            <Grid.Container gap={2} justify="center">
-                {...PropertyList({
-                    properties,
-                    isLoading,
-                })}
-            </Grid.Container>
-        </Layout>
-    )
+  return (
+    <Layout
+      header={
+        <Grid.Container>
+          <FilterBar />
+        </Grid.Container>
+      }
+    >
+      <Grid.Container gap={2} justify="center">
+        {...PropertyList({
+          properties,
+          isLoading,
+        })}
+      </Grid.Container>
+    </Layout>
+  )
 }

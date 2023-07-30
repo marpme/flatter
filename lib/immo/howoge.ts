@@ -1,88 +1,88 @@
 import { CreationProperty } from '../../types/Property'
 import { Organisation } from '../../types/Organisation'
 import {
-    HowogeCountResponse,
-    HowogeSearchResponse,
+  HowogeCountResponse,
+  HowogeSearchResponse,
 } from '../../types/HowogeSearchResponse'
 
 const fetchHowogePropertyPage = async (
-    page: number
+  page: number
 ): Promise<Array<CreationProperty>> => {
-    const propertiesResponse = await fetch(
-        'https://www.howoge.de/?type=999&tx_howsite_json_list[action]=immoList',
-        {
-            body: createSearchParam(String(page)).toString(),
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        }
-    )
-
-    if (!propertiesResponse.ok) {
-        throw new Error('Could not fetch howoge properties')
+  const propertiesResponse = await fetch(
+    'https://www.howoge.de/?type=999&tx_howsite_json_list[action]=immoList',
+    {
+      body: createSearchParam(String(page)).toString(),
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     }
+  )
 
-    const { immoobjects: properties }: HowogeSearchResponse =
-        await propertiesResponse.json()
+  if (!propertiesResponse.ok) {
+    throw new Error('Could not fetch howoge properties')
+  }
 
-    return properties.map<CreationProperty>((property: any) => ({
-        id: `${Organisation.HOWOGE}/${property.uid}`,
-        organisation: Organisation.HOWOGE,
-        address: property.title,
-        price: property.rent,
-        sqmeter: property.area,
-        headline: property.notice + ' - ' + property.title,
-        thumbnail: property.image,
-        imageLinks: [`https://www.howoge.de${property.image}`],
-        link: `https://www.howoge.de${property.link}`,
-        wbs: property.wbs === 'ja',
-        roomCount: property.rooms,
-    }))
+  const { immoobjects: properties }: HowogeSearchResponse =
+    await propertiesResponse.json()
+
+  return properties.map<CreationProperty>((property: any) => ({
+    id: `${Organisation.HOWOGE}/${property.uid}`,
+    organisation: Organisation.HOWOGE,
+    address: property.title,
+    price: property.rent,
+    sqmeter: property.area,
+    headline: property.notice + ' - ' + property.title,
+    thumbnail: property.image,
+    imageLinks: [`https://www.howoge.de${property.image}`],
+    link: `https://www.howoge.de${property.link}`,
+    wbs: property.wbs === 'ja',
+    roomCount: property.rooms,
+  }))
 }
 
 export const getHowogeProperties = async (): Promise<CreationProperty[]> => {
-    const countResponse = await fetch(
-        'https://www.howoge.de/?type=999&tx_howsite_json_list[action]=immoListCount',
-        {
-            body: createSearchParam().toString(),
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        }
-    )
-
-    if (!countResponse.ok) {
-        throw new Error('Could not fetch howoge count of properties')
+  const countResponse = await fetch(
+    'https://www.howoge.de/?type=999&tx_howsite_json_list[action]=immoListCount',
+    {
+      body: createSearchParam().toString(),
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     }
+  )
 
-    const { cntImmoobjects: immoObjectCount }: HowogeCountResponse =
-        await countResponse.json()
+  if (!countResponse.ok) {
+    throw new Error('Could not fetch howoge count of properties')
+  }
 
-    const pageCount = calculatePageCount(immoObjectCount)
+  const { cntImmoobjects: immoObjectCount }: HowogeCountResponse =
+    await countResponse.json()
 
-    const immos: Array<CreationProperty> = []
-    for (let pageIndex = 1; pageIndex <= Math.min(pageCount, 50); pageIndex++) {
-        console.log('updating pages:', pageIndex, 'of', Math.min(pageCount, 10))
-        let additionalProperties = await fetchHowogePropertyPage(pageIndex)
-        immos.push(...additionalProperties)
-    }
+  const pageCount = calculatePageCount(immoObjectCount)
 
-    return immos
+  const immos: Array<CreationProperty> = []
+  for (let pageIndex = 1; pageIndex <= Math.min(pageCount, 50); pageIndex++) {
+    console.log('updating pages:', pageIndex, 'of', Math.min(pageCount, 10))
+    let additionalProperties = await fetchHowogePropertyPage(pageIndex)
+    immos.push(...additionalProperties)
+  }
+
+  return immos
 }
 
 const immoPerPage = 12
 
 const calculatePageCount = (immoObjectsCount: number) =>
-    Math.ceil(immoObjectsCount / 12)
+  Math.ceil(immoObjectsCount / 12)
 
 const createSearchParam = (page: string = '1') => {
-    const searchParams = new URLSearchParams()
+  const searchParams = new URLSearchParams()
 
-    searchParams.append('tx_howsite_json_list[page]', page)
-    searchParams.append('tx_howsite_json_list[limit]', String(immoPerPage))
-    searchParams.append('tx_howsite_json_list[lang]', '')
-    searchParams.append('tx_howsite_json_list[rent]', '')
-    searchParams.append('tx_howsite_json_list[area]', '')
-    searchParams.append('tx_howsite_json_list[rooms]', 'egal')
-    searchParams.append('tx_howsite_json_list[wbs]', 'all-offers')
+  searchParams.append('tx_howsite_json_list[page]', page)
+  searchParams.append('tx_howsite_json_list[limit]', String(immoPerPage))
+  searchParams.append('tx_howsite_json_list[lang]', '')
+  searchParams.append('tx_howsite_json_list[rent]', '')
+  searchParams.append('tx_howsite_json_list[area]', '')
+  searchParams.append('tx_howsite_json_list[rooms]', 'egal')
+  searchParams.append('tx_howsite_json_list[wbs]', 'all-offers')
 
-    return searchParams
+  return searchParams
 }

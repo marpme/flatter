@@ -1,4 +1,3 @@
-
 ## Flatter
 
 #### Code Quality Overview
@@ -16,6 +15,6 @@ It should only list serious contents from proven and legit companies or building
 
 #### Ethics
 
-* This site is not sponsored nor endorsed by any of the accepted and listed companies.
-* Neither do we/I support and take any sponsorships or advertisements for this webapp.
-* The webapp should soely be used as an informational platform and it may be taken down without any notice.
+- This site is not sponsored nor endorsed by any of the accepted and listed companies.
+- Neither do we/I support and take any sponsorships or advertisements for this webapp.
+- The webapp should soely be used as an informational platform and it may be taken down without any notice.
