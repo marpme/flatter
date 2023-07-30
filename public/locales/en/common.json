@@ -1,24 +1,24 @@
 {
-    "wbsDisclaimer": "requires special legal obligation to rent this object",
-    "description": "Description:",
-    "apply": "Apply",
-    "recommended": "Vorgeschlagen",
-    "special": "Mit Vorbedingung (WBS)",
-    "indexed": "indexed {{ago}}",
-    "filter": "Filters ({{amount}} of {{maxAmount}})",
-    "insertedAt": "Added {{indexedAgo}}",
-    "room_one": "room",
-    "room_other": "rooms",
-    "with": "with",
-    "sort": {
-        "inserted": "Insertion Date",
-        "price": "Price per month",
-        "sqmeter": "Space in ㎡"
-    },
-    "filterBar": {
-        "wbs": "Show WBS",
-        "oneClickFilter": "One-Click-Filter:",
-        "priceFilter": "Price range:",
-        "sortOption": "Sort by:"
-    }
+  "wbsDisclaimer": "requires special legal obligation to rent this object",
+  "description": "Description:",
+  "apply": "Apply",
+  "recommended": "Vorgeschlagen",
+  "special": "Mit Vorbedingung (WBS)",
+  "indexed": "indexed {{ago}}",
+  "filter": "Filters ({{amount}} of {{maxAmount}})",
+  "insertedAt": "Added {{indexedAgo}}",
+  "room_one": "room",
+  "room_other": "rooms",
+  "with": "with",
+  "sort": {
+    "inserted": "Insertion Date",
+    "price": "Price per month",
+    "sqmeter": "Space in ㎡"
+  },
+  "filterBar": {
+    "wbs": "Show WBS",
+    "oneClickFilter": "One-Click-Filter:",
+    "priceFilter": "Price range:",
+    "sortOption": "Sort by:"
+  }
 }
