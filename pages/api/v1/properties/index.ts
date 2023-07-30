@@ -48,7 +48,7 @@ const propertiesHandler = async (req: NextApiRequest, res: NextApiResponse) => {
         orderBy: {
             ...(sort === 'inserted' ? { createdAt: 'desc' } : {}),
             ...(sort === 'price' ? { price: 'asc' } : {}),
-            ...(sort === 'sqmeter' ? { createdAt: 'asc' } : {}),
+            ...(sort === 'sqmeter' ? { sqmeter: 'asc' } : {}),
         },
     })
 
