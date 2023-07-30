@@ -20,7 +20,7 @@ const parseQuery = (req: NextApiRequest): PropertiesHandler => {
                 min: parseInt(String(priceMin), 10),
                 max: parseInt(String(priceMax), 10),
             },
-            wbs: Boolean(wbs),
+            wbs: wbs === 'true',
         },
     }
 }
