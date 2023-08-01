@@ -39,8 +39,8 @@ export const ComposedPropertyView: FC = () => {
           <FilterBar />
           <Button
             onClick={async () => {
-              const { clicker } = await import('../components/Clicker')
-              clicker()
+              const { clickerx } = await import('../components/Clicker')
+              clickerx()
             }}
           >
             Click me

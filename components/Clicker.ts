@@ -1,3 +1,3 @@
-export const clicker = () => {
-  console.log('I was clicked')
+export const clickerx = () => {
+  console.log('I was clicked once more ...')
 }
