@@ -1,4 +1,4 @@
-import { Grid } from '@geist-ui/core'
+import { Button, Grid } from '@geist-ui/core'
 import Layout from '../components/layout'
 import { FilterBar } from '../components/filter/FilterBar'
 import { PropertyComponent } from '../components/property/PropertyComponent'
@@ -37,6 +37,14 @@ export const ComposedPropertyView: FC = () => {
       header={
         <Grid.Container>
           <FilterBar />
+          <Button
+            onClick={async () => {
+              const { clicker } = await import('../components/Clicker')
+              clicker()
+            }}
+          >
+            Click me
+          </Button>
         </Grid.Container>
       }
     >
