@@ -37,14 +37,6 @@ export const ComposedPropertyView: FC = () => {
       header={
         <Grid.Container>
           <FilterBar />
-          <Button
-            onClick={async () => {
-              const { clickerx } = await import('../components/Clicker')
-              clickerx()
-            }}
-          >
-            Click me
-          </Button>
         </Grid.Container>
       }
     >
