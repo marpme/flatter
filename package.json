@@ -18,7 +18,7 @@
     "@geist-ui/core": "^2.3.8",
     "@geist-ui/icons": "^1.0.2",
     "@next/bundle-analyzer": "^13.4.12",
-    "@prisma/client": "^5.0.0",
+    "@prisma/client": "^5.1.0",
     "@tanstack/react-query": "^4.28.0",
     "@tanstack/react-query-devtools": "^4.32.1",
     "@upstash/redis": "^1.22.0",
