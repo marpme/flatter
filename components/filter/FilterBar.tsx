@@ -66,6 +66,7 @@ export const FilterBar: FC = () => {
                     setMinPrice(parseInt(e.target.value, 10))
                   }
                 }}
+                crossOrigin={undefined}
               />
             </Grid>
             <Grid xs={4} alignItems={'center'} justify={'center'}>
@@ -83,6 +84,7 @@ export const FilterBar: FC = () => {
                     setMaxPrice(parseInt(e.target.value, 10))
                   }
                 }}
+                crossOrigin={undefined}
               />
             </Grid>
           </Grid.Container>
@@ -194,6 +196,7 @@ export const FilterBar: FC = () => {
                   setMinPrice(parseInt(e.target.value, 10))
                 }
               }}
+              crossOrigin={undefined}
             />
             <Text mx={0.5}>-</Text>
             <Input
@@ -207,6 +210,7 @@ export const FilterBar: FC = () => {
                   setMaxPrice(parseInt(e.target.value, 10))
                 }
               }}
+              crossOrigin={undefined}
             />
           </Grid>
           <Grid xs={24} md={8} justify="center" alignItems="center">
