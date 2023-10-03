@@ -1225,12 +1225,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@upstash/redis@npm:^1.22.0":
-  version: 1.22.0
-  resolution: "@upstash/redis@npm:1.22.0"
+"@upstash/redis@npm:^1.22.1":
+  version: 1.22.1
+  resolution: "@upstash/redis@npm:1.22.1"
   dependencies:
     isomorphic-fetch: ^3.0.0
-  checksum: 894b7d4e318c55fdcbf0f322efd9ace94a37f1b8f9d7cb2cdf8b8b4859814379665c7e00feef3565578455d98492710d14ed4a2b043ec412b5d640a4d5a2dd55
+  checksum: 0b7db14197ef4ed7d793de3c4e52902a98ba82d1034f5fe4e5adba934760e06cd137c25287fd78beba9e94e77962dabcc525f4dd0bc00356401a7f0d80ad7e5c
   languageName: node
   linkType: hard
 
@@ -4874,7 +4874,7 @@ __metadata:
     "@types/ramda": ^0.29.5
     "@types/react": 18.2.24
     "@typescript-eslint/parser": 6.7.3
-    "@upstash/redis": ^1.22.0
+    "@upstash/redis": ^1.22.1
     "@vercel/og": ^0.5.17
     "@vitejs/plugin-react": 4.0.3
     "@vitest/coverage-v8": 0.34.3
