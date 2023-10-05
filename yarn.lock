@@ -4923,7 +4923,7 @@ __metadata:
     next-i18next: ^13.3.0
     prettier: ^3.0.3
     prisma: ^5.4.1
-    ramda: ^0.29.0
+    ramda: ^0.29.1
     react: ^18.2.0
     react-content-loader: ^6.2.1
     react-dom: ^18.2.0
@@ -4962,10 +4962,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ramda@npm:^0.29.0":
-  version: 0.29.0
-  resolution: "ramda@npm:0.29.0"
-  checksum: 9ab26c06eb7545cbb7eebcf75526d6ee2fcaae19e338f165b2bf32772121e7b28192d6664d1ba222ff76188ba26ab307342d66e805dbb02c860560adc4d5dd57
+"ramda@npm:^0.29.1":
+  version: 0.29.1
+  resolution: "ramda@npm:0.29.1"
+  checksum: df7c627597a66d5f317f6ba77ad17d7ba818efc9c2c4a638440bc23f2c651e823970ea05b05a28895738c0e4b738fadbdc17b2c97b3ad922826febc09c859c44
   languageName: node
   linkType: hard
 
