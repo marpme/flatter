@@ -22,7 +22,7 @@
     "@prisma/client": "^5.4.2",
     "@tanstack/react-query": "^4.36.1",
     "@tanstack/react-query-devtools": "^4.36.1",
-    "@upstash/redis": "^1.22.1",
+    "@upstash/redis": "^1.23.3",
     "@vercel/og": "^0.5.17",
     "date-fns": "^2.30.0",
     "i18next": "^22.5.1",
