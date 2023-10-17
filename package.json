@@ -18,7 +18,7 @@
   "dependencies": {
     "@geist-ui/core": "^2.3.8",
     "@geist-ui/icons": "^1.0.2",
-    "@next/bundle-analyzer": "^13.5.4",
+    "@next/bundle-analyzer": "^13.5.5",
     "@prisma/client": "^5.4.2",
     "@tanstack/react-query": "^4.36.1",
     "@tanstack/react-query-devtools": "^4.36.1",
