@@ -779,24 +779,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/client@npm:^5.4.2":
-  version: 5.4.2
-  resolution: "@prisma/client@npm:5.4.2"
+"@prisma/client@npm:^5.5.0":
+  version: 5.5.0
+  resolution: "@prisma/client@npm:5.5.0"
   dependencies:
-    "@prisma/engines-version": 5.4.1-2.ac9d7041ed77bcc8a8dbd2ab6616b39013829574
+    "@prisma/engines-version": 5.5.0-19.475c616176945d72f4330c92801f0c5e6398dc0f
   peerDependencies:
     prisma: "*"
   peerDependenciesMeta:
     prisma:
       optional: true
-  checksum: e01aebad95a6168668a214784e036ba4d6c6ac2c7eff35c7c3b1b729d2fc70b7f1addfce8a8550b24ffadf9be45538f2bd8a2257dfac9ec18d1d900437bf6660
+  checksum: c1998a50ac476f2f96e3c83b6630ce294bce5bfea901d47b114ce620bb91845a5f4d4050f8cc9f7f591f2348fbc3e4f03ad5bbeecc1914e11669f391bab5fe7b
   languageName: node
   linkType: hard
 
-"@prisma/engines-version@npm:5.4.1-2.ac9d7041ed77bcc8a8dbd2ab6616b39013829574":
-  version: 5.4.1-2.ac9d7041ed77bcc8a8dbd2ab6616b39013829574
-  resolution: "@prisma/engines-version@npm:5.4.1-2.ac9d7041ed77bcc8a8dbd2ab6616b39013829574"
-  checksum: 493f84e8856bf214c64177f879f7009740156492a3e1b42cd02e91eec273a5d290bfdde9ca32c361cd8a0616a33d903163582a51e44a79a6b6b318f72130517f
+"@prisma/engines-version@npm:5.5.0-19.475c616176945d72f4330c92801f0c5e6398dc0f":
+  version: 5.5.0-19.475c616176945d72f4330c92801f0c5e6398dc0f
+  resolution: "@prisma/engines-version@npm:5.5.0-19.475c616176945d72f4330c92801f0c5e6398dc0f"
+  checksum: 14dd15c2698755707409102aaa94f4e578b9ca9c78b48196c8c73f58edbd1cede612937d678eb6051a749f6ceeae44f2fcc94f8fcec3a6dbb8b21d413cca71cc
   languageName: node
   linkType: hard
 
@@ -4954,7 +4954,7 @@ __metadata:
     "@geist-ui/core": ^2.3.8
     "@geist-ui/icons": ^1.0.2
     "@next/bundle-analyzer": ^13.5.6
-    "@prisma/client": ^5.4.2
+    "@prisma/client": ^5.5.0
     "@tanstack/react-query": ^4.36.1
     "@tanstack/react-query-devtools": ^4.36.1
     "@testing-library/jest-dom": ^6.1.4
