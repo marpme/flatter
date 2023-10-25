@@ -800,10 +800,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/engines@npm:5.4.2":
-  version: 5.4.2
-  resolution: "@prisma/engines@npm:5.4.2"
-  checksum: 90bec53c85e800291a3cf9f02f4979bd8177225077178fb292ea100b47af0e6d5c9a31bf3630f1dcfd23829299fe7685e386fc57a3d7ff3bf0c25c3704ce971f
+"@prisma/engines@npm:5.5.0":
+  version: 5.5.0
+  resolution: "@prisma/engines@npm:5.5.0"
+  checksum: 78cdf4eebbd7193b76cf99799e9b2e0d5f746fcf9b1ca6a890ddef7086332ec0f3712e0715670471e0edc06e2f01e63e8d15254d01ca75a6851eb7251f27bd7f
   languageName: node
   linkType: hard
 
@@ -4915,14 +4915,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prisma@npm:^5.4.2":
-  version: 5.4.2
-  resolution: "prisma@npm:5.4.2"
+"prisma@npm:^5.5.0":
+  version: 5.5.0
+  resolution: "prisma@npm:5.5.0"
   dependencies:
-    "@prisma/engines": 5.4.2
+    "@prisma/engines": 5.5.0
   bin:
     prisma: build/index.js
-  checksum: 863b34fb16960b533a3ec0e8d1e32f6a9caf99849ade9157beea74ef708695281b318b9d2afac0a12953b1ff27df111a8fdb37324a6e6b060d255ae51a53c8c5
+  checksum: 59d08e893dfdec20862739b69e39942a17af3d62d53a401c3f222163416c2d256464371e3d4a31d1963f3cd76911b2da56188fbe266ddd8e6c258012b7a27aea
   languageName: node
   linkType: hard
 
@@ -4982,7 +4982,7 @@ __metadata:
     next: ^13.5.6
     next-i18next: ^13.3.0
     prettier: ^3.0.3
-    prisma: ^5.4.2
+    prisma: ^5.5.0
     ramda: ^0.29.1
     react: ^18.2.0
     react-content-loader: ^6.2.1
