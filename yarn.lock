@@ -712,12 +712,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/bundle-analyzer@npm:^13.5.6":
-  version: 13.5.6
-  resolution: "@next/bundle-analyzer@npm:13.5.6"
+"@next/bundle-analyzer@npm:^14.0.4":
+  version: 14.0.4
+  resolution: "@next/bundle-analyzer@npm:14.0.4"
   dependencies:
     webpack-bundle-analyzer: 4.7.0
-  checksum: 4308abc7f6ad35e3f3687af998313ca57749c08215bb1f2f0f2af1551badb8427800b462da408ef8d3dc60a51d547b9d175e7eacf297a5f8f7383441a926d453
+  checksum: 46224e08b20dffd0ff02d210ed527deddc189f054fb1501bca6d861f30c2bbcf5ede50f50c61401e2e865aede6ee736c1ce4ca0094ac14c839c2860cb13251ab
   languageName: node
   linkType: hard
 
@@ -5010,7 +5010,7 @@ __metadata:
   dependencies:
     "@geist-ui/core": ^2.3.8
     "@geist-ui/icons": ^1.0.2
-    "@next/bundle-analyzer": ^13.5.6
+    "@next/bundle-analyzer": ^14.0.4
     "@prisma/client": ^5.5.2
     "@tanstack/react-query": ^4.36.1
     "@tanstack/react-query-devtools": ^4.36.1
